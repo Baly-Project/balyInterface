@@ -7,7 +7,26 @@
 <style>
   @font-face {
     font-family: 'Dihjauti';
-    src: url('assets/fonts/Dihjauti-Regular.otf');
+    src: url('assets/fonts/Dihjauti/Dihjauti-Regular.otf');
+  }
+  @font-face {
+    font-family: "Lato";
+    src: url("assets/fonts/Lato/Lato-Medium.ttf");
+  }
+  @font-face {
+    font-family: "Serif";
+    src: url(assets/fonts/SourceSerif/SourceSerifPro-Regular.otf);
+  }
+  .nav-link {
+    font-family: "Serif";
+    font-weight: 500;
+    font-size: large;
+    margin-top: .1in;
+    margin-bottom:.1in;
+  }
+  .nav-item {
+    display: block;
+    padding-left: 2vw;
   }
   body {
     background-color: rgb(58, 0, 119);
@@ -22,13 +41,58 @@
     font-size: 170%;
     line-height: 110%;
   }
+  .navbar-toggler {
+    margin-right: .4in;
+  }
   .brand-line {
     margin: 0px;
+    margin-right: 15px;
+  }
+  #navbar-body {
+    justify-content: space-around;
+  }
+  #navbar-links {
+    justify-content: space-evenly;
+  }
+  .search-form {
+    margin-bottom: 0px;
+    padding-right: .2in;
+    padding-left: .2in;
   }
 </style>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg">
   <a class="navbar-brand" href="/home"><p class="brand-line">Denis Baly</p> <p class="brand-line"> Slide Collection</p></a>
-
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-body" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> 
+  <div class="collapse navbar-collapse" id="navbar-body">
+    <ul class="navbar-nav" id="navbar-links">
+      <li class="nav-item">
+        <a class="nav-link active">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> Browse </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item">by Collection</a></li>
+          <li><a class="dropdown-item">by Year</a></li>
+          <li><a class="dropdown-item">by Location</a></li>
+          <li><a class="dropdown-item">All</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"> Timeline </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"> About </a>
+      </li>
+      </ul>
+    <div class="search-group">
+      <form class="d-flex search-form" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
 </nav>
 </body>
