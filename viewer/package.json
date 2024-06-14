@@ -3,7 +3,10 @@
   "private": true,
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "esbuild": "^0.21.5"
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "esbuild": "^0.21.5",
+    "postcss": "^8.4.38"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",

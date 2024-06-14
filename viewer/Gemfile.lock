@@ -85,11 +85,16 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    autoprefixer-rails (10.4.16.0)
+      execjs (~> 2)
     base64 (0.2.0)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
+    bootstrap (5.3.3)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 2.11.8, < 3)
     builder (3.3.0)
     capybara (3.40.0)
       addressable
@@ -106,6 +111,9 @@ GEM
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
     csv (3.3.0)
+    dartsass-rails (0.5.0)
+      railties (>= 6.0.0)
+      sass-embedded (~> 1.63)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -113,12 +121,31 @@ GEM
     drb (2.2.1)
     erubi (1.12.0)
     excon (0.110.0)
+    execjs (2.9.1)
     faraday (2.9.1)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (4.27.1)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.1-aarch64-linux)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.1-arm64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.1-x86-linux)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.1-x86_64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.1-x86_64-linux)
+      bigdecimal
+      rake (>= 13)
     httparty (0.22.0)
       csv
       mini_mime (>= 1.0.0)
@@ -174,6 +201,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.5-x86_64-linux)
       racc (~> 1.4)
+    popper_js (2.11.8)
     psych (5.1.2)
       stringio
     public_suffix (5.0.5)
@@ -226,6 +254,18 @@ GEM
     rexml (3.3.0)
       strscan
     rubyzip (2.3.2)
+    sass-embedded (1.77.5-aarch64-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.77.5-arm-linux-gnueabihf)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.77.5-arm64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.77.5-x86-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.77.5-x86_64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.77.5-x86_64-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
     selenium-webdriver (4.21.1)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
@@ -282,8 +322,10 @@ PLATFORMS
 DEPENDENCIES
   activeresource (~> 6.1)
   bootsnap
+  bootstrap (~> 5.3)
   capybara
   cssbundling-rails
+  dartsass-rails (~> 0.5.0)
   debug
   excon (~> 0.110.0)
   faraday (~> 2.9)

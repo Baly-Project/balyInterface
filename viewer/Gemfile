@@ -76,3 +76,7 @@ gem "excon", "~> 0.110.0"
 gem "httparty", "~> 0.22.0"
 
 gem "faraday", "~> 2.9"
+
+gem "bootstrap", "~> 5.3"
+
+gem "dartsass-rails", "~> 0.5.0"
