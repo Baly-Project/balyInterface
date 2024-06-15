@@ -27,13 +27,16 @@
   }
   nav.navbar {
     background-color: rgb(235, 228, 219);
-    padding-left: .2in;
+    padding-left: .15in;
   }
   .navbar-brand {
     font-family: 'Dihjauti';
     font-weight: 500;
     font-size: 170%;
     line-height: 110%;
+  }
+  .brand-image {
+    height: 90px;
   }
   .navbar-toggler {
     margin-right: .4in;
@@ -48,8 +51,11 @@
   #navbar-links {
     justify-content: space-evenly;
   }
+  .dropdown-menu {
+    margin-right: .3in;
+  }
   .search-form {
     margin-bottom: 0px;
     padding-right: .2in;
-    padding-left: .2in;
+    padding-left: 1.6vw;
   }
