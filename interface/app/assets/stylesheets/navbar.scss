@@ -1,0 +1,65 @@
+/*  @font-face {
+    font-family: 'Dihjauti';
+    src: url('assets/fonts/Dihjauti/Dihjauti-Regular.otf');
+  }
+  @font-face {
+    font-family: "Lato";
+    src: url("assets/fonts/Lato/Lato-Medium.ttf");
+  }
+  @font-face {
+    font-family: "Serif";
+    src: url(assets/fonts/SourceSerif/SourceSerifPro-Regular.otf);
+  }
+*/
+  .nav-link {
+    font-family: "Serif";
+    font-weight: 500;
+    font-size: 21pt;
+    margin-top: .1in;
+    margin-bottom:.1in;
+  }
+  .nav-item {
+    display: block;
+    padding-left: 2vw;
+  }
+  body {
+    background-color: rgb(58, 0, 119);
+  }
+  nav.navbar {
+    background-color: rgb(235, 228, 219);
+    padding-left: .15in;
+  }
+  /*.navbar-brand {
+    font-family: 'Dihjauti';
+    font-weight: 500;
+    font-size: 170%;
+    line-height: 110%;
+  }*/
+  .brand-image {
+    height: 100px;
+  }
+  .navbar-toggler {
+    margin-right: .4in;
+  }
+  .brand-line {
+    margin: 0px;
+    margin-right: 15px;
+  }
+  #navbar-body {
+    justify-content: space-around;
+  }
+  #navbar-links {
+    justify-content: space-evenly;
+  }
+  .dropdown-menu {
+    margin-right: .3in;
+  }
+  .search-form {
+    margin-bottom: 0px;
+    padding-right: .2in;
+    padding-left: 1.6vw;
+  }
+  .search-form * {
+    font-size: 17pt;
+  }
+
