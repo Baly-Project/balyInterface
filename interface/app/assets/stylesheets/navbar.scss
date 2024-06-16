@@ -14,7 +14,7 @@
   .nav-link {
     font-family: "Serif";
     font-weight: 500;
-    font-size: large;
+    font-size: 21pt;
     margin-top: .1in;
     margin-bottom:.1in;
   }
@@ -29,14 +29,14 @@
     background-color: rgb(235, 228, 219);
     padding-left: .15in;
   }
-  .navbar-brand {
+  /*.navbar-brand {
     font-family: 'Dihjauti';
     font-weight: 500;
     font-size: 170%;
     line-height: 110%;
-  }
+  }*/
   .brand-image {
-    height: 90px;
+    height: 100px;
   }
   .navbar-toggler {
     margin-right: .4in;
@@ -59,3 +59,7 @@
     padding-right: .2in;
     padding-left: 1.6vw;
   }
+  .search-form * {
+    font-size: 17pt;
+  }
+
