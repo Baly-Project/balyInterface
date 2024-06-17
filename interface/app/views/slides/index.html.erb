@@ -1,1 +1,17 @@
-<h1> All the Slides there are </h1>
+<h1> All Slides </h1>
+
+
+
+<div class="row row-cols-xl-4 row-cols-md-3 row-cols-2 g-2">
+  <% @slides.each do |slide| %>
+  <div class="row">
+    <div class="card" style="width: 18rem;">
+      <img src=<%= slide.medimg %> class="card-img-top rounded-0" alt=<%= slide.title %>>
+      <div class="card-body">
+        <h5 class="card-title"> <%= slide.title %></h5>
+        <p class="card-text"> A short description </p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

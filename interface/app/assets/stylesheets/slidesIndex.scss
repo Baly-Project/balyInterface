@@ -1,0 +1,26 @@
+/* Constants */
+$body-color: rgb(255 249 241);
+
+/* Styles */
+h1 {
+  padding: .35in;
+}
+
+div.container {
+  background-color: $body-color;
+}
+
+div.row-cols-xl-4 {
+  background-color: $body-color;
+  justify-content: space-evenly;
+}
+div.card {
+  border-width: 0px;
+  background-color: $body-color;
+}
+
+div.card-body {
+  background-color: $body-color;
+}
+
+
