@@ -10,6 +10,18 @@ div.container {
   background-color: $body-color;
 }
 
+.pagination {
+  justify-content: center;
+}
+a.page-link.pager {
+  background-color: $body-color;
+}
+a.page-link.pager.active {
+  color: black;
+  background-color: rgb(235, 228, 219);
+  border-color: black;
+  border-top: hidden;
+}
 div.row-cols-xl-4 {
   background-color: $body-color;
   justify-content: space-evenly;

@@ -1,9 +1,30 @@
+<nav aria-label="Page navigation">
+  <div>
+   <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link pager" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <% perpage=@last-@start %>
+    <% pages=@count/perpage %>
+    <% pages.times do |i| %>
+    <li class="page-item"><a class="page-link pager <% if i*perpage == @start %> active rounded-bottom <%end%>" href="../<%=i*perpage%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
+    <% end %>
+    <li class="page-item">
+      <a class="page-link pager" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+    <p> showing results <%= @start %>-<%=@last%> of <%= @count %> </p>
+  </div>   
+</nav>
+
 <h1> All Slides </h1>
 
-
-
 <div class="row row-cols-xl-4 row-cols-md-3 row-cols-2 g-2">
-  <% @slides.each do |slide| %>
+  <% @slides[@start..@last].each do |slide| %>
   <div class="row">
     <div class="card" style="width: 18rem;">
       <img src=<%= slide.medimg %> class="card-img-top rounded-0" alt=<%= slide.title %>>
