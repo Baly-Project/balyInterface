@@ -1,13 +1,20 @@
+<% content_for :for_head do%>
+<%=javascript_include_tag "pager" %>
+<% end %>
+
 <nav aria-label="Page navigation">
   <div>
-   <ul class="pagination">
+   <ul class="pagination" id="pager">
     <li class="page-item">
       <a class="page-link pager" href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <% perpage=@last-@start %>
+    <% perpage=@last-@start%>
     <% pages=@count/perpage %>
+    <% if pages*perpage < @count
+         pages+=1
+       end %>
     <% pages.times do |i| %>
     <li class="page-item"><a class="page-link pager <% if i*perpage == @start %> active rounded-bottom <%end%>" href="../<%=i*perpage%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
     <% end %>
@@ -17,7 +24,7 @@
       </a>
     </li>
   </ul>
-    <p> showing results <%= @start %>-<%=@last%> of <%= @count %> </p>
+    <p> showing results <%= @start %>-<%=[@last,@count].min%> of <%= @count %> </p>
   </div>   
 </nav>
 
@@ -36,3 +43,7 @@
   </div>
   <% end %>
 </div>
+
+<script>
+  animatePager()
+</script>
