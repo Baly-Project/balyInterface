@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sample Slide</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">  
+  </head>
+
+  <style>
+    /* nav styling */
+    div.navbox {
+    padding-bottom: 24px;
+    background-color: rgb(235, 228, 219);
+  }
+  .nav-link {
+    font-family: "Serif";
+    font-weight: 500;
+    font-size: 21pt;
+    margin-top: .1in;
+    margin-bottom:.1in;
+  }
+  .nav-item {
+    display: block;
+    padding-left: 2vw;
+  }
+  body {
+    background-color: rgb(58, 0, 119);
+  }
+  nav.navbar {
+    background-color: rgb(235, 228, 219);;
+    padding-left: .15in;
+  }
+  /*.navbar-brand {
+    font-family: 'Dihjauti';
+    font-weight: 500;
+    font-size: 170%;
+    line-height: 110%;
+  }*/
+  .brand-image {
+    height: 100px;
+  }
+  .navbar-toggler {
+    margin-right: .4in;
+  }
+  .brand-line {
+    margin: 0px;
+    margin-right: 15px;
+  }
+  #navbar-body {
+    justify-content: space-around;
+  }
+  #navbar-links {
+    justify-content: space-evenly;
+  }
+  .dropdown-menu {
+    margin-right: .3in;
+  }
+  .search-form {
+    margin-bottom: 0px;
+    padding-right: .2in;
+    padding-left: 1.6vw;
+  }
+  .search-form * {
+    font-size: 17pt;
+  }
+  hr.navline {
+    margin-left: .25in;
+    margin-right: .25in;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  /* container styling */
+  h1 {
+    padding: .35in;
+  }
+
+  div.container {
+    background-color:  rgb(255 249 241);
+    padding: 0in;
+  }
+
+  div.img-holder {
+    align-items: stretch;
+    display: flex;
+    justify-content: space-around;
+    padding: .2in;
+    border-style: groove;
+    border-left: 0px;
+    border-right:0px;
+    background-color: black;
+  }
+
+  img.main-image {
+    height: 60vh;
+  }
+
+  @media screen and (max-width: 991.9px) {
+    img.main-image {
+        width: 90%;
+        height: auto;
+    }
+  }
+
+  div.img-info {
+    padding:.2in;
+  }
+
+  h5.subtitle {
+    width:fit-content;
+  }
+  hr.itemline {
+    margin-top: .1in;
+    margin-bottom: 0%;
+    width: 105%;
+  }
+  </style>
+  <body>
+    <div class="navbox">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/home">
+          <img class="brand-image" src="assets/images/logo.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-body" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-body">
+          <ul class="navbar-nav" id="navbar-links">
+            <li class="nav-item">
+              <a class="nav-link active">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> Browse </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item">by Collection</a></li>
+                <li><a class="dropdown-item">by Year</a></li>
+                <li><a class="dropdown-item">by Location</a></li>
+                <li><a class="dropdown-item">All</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"> Timeline </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"> About </a>
+            </li>
+          </ul>
+          <div class="search-group">
+            <form class="d-flex search-form" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <hr class="navline">
+    </div>
+    <div class="img-holder">
+      <img src="assets/images/DH_054.jpg" alt="" class="main-image">
+    </div>
+    <div class="container">
+      <div class="img-info">
+        <h3 class="title"> Ancient Theater of Delphi and Temple of Apollo</h3>
+        <h5 class="subtitle">Description <hr class="itemline"> </h5>
+        <p class="sdesc">
+            The Ancient Theater of Delphi, in the Northeast corner of the 
+            Sanctuary of Apollo. This held the musical contests of the 
+            Pythian Games, as well as musical elements of religious 
+            festivals and rituals.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
