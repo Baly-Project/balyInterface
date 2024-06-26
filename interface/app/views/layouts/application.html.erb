@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Interface</title>
+    <title>Viewer</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,44 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/home">
+        <%= image_tag("logo", class: "brand-image") %>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-body" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> 
+      <div class="collapse navbar-collapse" id="navbar-body">
+        <ul class="navbar-nav" id="navbar-links">
+          <li class="nav-item">
+            <a class="nav-link active">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> Browse </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item">by Collection</a></li>
+              <li><a class="dropdown-item">by Year</a></li>
+              <li><a class="dropdown-item">by Location</a></li>
+              <li><a class="dropdown-item">All</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"> Timeline </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"> About </a>
+          </li>
+        </ul>
+        <div class="search-group">
+          <form class="d-flex search-form" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
