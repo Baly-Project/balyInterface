@@ -22,6 +22,9 @@ a.page-link.pager.active {
   border-color: black;
   border-top: hidden;
 }
+a.page-link.pager.bottom.active {
+  background-color: purple;
+}
 div.row-cols-xl-4 {
   background-color: $body-color;
   justify-content: space-evenly;

@@ -46,7 +46,9 @@
     line-height: 110%;
   }*/
   .brand-image {
-    height: 100px;
+    height:auto;
+    max-height: 100px;
+    max-width: 50vw;
   }
   .navbar-toggler {
     margin-right: .4in;
@@ -72,7 +74,7 @@
   .search-form * {
     font-size: 17pt;
   }
-  hr {
+  hr.navline {
     margin-left: .25in;
     margin-right: .25in;
     margin-top: 0px;

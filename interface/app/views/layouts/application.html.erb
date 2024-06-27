@@ -51,8 +51,11 @@
           </div>
         </div>
       </nav>
-      <hr>
+      <hr class="navline">
     </div>
+    <% if content_for :above_content %>
+      <%= yield :above_content %>
+    <% end %>
     <div class="container">
       <%= yield %>
     </div>
