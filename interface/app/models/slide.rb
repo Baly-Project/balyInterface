@@ -53,54 +53,12 @@ class Slide < OpenStruct
 
   def dates
     datesHash=Hash.new
-    metadata=self.meta
-    dateinfo=metadata.dates
+    metadata=prepJSON
+    dateinfo=metadata.date
     dateinfo.each do |date|
-      if date.year.to_s.length > 3
-      	datesHash[date.type.capitalize+" Date"]=Flexdate.new(date)
-      end
+      datesHash[date.type]=Flexdate.new(date)
     end
     return datesHash
-  end
-
-  def notes
-    notesHash=Hash.new
-    metadata=self.meta
-    unless metadata.notes.slide_notes.to_s.length <= 1
-      notesHash["Slide Notes"]=metadata.notes.slide_notes
-    end 
-    unless metadata.notes.index_notes.to_s.length <= 1
-    	notesHash["Index Notes"]=metadata.notes.index_notes
-    end
-    return notesHash
-  end
-
-  def keywords
-    keywordslist=Array.new
-    metadata=self.meta
-    metadata.Keywords.each do |word|
-      if word.length > 1 
-        keywordslist.push word.lstrip.rstrip
-      end
-    end
-    return keywordslist
-  end
-
-  def oldNums
-    numberlist=Array.new
-    metadata=self.meta
-    metadata.old_ids.each do |id|
-      if id.length > 1
-        numberlist.push id.lstrip.rstrip
-      end
-    end
-    return numberlist
-  end
-
-  def prepJSON
-    json=self.configured_field_t_sorting_numbers[0]
-    metadata=JSON.parse(json, object_class: OpenStruct)
-    return metadata
   end
 #preview methods ########################
   def hasAbstract?
@@ -135,7 +93,12 @@ class Slide < OpenStruct
     return [newMedLink,newThmLink]
   end
 
-
+  def prepJSON
+    dirty=self.configured_field_t_sorting_numbers[0]
+    clean=dirty.split(" - ")[1].lstrip
+    metadata=JSON.parse(clean, object_class: OpenStruct)
+    return metadata
+  end
 
   def cleantext(text)
     if text.include?(">") and text.include?("<")

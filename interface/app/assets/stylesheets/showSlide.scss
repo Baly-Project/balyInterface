@@ -100,26 +100,12 @@
     padding-left: 10px;
   }
 
-  a {
+  a.data {
     color: rgb(43, 9, 79);
   }
 
-  a:hover {
+  a.data:hover {
     color: rgb(105, 19, 196);
-  }
-  .nowrap {
-    white-space: nowrap;
-  }
-  #expand-contract {
-    display: none;
-  }
-  
-  div.expander-container {
-    display: flex;
-    justify-content: right;
-  } 
-  div#expander {
-    font-size: 30pt;
   }
 
   .map-container {

@@ -35,7 +35,7 @@
       </p>
     <% end %>
     <% if @slide.hasDescription? %>
-	      <h5 class="subtitle"> Description <hr class="itemline"> </h5>
+      <h5 class="subtitle"> Description <hr class="itemline"> </h5>
       <p class="sdesc">
         <%=@slide.cleanDescription%>
       </p>
@@ -90,45 +90,15 @@
           <span class="data-bold"> Year </span>
           <a class="data" role="button"> <%= @slide.year %></a>
         </div>
-        <div class="data-item">
-          <span class="data-bold"> Keywords </span>
-          <span class="data">
-          <% @slide.keywords.each do |word| %> 
-            <a class="nowrap" role="button" href="../keywords/<%=word%>"> <%= word %></a>,
-          <% end %>
-          </span>
-        </div>
-        
         <div id="expand-container">
           <div class="expanded" id="expand-contract" >
-          <% @slide.dates.each do |key,value|%>
-            <% if value.displayable? %>
             <div class="data-item">
-              <span class="data-bold"> <%= key %></span>
-              <span class="data" role="button"> <%= value %></a>
+              <span class="data-bold">Batch Stamp: </span>
+              <a class="data" role="button"> JUL 78 </a>
             </div>
-            <% end %>
-          <% end %>
-          <% stamp=@slide.configured_field_t_batch_stamp.to_s.lstrip.rstrip %>
-          <% if stamp.length > 1 %>
-            <div class="data-item">
-              <span class="data-bold"> Batch Stamp </span>
-              <span class="data" role="button" href="../stamps/<%= stamp %>"> <%=stamp%></a>
-            </div>
-          <% end %>
-          <% @slide.notes.each do |key,value| %>
-            <% if value.to_s.length > 1 %>
-            <div class="data-item">
-              <span class="data-bold"> <%= key %></span>
-              <span class="data" role="button"> <%= value %></a>
-            </div>
-            <% end %>
-          <% end %>
           </div>
         </div>
-        <div class="expander-container">
-	  <div id="expander" role="button" onclick="expandContract()">+</div>
-        </div>
+	<span id="expander" role="button" onclick="expandContract()">+</span>
       </div>
     </div>
   </div>
