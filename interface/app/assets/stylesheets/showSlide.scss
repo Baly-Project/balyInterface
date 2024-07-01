@@ -96,6 +96,20 @@
     font-weight: 700;
     color: rgb(58, 0, 119);
   }
+  @media (max-width: 992px) {
+    .data {
+      font-size: 100%
+    }
+    .data a.nowrap {
+      white-space: normal;
+    }
+    .data hr.keyword-sep {
+      display:block;
+      margin: 2px;
+      color: grey;
+      margin-left: -25px;
+    }
+  }
   .data {
     padding-left: 10px;
   }
@@ -110,6 +124,9 @@
   .nowrap {
     white-space: nowrap;
   }
+  hr.keyword-sep {
+    display:none;
+  }
   #expand-contract {
     display: none;
   }
@@ -123,11 +140,15 @@
   }
 
   .map-container {
-    width:100%;
-    height:50vh;
+    ;
+    height:70vh;
   }
 
   #map {
     width:100%;
-    height: 100%;
+    height:100%
+  }
+
+  .location-info {
+    margin-top: 20px;
   }
