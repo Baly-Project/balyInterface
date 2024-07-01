@@ -40,6 +40,7 @@
 
   div.row {
     margin:0px;
+    padding: 0px;
   }
   div.img-info {
     padding:.2in;
@@ -114,12 +115,18 @@
     padding-left: 10px;
   }
 
-  a.data {
+  a.data, a.nowrap {
     color: rgb(43, 9, 79);
   }
 
-  a.data:hover {
+  a.data:hover, a.nowrap:hover {
     color: rgb(105, 19, 196);
+  }
+
+
+
+  .popover {
+    width:2in;
   }
   .nowrap {
     white-space: nowrap;
@@ -130,15 +137,45 @@
   #expand-contract {
     display: none;
   }
+
+  #help-button {
+    display:flex;
+    justify-items: center;
+    align-items: center;
+  }
+  #help-button svg {
+    border-radius: 50%;
+  }
+  #help-button svg:hover {
+    background-color:rgb(105, 19, 196);
+  }
+
+  #help-button {
+    padding: 5px;
+    height: min-content;
+  }
+
+  .popover {
+    width:2in;
+  }
+
+  .bold {
+    font-weight: 600;
+  }
   
   div.expander-container {
     display: flex;
-    justify-content: right;
-  } 
+    justify-content: space-between;
+    align-items: center;
+  }
   div#expander {
     font-size: 30pt;
+    display: flex;
+    align-items: center;
   }
-
+  div#expander svg {
+    height:40px
+  }
   .map-container {
     ;
     height:70vh;

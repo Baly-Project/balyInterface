@@ -38,7 +38,7 @@ class Flexdate
     elsif @numattrs == 1
       return @year
     elsif @numattrs == 3
-      return @day+" "+@month+", "+@year
+      return @month+" "+@day+", "+@year
     end
   end
   
@@ -46,8 +46,9 @@ class Flexdate
   
   def arrayFromStruct(aStruct)
     array=Array.new
-    ["day","month","year"].each do |attr|
-      value=aStruct.attr
+    hashform=aStruct.to_h
+    [:day,:month,:year].each do |attr|
+      value=hashform[attr]
       if value.class == String
         array.push value
       end 
