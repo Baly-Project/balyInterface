@@ -12,7 +12,7 @@ class Flexdate
       unless item.include?("-") or item.length<1
         existing.push item
       end
-    end	
+    end
     numentries=existing.length
     @numattrs=numentries
     if numentries == 3
@@ -38,17 +38,16 @@ class Flexdate
     elsif @numattrs == 1
       return @year
     elsif @numattrs == 3
-      return @month+" "+@day+", "+@year
+      return @day+" "+@month+", "+@year
     end
   end
   
-
+  private
   
   def arrayFromStruct(aStruct)
     array=Array.new
-    hashform=aStruct.to_h
-    [:day,:month,:year].each do |attr|
-      value=hashform[attr]
+    ["day","month","year"].each do |attr|
+      value=aStruct.attr
       if value.class == String
         array.push value
       end 
