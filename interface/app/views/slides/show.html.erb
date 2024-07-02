@@ -156,20 +156,29 @@
         </div>
       </div>
     </div>
+  </div>  
+  <div class="hidden" style="display:none;">
+    <%=image_tag("marker-icon-green", id:"green-icon") %>
+    <%=image_tag("marker-icon-blue", id:"blue-icon") %>
+    <%=image_tag("marker-icon-orange", id:"orange-icon") %>
+    <%=image_tag("marker-shadow", id:"shadow-icon") %>
   </div>
   <div class="row">
-    <% cords=[[37.9838096,23.7275388],[37.9713,23.72518],[37.97029, 23.72779]] %>
-    <% labels=["Object Location","Athens","Frieze in Theatre of Dionysus: 160 degrees S"] %>
+    <% locs=@slide.locations %>
+    <% cords=locs["Array"][1] %>
+    <% labels=locs["Array"][0] %>
     <div class="col-9 map-container" data-controller="map" data-map-latlong-value="<%= cords %>" data-map-labels-value="<%=labels%>">
       <div id="map" data-map-target="container">
       </div>
     </div>
     <div class="img-data col-3">
       <div class="location-info">
+      <% locs["Hash"].each do |key,value|%>
         <div class="data-item">
-          <span class="data-bold"> Identifier </span>
-          <span class="data"> <%= @slide.configured_field_t_identifier[0] %></span>
+          <span class="data-bold"><%= key %></span>
+          <span class="data"> <%= value %></span>
         </div>
+      <% end %>
       </div>
     </div>
     <script>

@@ -98,6 +98,49 @@ class Slide < OpenStruct
     return numberlist
   end
 
+  def locations
+    rtnHash=Hash.new
+    lochash=Hash.new
+    metadata=self.meta
+    (gencoords,speccoords,objectcoords)=[0,0,0]
+    metadata.locations.each do |loc|
+      if loc.type=="general" and loc.title.to_s.length > 1
+        lochash["General Location"]=loc.title
+        gencoords=formatcoords([loc.coordinates])
+      elsif loc.type=="specific" and loc.title.to_s.length > 1
+        lochash["Specific Location"]=loc.title
+        speccoords=formatcoords([loc.coordinates])
+      elsif loc.type=="object" and loc.latitude.to_s.length > 1
+        objectcoords=formatcoords([loc.latitude,loc.longitude])
+      end
+    end
+    rtnHash["Hash"]=lochash
+    names=Array.new
+    coords=Array.new
+    unless objectcoords == 0
+      names.push "Object Location"
+      coords.push objectcoords
+    end
+    unless gencoords == 0
+      names.push "General Location"
+      coords.push gencoords
+    end
+    unless speccoords == 0
+      names.push "Specific Location"
+      coords.push speccoords
+    end
+    rtnHash["Array"]=[names,coords]
+    return rtnHash
+  end
+   
+  def formatcoords(arr)
+    if arr.length == 1
+      each=arr[0][1...-1].split(",")
+    elsif arr.length == 2
+      each=arr
+    end
+    return [each[0].to_f,each[1].to_f]
+  end
   def prepJSON
     json=self.configured_field_t_sorting_numbers[0]
     metadata=JSON.parse(json, object_class: OpenStruct)
