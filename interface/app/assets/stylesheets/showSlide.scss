@@ -134,23 +134,23 @@
   hr.keyword-sep {
     display:none;
   }
-  #expand-contract {
+  #expand-contract, #expand-contract-loc {
     display: none;
   }
 
-  #help-button {
+  .help-button {
     display:flex;
     justify-items: center;
     align-items: center;
   }
-  #help-button svg {
+  .help-button svg {
     border-radius: 50%;
   }
-  #help-button svg:hover {
+  .help-button svg:hover {
     background-color:rgb(105, 19, 196);
   }
 
-  #help-button {
+  .help-button {
     padding: 5px;
     height: min-content;
   }
@@ -168,16 +168,15 @@
     justify-content: space-between;
     align-items: center;
   }
-  div#expander {
+  div.expand-button {
     font-size: 30pt;
     display: flex;
     align-items: center;
   }
-  div#expander svg {
+  div.expand-button svg {
     height:40px
   }
   .map-container {
-    ;
     height:70vh;
   }
 
@@ -188,4 +187,25 @@
 
   .location-info {
     margin-top: 20px;
+  }
+  .iconholder {
+    display: flex;
+    align-items: baseline;
+    margin-left: -10px;
+  }
+  .bi.placemark{
+    height:15px;
+    margin-right: 4px;
+  }
+  .placemark.blue {
+    color:blue;
+  }
+  .placemark.orange {
+    color:coral;
+  }   
+  .placemark.green {
+    color:rgb(1, 114, 1)
+  }
+  .data-bold.loc-attr {
+    margin-left: 9px;
   }

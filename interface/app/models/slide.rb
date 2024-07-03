@@ -108,9 +108,12 @@ class Slide < OpenStruct
         lochash["General Location"]=loc.title
         gencoords=formatcoords([loc.coordinates])
       elsif loc.type=="specific" and loc.title.to_s.length > 1
-        lochash["Specific Location"]=loc.title
+        lochash["Camera Location"]=loc.title
         speccoords=formatcoords([loc.coordinates])
+        rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle}
+       # print " Additional: #{additional} "
       elsif loc.type=="object" and loc.latitude.to_s.length > 1
+        lochash["Object Location"]=""
         objectcoords=formatcoords([loc.latitude,loc.longitude])
       end
     end
@@ -126,8 +129,9 @@ class Slide < OpenStruct
       coords.push gencoords
     end
     unless speccoords == 0
-      names.push "Specific Location"
+      names.push "Camera Location"
       coords.push speccoords
+      #rtnHash["Extra"]=additional
     end
     rtnHash["Array"]=[names,coords]
     return rtnHash

@@ -37,7 +37,7 @@ export default class extends Controller {
       var urlToUse = document.getElementById("green-icon").src}
     else if(label.includes("General")){
       var urlToUse = document.getElementById("blue-icon").src}
-    else if(label.includes("Specific")){
+    else if(label.includes("Camera")){
       var urlToUse = document.getElementById("orange-icon").src
     };
     var shadowurl = document.getElementById("shadow-icon").src;
