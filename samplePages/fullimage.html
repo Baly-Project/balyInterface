@@ -230,7 +230,24 @@
     width:100%;
     height: 100%;
   }
-  
+  .iconholder {
+    display: flex;
+    align-items: baseline;
+    margin-left: -10px;
+  }
+  .bi.placemark{
+    height:15px;
+    margin-right: 4px;
+  }
+  .placemark.blue {
+    color:blue;
+  }
+  .placemark.orange {
+    color:coral;
+  }   
+  .placemark.green {
+    color:rgb(1, 114, 1)
+  }
 
 
   </style>
@@ -337,6 +354,33 @@
             <div class="data-item">
               <span class="data-bold"> Year </span>
               <a class="data" role="button"> 1978</a>
+            </div>
+            <div class="data-item">
+              <span class="data-bold iconholder">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-geo-alt-fill placemark blue" viewBox="0 0 16 16">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                </svg>
+                General Location 
+              </span>
+              <span class="data" role="button"> Sanctuary of Apollo at Delphi</span>
+            </div>
+            <div class="data-item">
+              <span class="data-bold iconholder">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-geo-alt-fill placemark orange" viewBox="0 0 16 16">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                </svg>
+                General Location 
+              </span>
+              <span class="data" role="button"> Sanctuary of Apollo at Delphi</span>
+            </div>
+            <div class="data-item">
+              <span class="data-bold iconholder">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-geo-alt-fill placemark green" viewBox="0 0 16 16">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                </svg>
+                General Location 
+              </span>
+              <span class="data" role="button"> Sanctuary of Apollo at Delphi</span>
             </div>
             <div id="expand-container">
               <div class="expanded" style="display:none;" id="expand-contract" >
