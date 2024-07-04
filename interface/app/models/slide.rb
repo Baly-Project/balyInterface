@@ -78,7 +78,7 @@ class Slide < OpenStruct
   def keywords
     keywordslist=Array.new
     metadata=self.meta
-    print self.meta
+    #print self.meta
     metadata.Keywords.each do |word|
       if word.length > 1 
         keywordslist.push word.lstrip.rstrip
@@ -163,7 +163,26 @@ class Slide < OpenStruct
   def hasCuratorNotes?
     return self.configured_field_t_curator_notes.to_s.length > 1
   end
-        
+  #the next method tries all the operations that could throw errors to check incoming slides
+  def detectErrors
+    self.meta=self.prepJSON
+    valuesToCheck=[ #These values must be possessed by the slide, but may not throw errors when missing
+      self.configured_field_t_subcollection,
+      self.keywords[0],
+      self.cleanTitle,
+      self.cleanImageNotes
+    ]
+    valuesToCheck.each do |val|
+      if val.to_s.length < 3
+        raise StandardError.new
+      end
+    end
+    #the following values can be empty, but there cannot be errors when they are requested
+    self.dates
+    self.locations
+    self.year
+    self.oldNums
+  end
   private
 #constructor methods ##########################
   def getImgLinks(sampleLink)
