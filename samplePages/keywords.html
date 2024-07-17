@@ -1,9 +1,10 @@
 <head>
     <meta charset="UTF-8">
-    <title>Sample Nav</title>
+    <title>Keyword Tool</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">  
+    <link rel="stylesheet" href="assets/keywords.css">
 </head>
 <style>
   @font-face {
@@ -66,39 +67,6 @@
     padding-right: .2in;
     padding-left: 1.6vw;
   }
-
-  /* page style */
-
-  .container {
-    background-color: rgb(255 249 241);
-    min-height: 100svh;
-  }
-  .title {
-    justify-content: center;
-    font-family:serif;
-    padding-top: 1in;
-    padding-bottom: .5in;
-    align-self: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .keyword-item {
-    text-decoration: underline;
-    white-space: nowrap;
-  }
-  .spacer {
-    width: 5px
-  }
-
-  p.suggestion, hr.suggestion-div {
-    margin-top:2px;
-    margin-bottom:2px;
-  }
-
-  span.frequency {
-    padding-left: 5px;
-  }
 </style>
 <body>
 <nav class="navbar navbar-expand-lg">
@@ -141,27 +109,51 @@
 </nav>
 
 <div class="container">
+<div id="err-bar-bad" class="alert alert-danger" style="display:none"></div> 
 <div id="input">
     <h3 class="title">Upload Spreadsheet</h3>
     <div>
-        <textarea id="text-input"></textarea>
+        <textarea id="text-input" class="rounded"></textarea>
     </div>
-    <button class="btn-outline-secondary btn" id="input-btn" onclick="readInput()"> 
+    <div class="button-area">
+      <button class="btn-outline-secondary btn" id="input-btn" onclick="readInput()"> 
         Enter
-    </button>
+      </button>
+      <button class="btn btn-outline-success" id="skip-btn" onclick="pasteInput()">
+        Paste & Go
+      </button>
+    </div>
 </div>
 <div id="output" style="visibility: hidden;">
     <div class="search-group">
-        <form class="d-flex search-form" role="search">
+        <div class="d-flex search-form" role="search" id="key-search-box">
             <input class="form-control me-2" type="search" id="key-search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-secondary" onclick="fullsearch()">Search</button>
-        </form>
-        <div class="d-flex search-form">
-            <div class="autofill form-control me-2" id="suggestions" style="display: none;">
+        </div>
+        <div class="d-flex search-form suggestion-box">
+            <div class="autofill rounded-start" id="suggestions" style="display: none;">
                 <p class="suggestion">Some results</p>
                 <hr class="suggestion-div">
                 <p class="suggestion">Some results</p>
             </div>
+            <div id="list" class="me-2 rounded">
+              <div class="list-top">
+                <h4 id="list-title">List:</h4>
+                <button class="btn" id="copy-btn" onclick="copyList()">
+                  Copy
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+                  </svg>
+                </button>
+                <button class="btn btn-danger" id="clear-list" onclick="clearList()">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-journal-x" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6.146 6.146a.5.5 0 0 1 .708 0L8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 0 1 0-.708"/>
+                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+                  </svg>
+                </button>
+              </div>
+              <div id="list-items" class="rounded"></div>
             <a class="btn" style="visibility: hidden;">Search</a>
         </div>
     </div>

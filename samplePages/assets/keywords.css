@@ -1,0 +1,131 @@
+/* full page settings*/
+
+.container {
+    background-color: rgb(255 249 241);
+    min-height: 100svh;
+    min-width: 720px;
+    padding-bottom: 2in;
+  }
+
+  /* Input page settings */
+  #input {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .title {
+    justify-content: center;
+    font-family:serif;
+    padding-top: 1in;
+    padding-bottom: .5in;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-input {
+    width: 100%;
+    height:50svh;
+  }
+  .button-area {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  /* main page settings */
+  #key-search-box {
+    padding-top: .5in;
+  }
+  .autofill {
+    background-color: white;
+    z-index: 2;
+  }
+  #suggestions {
+    padding:0px
+  }
+  p.suggestion, hr.suggestion-div {
+    margin-top:2px;
+    margin-bottom:2px;
+  }
+  p.suggestion:hover {
+    background-color: rgb(172, 136, 211);
+  }
+  .suggestion {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .suggestion-div {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  span.frequency {
+    padding-left: 5px;
+  }
+  #output-container {
+    text-align: center;
+  }
+  .suggestion-box {
+    margin-top: 5px;
+  }
+  #suggestions {
+    width: 65%;
+    margin-right: 0px;
+  }
+  #list {
+    background-color: whitesmoke;
+    padding:10px;
+    width:25%;
+    min-width: 260px;
+    margin-left: -6px;
+  }
+  .list-top {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #list-title {
+    margin: 0px;
+  }
+  #copy-btn {
+    background-color: rgb(74, 1, 152);
+    color:white;
+    padding-top: 6px;
+    padding-bottom: 8px;
+  }
+  #copy-btn:hover {
+    background-color: rgb(135, 38, 238);
+  }
+  #copy-btn svg {
+    margin-left: 6px;
+    width: 22px;
+  }
+  #clear-list {
+    padding: 7px;
+  }
+  #clear-list svg {
+    height:30px
+  }
+  #list-items {
+    padding:7px;
+    margin-top: 7px;
+  }
+  #list-items.outline-blue {
+    outline-color: #5a17da;
+    outline-style: dashed;
+  }
+  .list-item:hover {
+    text-decoration: line-through;
+    text-decoration-color: red;
+  }
+  .keyword-item {
+    text-decoration: underline;
+    white-space: nowrap;
+    padding:.7em;
+    overflow-wrap: break-word;
+  }
+
+  @media screen and (max-width: 991.9px){
+    .keyword-item {
+        padding:min(.5em,2%);
+    }
+  }
