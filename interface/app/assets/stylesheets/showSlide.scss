@@ -209,3 +209,89 @@
   .data-bold.loc-attr {
     margin-left: 9px;
   }
+
+/* fullscreen styles */
+  .fs-backer {
+    position:fixed;
+    background-color: rgb(6, 6, 9);
+    height: 100svh;
+    width: 100svw;
+    z-index: 1;
+  }
+  .img-holder.fs-img {
+    position: fixed;
+    z-index: 2;
+    padding: 0px;
+    width: 100svw;
+    height: 100svh;
+    padding-top: 5svh;
+  }
+
+  .fs-img img {
+    width: 100svw;
+    height: auto;
+    max-height: 85svh;
+    max-width: max-content;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  #buttons-pane {
+    height: 100svh;
+    width:100svw;
+    position:fixed;
+    z-index: 3;
+    align-content: space-between;
+    flex-wrap: wrap;
+    color: white;
+    transition: 2ms;
+    -webkit-transition:opacity 0.2s ease;
+    -moz-transition:opacity 0.2s ease;
+    -o-transition:opacity 0.2s ease;
+
+  }
+  #buttons-pane .toprow {
+    width: 100svw;
+    height: 5svh;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .btn.delete-button {
+    padding: 5px;
+    width: 5svh;
+  }
+  #buttons-pane .middlerow {
+    position:absolute;
+    display:flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width:100svw;
+    height:88svh;
+    z-index: 2;
+  }
+  .tophalf a {
+    color: #ffffff7d;
+  }
+  .fs-control {
+    height: 88svh;
+    align-content: end;
+  }
+  .tophalf a:hover {
+    color: white;
+  }
+  .fs-control svg {
+    height: 40px;
+    width: 40px;
+  }
+  #buttons-pane .bottomrow {
+    background-color: #00000082;
+    padding-left: 10svw;
+    padding-right: 5svw;
+    padding-bottom: 5svw;
+  }
+  .bottomtext {
+    height:18svh;
+    min-height: 1in;
+    padding-right: .5in;
+    padding-top: 3svh;
+    overflow-y: scroll;
+  }

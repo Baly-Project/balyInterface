@@ -1,7 +1,9 @@
 <%content_for :for_head do %>
+
 <% end %>
 
 <% content_for :above_content do %>
+    <div id="blackbox"></div>
     <div class="img-holder carousel slide" id="imgCarousel" onmouseover="addArrows()" onmouseout="removeArrows()">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -16,6 +18,48 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </a>
+    </div>
+    <div id="buttons-pane" style="display:none">
+      <div class="tophalf">
+        <div class="toprow">
+          <a class="delete-button btn" id="exit-fullscreen">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+          </a>        
+        </div>
+        <div class="middlerow">
+      <a class="fs-control prev" type="button" data-bs-target="#imgCarousel" data-bs-slide="prev" alt="Fullscreen">
+        <span class="prev-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+          </svg>
+        </span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="fs-control next" type="button" data-bs-target="#imgCarousel" data-bs-slide="next">
+        <span class="next-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+        </span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+        </div>
+      </div>
+      <div class="bottomrow">
+        <div class="bottomtext">
+          <h5>
+            DH.054 Ancient Theater of Delphi and Temple of Apollo
+          </h5>
+          <p>
+            The Ancient Theater of Delphi, in the Northeast corner of the 
+            Sanctuary of Apollo. This held the musical contests of the 
+            Pythian Games, as well as musical elements of religious 
+            festivals and rituals.
+          </p>
+        </div>
+      </div>
     </div>
 <% end %>
   <style>
@@ -60,13 +104,13 @@
             <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
           </svg>
         </a>
-        <a role="button" href="">
+        <a role="button" href="<%= @slide.url %>">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
             <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708z"/>
           </svg>
         </a>
-        <a role="button" href="/fullscreen">
+        <a role="button" id="fullscreen-button">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10M.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8"/>
           </svg>
