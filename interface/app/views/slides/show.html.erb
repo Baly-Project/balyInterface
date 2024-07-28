@@ -1,5 +1,9 @@
 <%content_for :for_head do %>
-
+<script>
+  if (sessionStorage["fullscreen"]){
+    document.querySelector("html").innerHTML = "<div id='blackscreen' style='width:100svw; height: 100svh; background-color:black;postion:fixed; z-index=100'> </div>"+document.querySelector("html").innerHTML;     
+  }
+</script>
 <% end %>
 
 <% content_for :above_content do %>

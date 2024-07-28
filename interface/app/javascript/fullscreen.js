@@ -1,4 +1,3 @@
-
 window.onload=function(){
       var texthidden=true;
       var buttonpane=document.querySelector(".tophalf");
@@ -61,7 +60,11 @@ window.onload=function(){
         placebuttons();
       }
       var fsButton=document.getElementById("fullscreen-button");
+      if (sessionStorage['fullscreen']){
+        fullscreen();
+      }
       fsButton.addEventListener("click",function(){
+        sessionStorage.setItem("fullscreen",true);
         fullscreen()
       })
       function emptyscreen(){
@@ -73,7 +76,8 @@ window.onload=function(){
         $("#buttons-pane")[0].style="display:none";
         document.removeEventListener("mousemove", fsMouseWatch);
       }
-      document.getElementById("exit-fullscreen").addEventListener("click", function(){emptyscreen()})
+      document.getElementById("exit-fullscreen").addEventListener("click", function(){
+        sessionStorage.removeItem("fullscreen");emptyscreen()})
 
       window.onresize=placebuttons;
 
@@ -85,4 +89,7 @@ window.onload=function(){
           emptyscreen();
         }
       })
+      if (sessionStorage["fullscreen"]){
+        document.getElementById("blackscreen").style.display="none";
+      }
 }
