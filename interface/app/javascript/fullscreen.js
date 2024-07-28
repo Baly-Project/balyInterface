@@ -10,13 +10,13 @@ window.onload=function(){
         var xcord=e.clientX;
         if (ycord/window.innerHeight > .75) {
           if (texthidden){
-            $(".bottomrow").fadeIn(400);
+            $(".bottom-content").fadeIn(400);
             texthidden=false;
           }
         }
         else {
           if (texthidden == false){
-            $(".bottomrow").fadeOut(400);
+            $(".bottom-content").fadeOut(400);
             texthidden=true;
           }
         }
