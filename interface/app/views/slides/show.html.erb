@@ -50,13 +50,20 @@
       <div class="bottomrow">
         <div class="bottomtext">
           <h5>
-            DH.054 Ancient Theater of Delphi and Temple of Apollo
+            <%= @slide.title %>
           </h5>
           <p>
-            The Ancient Theater of Delphi, in the Northeast corner of the 
-            Sanctuary of Apollo. This held the musical contests of the 
-            Pythian Games, as well as musical elements of religious 
-            festivals and rituals.
+            <% if @slide.hasAbstract? %>
+              <%=@slide.cleanAbstract%>
+            <% elsif @slide.hasDescription? %>
+              <%=@slide.cleanDescription %>
+            <% end %>
+            <% if @slide.hasImageNotes? %>
+              <%notes=@slide.cleanImageNotes
+                dates=notes.split(". ")[0..1]
+                datesum=dates[0]+". "+dates[1]+". " %>
+              <%= datesum %>
+            <% end %>
           </p>
         </div>
       </div>
@@ -104,7 +111,7 @@
             <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
           </svg>
         </a>
-        <a role="button" href="<%= @slide.url %>">
+        <a role="button" href="<%= @slide.fulltext_url %>">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
             <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708z"/>

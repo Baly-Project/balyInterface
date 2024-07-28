@@ -283,10 +283,15 @@
     width: 40px;
   }
   #buttons-pane .bottomrow {
-    background-color: #00000082;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5098039216);
     padding-left: 10svw;
     padding-right: 5svw;
-    padding-bottom: 5svw;
+    width: 100svw;
+    padding-bottom: 20svw;
+    margin-top: 80svh;
+    z-index: 4;
+  
   }
   .bottomtext {
     height:18svh;
@@ -294,4 +299,7 @@
     padding-right: .5in;
     padding-top: 3svh;
     overflow-y: scroll;
+    position: fixed;
+    width: 80svw;
+    z-index: 4;
   }
