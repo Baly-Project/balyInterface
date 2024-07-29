@@ -19,6 +19,6 @@ namespace :record do
         puts "#{obj} did not pass error checking. Update the record on Digital Kenyon"
       end
     end
-    puts "#{slides.length} slides passed"
+    puts "#{slides.length} slides passed, #{slides}"
   end
 end

@@ -17,6 +17,10 @@
     src: url(assets/fonts/SourceSerif/SourceSerifPro-Regular.otf);
   }
 */
+
+  .hidden {
+    display:none;
+  }
   div.navbox {
     padding-bottom: 24px;
     background-color: $nav-color;
