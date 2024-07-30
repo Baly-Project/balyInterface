@@ -47,6 +47,10 @@ class Slide < OpenStruct
     end
   end
   
+  def pagelink
+    return self.url
+  end
+
   def year
     return prepYear
   end
