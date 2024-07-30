@@ -15,8 +15,8 @@ namespace :record do
       begin
         obj.detectErrors
         slides.push obj
-      rescue
-        puts "#{obj} did not pass error checking. Update the record on Digital Kenyon"
+      rescue => e
+        puts "#{obj} did not pass error checking, due to a #{e.class} stating #{e.message}. Update the record on Digital Kenyon"
       end
     end
     puts "#{slides.length} slides passed, #{slides}"
