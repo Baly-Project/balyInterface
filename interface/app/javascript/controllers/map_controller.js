@@ -46,8 +46,8 @@ export default class extends Controller {
     var shadowurl = document.getElementById("shadow-icon").src;
     var icontouse = L.icon({
       iconUrl: urlToUse,
-      iconSize: [30,50],
-      iconAnchor: [15, 49],
+      iconSize: [36,60],
+      iconAnchor: [18, 59],
       popupAnchor: [0, -35],
       shadowUrl: shadowurl,
       shadowSize: [68, 95],
@@ -66,8 +66,8 @@ export default class extends Controller {
     if(hasAngle){
       var fovIcon = L.icon({
         iconUrl: fovUrl,
-        iconSize:[36,33],
-        iconAnchor: [18,33],
+        iconSize:[48,44],
+        iconAnchor: [24,44],
       })
       var fovMarker=L.marker([latitude,longitude], {icon: fovIcon, rotationAngle:Number(angle)})
       fovMarker.addTo(this.map)
