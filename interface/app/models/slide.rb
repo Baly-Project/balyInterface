@@ -118,8 +118,8 @@ class Slide < OpenStruct
       elsif loc.type=="specific" and loc.title.to_s.length > 1
         lochash["Camera Location"]=loc.title
         speccoords=formatcoords([loc.coordinates])
-        rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle}
-       # print " Additional: #{additional} "
+        rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle,"Degrees"=>stripAngleNum(loc.angle)}
+        # print " Additional: #{additional} "
       elsif loc.type=="object" and loc.latitude.to_s.length > 1
         lochash["Object Location"]=""
         objectcoords=formatcoords([loc.latitude,loc.longitude])
@@ -144,7 +144,28 @@ class Slide < OpenStruct
     rtnHash["Array"]=[names,coords]
     return rtnHash
   end
-   
+  def stripAngleNum(stringAngle)
+    words=stringAngle.split " "
+    if words[0].to_i.to_s == words[0]
+      return words[0].to_i
+    else
+      index=0
+      degPlace=-1
+      words.each do |word|
+        if word.downcase == "degrees"
+          degPlace=index
+        end
+        index+=1
+      end
+      unless degPlace<0
+        if words[degPlace-1].to_i.to_s == words[degPlace-1]
+          return words[degPlace-1].to_i
+        end
+      else
+        return -1
+      end
+    end
+  end  
   def formatcoords(arr)
     if arr.length == 1
       each=arr[0][1...-1].split(",")
