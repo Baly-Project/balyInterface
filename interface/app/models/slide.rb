@@ -70,11 +70,15 @@ class Slide < OpenStruct
   def notes
     notesHash=Hash.new
     metadata=self.meta
-    unless metadata.notes.slide_notes.to_s.length <= 1
-      notesHash["Slide Notes"]=metadata.notes.slide_notes
-    end 
-    unless metadata.notes.index_notes.to_s.length <= 1
-    	notesHash["Index Notes"]=metadata.notes.index_notes
+    if metadata.notes.to_s.length > 3
+      unless metadata.notes.slide_notes.to_s.length <= 1
+        notesHash["Slide Notes"]=metadata.notes.slide_notes
+      end 
+      unless metadata.notes.index_notes.to_s.length <= 1
+        notesHash["Index Notes"]=metadata.notes.index_notes
+      end
+    else 
+      return {}
     end
     return notesHash
   end
@@ -150,8 +154,13 @@ class Slide < OpenStruct
     return [each[0].to_f,each[1].to_f]
   end
   def prepJSON
-    json=self.configured_field_t_sorting_numbers[0]
-    metadata=JSON.parse(json, object_class: OpenStruct)
+    begin
+      json=self.configured_field_t_object_notation[0]
+      puts "JSON=#{json}"
+      metadata=JSON.parse(json, object_class: OpenStruct)
+    rescue
+      metadata=OpenStruct.new({"Keywords"=>[],"dates"=>[],"notes"=>[],"locations"=>[]})
+    end
     return metadata
   end
 #preview methods ########################
