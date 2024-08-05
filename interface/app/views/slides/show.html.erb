@@ -264,10 +264,12 @@
         <div id="expand-container-loc">
           <div class="expanded" id="expand-contract-loc">
           <% locs["Extra"].each do |key,value| %>
+            <% if key != "Degrees" %>
             <div class="data-item">
               <span class="data-bold loc-attr"> <%= key %></span>
               <span class="data" role="button"> <%= value %></a>
             </div>
+            <% end %>
           <% end %>
           </div>
         </div>

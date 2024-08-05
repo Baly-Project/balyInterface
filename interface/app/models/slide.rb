@@ -125,6 +125,10 @@ class Slide < OpenStruct
         objectcoords=formatcoords([loc.latitude,loc.longitude])
       end
     end
+    if [gencoords,speccoords].include? objectcoords
+      lochash.delete("Object Location")
+      objectcoords=0
+    end
     rtnHash["Hash"]=lochash
     names=Array.new
     coords=Array.new
