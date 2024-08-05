@@ -215,12 +215,24 @@
     <%=image_tag("marker-icon-blue", id:"blue-icon") %>
     <%=image_tag("marker-icon-orange", id:"orange-icon") %>
     <%=image_tag("marker-shadow", id:"shadow-icon") %>
+    <%=image_tag("fov",id:"fov-icon") %>
   </div>
   <div class="row">
-    <% locs=@slide.locations %>
-    <% cords=locs["Array"][1] %>
-    <% labels=locs["Array"][0] %>
-    <div class="col-9 map-container" data-controller="map" data-map-latlong-value="<%= cords %>" data-map-labels-value="<%=labels%>">
+    <% locs=@slide.locations
+       cords=locs["Array"][1]
+       labels=locs["Array"][0]
+       if locs["Extra"].class == Hash
+         prospect=locs["Extra"]["Degrees"]
+	 if prospect < 0
+	   angle="None"
+         else
+           angle=prospect
+         end
+       else
+         angle="None"
+       end
+    %>
+    <div class="col-9 map-container" data-controller="map" data-map-latlong-value="<%= cords %>" data-map-labels-value="<%=labels%>", data-map-angle-value="<%=angle%>">
       <div id="map" data-map-target="container">
       </div>
     </div>
@@ -252,10 +264,12 @@
         <div id="expand-container-loc">
           <div class="expanded" id="expand-contract-loc">
           <% locs["Extra"].each do |key,value| %>
+            <% if key != "Degrees" %>
             <div class="data-item">
               <span class="data-bold loc-attr"> <%= key %></span>
               <span class="data" role="button"> <%= value %></a>
             </div>
+            <% end %>
           <% end %>
           </div>
         </div>
