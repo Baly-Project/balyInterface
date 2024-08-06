@@ -258,12 +258,16 @@ class Slide < OpenStruct
       elsif loc.type=="specific" and loc.title.to_s.length > 1
         lochash["Camera Location"]=loc.title
         speccoords=formatcoords([loc.coordinates])
-        rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle}
+        rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle,"Degrees"=>stripAngleNum(loc.angle)}
         # print " Additional: #{additional} "
       elsif loc.type=="object" and loc.latitude.to_s.length > 1
         lochash["Object Location"]=""
         objectcoords=formatcoords([loc.latitude,loc.longitude])
       end
+    end
+    if [gencoords,speccoords].include? objectcoords
+      lochash.delete("Object Location")
+      objectcoords=0
     end
     rtnHash["Hash"]=lochash
     names=Array.new
@@ -284,7 +288,28 @@ class Slide < OpenStruct
     rtnHash["Array"]=[names,coords]
     return rtnHash
   end
-    
+  def stripAngleNum(stringAngle)
+    words=stringAngle.split " "
+    if words[0].to_i.to_s == words[0]
+      return words[0].to_i
+    else
+      index=0
+      degPlace=-1
+      words.each do |word|
+        if word.downcase == "degrees"
+          degPlace=index
+        end
+        index+=1
+      end
+      unless degPlace<0
+        if words[degPlace-1].to_i.to_s == words[degPlace-1]
+          return words[degPlace-1].to_i
+        end
+      else
+        return -1
+      end
+    end
+  end
   def formatcoords(arr)
     if arr.length == 1
       each=arr[0][1...-1].split(",")
@@ -413,20 +438,29 @@ class SampleSlide < Slide
   end
 
   ### Update Testing ###
-  def simUpdate() # The main update function, that is called in the rails app by "rake record:update"
+  #
+  # NOTE: the text file handling below should be removed before it is put on the rails app.
+  def simUpdate(file="none") # The main update function, that is called in the rails app by "rake record:update"
     #API access sometimes fails the first time, so the iteration below allows it to try up to three times
-    iterator=0
-    while iterator < 3
-      (objects,count)=getAllRecords()
+    if file[-4..-1]=="json" #The file must be a json (.json) file
+      json=IO.read(file)  
+      parsed=JSON.parse(json, object_class: Slide)
+      objects=parsed.results
+      count=objects.length
       puts "#{count} slides read"
-      (passed,unpassed,errors)=errorCheck(objects)
-      passedids=Array.new
-      passed.each do |slide| passedids.push slide.id end
-      puts "#{passed.length} slides passed, #{passedids}"
-      if passed.length > 0
-        iterator+=3
-      else
-        iterator+=1
+      #puts json,objects
+      (passed,unpassed,errors)=reportErrorCheck(objects)
+    else
+      iterator=0
+      while iterator < 3
+        (objects,count)=getAllRecords()
+        puts "#{count} slides read"
+        (passed,unpassed,errors)=reportErrorCheck(objects)
+        if passed.length > 0
+          iterator+=3
+        else
+          iterator+=1
+        end
       end
     end
     data=processSlides(passed)
@@ -471,6 +505,13 @@ class SampleSlide < Slide
         unpassed.push obj
       end
     end
+    return [passed,unpassed,errors]
+  end
+  def reportErrorCheck(slides)
+    (passed,unpassed,errors)=errorCheck(slides)
+    passedids=Array.new
+    passed.each do |slide| passedids.push slide.id end
+    puts "#{passed.length} slides passed, #{passedids}"
     return [passed,unpassed,errors]
   end
   def processSlides(slides)
