@@ -1,4 +1,4 @@
-window.onload=function(){
+//window.onload=function(){
       var texthidden=true;
       var buttonpane=document.querySelector(".tophalf");
       var allbuttons=document.querySelectorAll(".tophalf a");
@@ -92,4 +92,4 @@ window.onload=function(){
       if (sessionStorage["fullscreen"]){
         document.getElementById("blackscreen").style.display="none";
       }
-}
+//}

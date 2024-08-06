@@ -54,7 +54,9 @@ class Slide < OpenStruct
   def year
     return prepYear
   end
-
+  def sortingNumber
+    return self.configured_field_t_sorting_number[0].to_i
+  end
   def dates
     datesHash=Hash.new
     metadata=self.meta
