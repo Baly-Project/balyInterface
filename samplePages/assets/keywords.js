@@ -118,17 +118,29 @@ searchbox.addEventListener("click",function(){
     }
 })
 
+function clearSearch(){
+    searchbox.value="";
+    document.getElementById("suggestions").style="display:none;"
+}
+
 const wordlist=document.getElementById("list-items")
 function addToList(pElement){
     removeOutline();
-    var content=pElement.innerHTML;
-    var word=content.slice(0,content.indexOf("<"));
+    if (pElement.constructor.name == 'String'){
+        word=pElement
+    }
+    else {
+        var content=pElement.innerHTML;
+        var word=content.slice(0,content.indexOf("<"));
+    }    
     if (wordlist.innerHTML.length < 1){
         wordlist.innerHTML="<span class='list-item' onclick='deleteListElement(this)'>"+word+"</span>"
     }
     else {
         wordlist.innerHTML+="<span class='list-item' onclick='deleteListElement(this)'>, "+word+"</span>"
     }
+    clearSearch();
+    searchbox.focus()
 }
 function removeOutline(){
     if (Array.from(wordlist.classList).includes("outline-blue")){
@@ -163,7 +175,14 @@ document.getElementById("key-search").addEventListener("keypress", function(e){
     if (e.key ==="Enter") {
         var suggList=document.getElementById("suggestions").children;
         pElement=Array.from(suggList).at(0);
-        addToList(pElement);
+        if (pElement.onclick == null) {
+            uservalue=document.getElementById("key-search").value
+            addToList(uservalue);
+            activeMap.set(uservalue,0)
+        }
+        else {
+            addToList(pElement);
+        }
         document.getElementById("key-search").value="";
         document.getElementById("suggestions").style="display:none;";
     }
