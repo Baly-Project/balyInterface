@@ -1,6 +1,8 @@
 class Slide < OpenStruct
-  
 #Accessor Methods ####################
+  def sortingNumber
+    return self.configured_field_t_sorting_number[0].to_i
+  end
   def cleanTitle
     cleantitle=""
     brokentitle=self.title.split " "
@@ -15,7 +17,7 @@ class Slide < OpenStruct
   def cleanAbstract
     return cleantext(self.abstract)
   end
- 
+  
   def cleanImageNotes
     return cleantext(self.configured_field_t_image_notes[0])
   end
@@ -47,23 +49,52 @@ class Slide < OpenStruct
     end
   end
   
-  def pagelink
-    return self.url
+  def id
+    return self.configured_field_t_identifier[0]
   end
 
+  def altID
+    return self.configured_field_t_alternate_identifier[0]
+  end
+
+  def city
+    return self.configured_field_t_city    
+  end
+  def region
+    begin 
+      return self.configured_field_t_region
+    rescue
+      return ""
+    end
+  end
+  def country
+    return self.configured_field_t_country
+  end
+  def subcollection
+    return self.configured_field_t_subcollection[0]
+  end
+  def batchStamp
+    begin
+      return self.configured_field_t_batch_stamp[0]
+    rescue
+      return ""
+    end
+  end
   def year
     return prepYear
   end
-  def sortingNumber
-    return self.configured_field_t_sorting_number[0].to_i
-  end
+
   def dates
     datesHash=Hash.new
-    metadata=self.meta
-    dateinfo=metadata.dates
-    dateinfo.each do |date|
-      if date.year.to_s.length > 3
-      	datesHash[date.type.capitalize+" Date"]=Flexdate.new(date)
+    if hasJSONinfo?
+      metadata=self.meta
+      if metadata.dates.to_s.length > 1
+        dateinfo=metadata.dates
+        dateinfo.each do |date|
+          if date.year.to_s.length > 3
+            datesHash[date.type.capitalize+" Date"]=Flexdate.new(date)
+          end
+        end
       end
     end
     return datesHash
@@ -71,16 +102,16 @@ class Slide < OpenStruct
 
   def notes
     notesHash=Hash.new
-    metadata=self.meta
-    if metadata.notes.to_s.length > 3
-      unless metadata.notes.slide_notes.to_s.length <= 1
+    if hasJSONinfo?
+      metadata=self.meta
+      if metadata.notes.to_s.length > 1
+        unless metadata.notes.slide_notes.to_s.length <= 1
         notesHash["Slide Notes"]=metadata.notes.slide_notes
-      end 
-      unless metadata.notes.index_notes.to_s.length <= 1
+        end 
+        unless metadata.notes.index_notes.to_s.length <= 1
         notesHash["Index Notes"]=metadata.notes.index_notes
+        end
       end
-    else 
-      return {}
     end
     return notesHash
   end
@@ -97,12 +128,27 @@ class Slide < OpenStruct
     return keywordslist
   end
 
+  def altTerms
+    altTerms=Array.new
+    metadata=self.meta
+    if metadata.search_terms.to_s.length > 0
+      words=metadata.search_terms[0].split ";"
+      words.each do |word|
+        if word.length > 1
+          altTerms.push word.lstrip.rstrip
+        end
+      end
+    end
+    return altTerms
+  end
   def oldNums
     numberlist=Array.new
     metadata=self.meta
-    metadata.old_ids.each do |id|
-      if id.length > 1
-        numberlist.push id.lstrip.rstrip
+    if metadata.old_ids.to_s.length>0
+        metadata.old_ids.each do |id|
+        if id.length > 1
+          numberlist.push id.lstrip.rstrip
+        end
       end
     end
     return numberlist
@@ -171,7 +217,7 @@ class Slide < OpenStruct
         return -1
       end
     end
-  end  
+  end
   def formatcoords(arr)
     if arr.length == 1
       each=arr[0][1...-1].split(",")
@@ -181,16 +227,13 @@ class Slide < OpenStruct
     return [each[0].to_f,each[1].to_f]
   end
   def prepJSON
-    begin
+    unless self.hasJSONinfo?
       json=self.configured_field_t_object_notation[0]
-      puts "JSON=#{json}"
-      metadata=JSON.parse(json, object_class: OpenStruct)
-    rescue
-      metadata=OpenStruct.new({"Keywords"=>[],"dates"=>[],"notes"=>[],"locations"=>[]})
-    end
-    return metadata
+      self.meta=JSON.parse(json, object_class: OpenStruct)
+      self.configured_field_t_object_notation=""
+    end 
   end
-#preview methods ########################
+#Preview methods ########################
   def hasAbstract?
     return self.abstract.to_s.length > 1
   end
@@ -203,18 +246,24 @@ class Slide < OpenStruct
   def hasCuratorNotes?
     return self.configured_field_t_curator_notes.to_s.length > 1
   end
+  def hasJSONinfo?
+    return self.meta.to_s.length > 1
+  end
+  def hasSortingNumber?
+    return self.configured_field_t_sorting_number.to_s.length > 2
+  end
   #the next method tries all the operations that could throw errors to check incoming slides
   def detectErrors
-    self.meta=self.prepJSON
+    self.prepJSON
     valuesToCheck=[ #These values must be possessed by the slide, but may not throw errors when missing
-      self.configured_field_t_subcollection,
-      self.keywords[0],
-      self.cleanTitle,
-      self.cleanImageNotes
+      [self.configured_field_t_subcollection,"Subcollection"],
+      [self.keywords[0],"Keywords"],
+      [self.cleanTitle, "Title"],
+      [self.cleanImageNotes,"Image Notes"]
     ]
-    valuesToCheck.each do |val|
-      if val.to_s.length < 3
-        raise StandardError.new
+    valuesToCheck.each do |valarray|
+      if valarray[0].to_s.length < 3
+        raise StandardError.new ("#{valarray[1]} value '#{valarray[0]}' is empty or could not be read")
       end
     end
     #the following values can be empty, but there cannot be errors when they are requested
@@ -222,9 +271,10 @@ class Slide < OpenStruct
     self.locations
     self.year
     self.oldNums
+    return true
   end
   private
-#constructor methods ##########################
+#Constructor methods ##########################
   def getImgLinks(sampleLink)
     linkComponents=sampleLink.split("/")
     posGuess=linkComponents[6]

@@ -41,7 +41,7 @@ class SlidesController < ApplicationController
         attempts+=1
       end
     end
-    @slide.meta=@slide.prepJSON
+    @slide.prepJSON
   end
     
 end
