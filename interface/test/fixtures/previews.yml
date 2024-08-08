@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  sorting_number: 1
+  description: MyString
+  img_link: MyString
+  collection: one
+  location: one
+  city: one
+  region: one
+  country: one
+  stamp: one
+  month: one
+  year: one
+
+two:
+  title: MyString
+  sorting_number: 1
+  description: MyString
+  img_link: MyString
+  collection: two
+  location: two
+  city: two
+  region: two
+  country: two
+  stamp: two
+  month: two
+  year: two
