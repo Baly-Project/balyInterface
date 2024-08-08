@@ -1,5 +1,5 @@
 class ApiHandler
-  def getJSON(target:0,fields:'all',parsed:false,maxtries:5)
+  def getRecord(target:0,fields:'all',parsed:false,maxtries:5)
     fieldHash=prepareFields(target,fields)
     tries=0
     while tries < maxtries
@@ -27,6 +27,14 @@ class ApiHandler
       puts "JSON was not delivered after #{maxtries} tries. Check target value."
       return ""
     else
+      if parsed
+        slides=JSON.parse(finaljson,object_class: Slide)
+        if target == 0
+          return slides.results
+        else
+          return slides.results[0]
+        end
+      end
       return finaljson
     end
   end
