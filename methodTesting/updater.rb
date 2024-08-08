@@ -1,3 +1,7 @@
+require_relative 'api_handler.rb'
+require_relative 'hash.rb'
+require_relative 'enhanced_date.rb'
+#This is a copy of the updater.rb file from the interface app, stored in interface/app/models
 class Updater
   def update(file="none") # The main update function, that is called in the rails app by "rake record:update"
     #API access sometimes fails the first time, so the iteration below allows it to try up to three times
@@ -27,14 +31,9 @@ class Updater
     return data #,caredata]
   end
   def getAllRecords()
-    json_data=Faraday.get(Faraday.get(
-      "https://content-out.bepress.com/v2/digital.kenyon.edu/query",
-      {parent_key: '5047491',limit: 50000, select_fields: 'all'},
-      {'Authorization' => 'MPqsb8Pd9+YxLgTIC638nB2h0m7vNjyIPzC009gUru8='}).env.response_headers['location']
-    )
-    parsed=JSON.parse(json_data.body, object_class: Slide)
-    count=parsed.query_meta.total_hits
-    objects=parsed.results
+    api=ApiHandler.new
+    objects=api.getRecord(parsed:true)
+    count=objects.length
     return [objects,count]
   end
   def errorCheck(slides)
@@ -174,5 +173,4 @@ class Updater
   def makeEmptyObj(sym)
     return "no"+sym.to_s
   end
-
 end

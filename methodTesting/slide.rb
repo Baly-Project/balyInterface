@@ -1,4 +1,7 @@
-#This is a copy of the slide.rb file from the interface app.
+require 'ostruct'
+require 'json'
+require_relative 'flexdate.rb'
+#This is a copy of the slide.rb file from the interface app, stored in interface/app/models
 class Slide < OpenStruct
 #Accessor Methods ####################
   def sortingNumber

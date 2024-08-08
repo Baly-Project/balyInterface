@@ -2,8 +2,8 @@
 
 #gems to require that are autoloaded in the interface app. 
  #(don't include these in any files on the app)
-require 'ostruct'
 require 'faraday'
+require 'ostruct'
 require 'json'
 #getImgLinks
 # need to get thumbnail and medium image links from standard download link.
@@ -38,11 +38,11 @@ print getImgLinks(sampleImgLink)
 
 
 #import model copies from interface
+load 'flexdate.rb'
+load 'slide.rb'
 load 'api_handler.rb'
 load 'hash.rb'
 load 'enhanced_date.rb'
-load 'flexdate.rb'
-load 'slide.rb'
 load 'updater.rb'
 
 class SampleSlide < Slide

@@ -1,5 +1,8 @@
+require 'faraday'
+require_relative 'slide.rb'
+#This is a copy of the api_handler.rb file from the interface app, stored in interface/app/models
 class ApiHandler
-  def getJSON(target:0,fields:'all',parsed:false,maxtries:5)
+  def getRecord(target:0,fields:'all',parsed:false,maxtries:5)
     fieldHash=prepareFields(target,fields)
     tries=0
     while tries < maxtries
@@ -27,6 +30,14 @@ class ApiHandler
       puts "JSON was not delivered after #{maxtries} tries. Check target value."
       return ""
     else
+      if parsed
+        slides=JSON.parse(finaljson,object_class: Slide)
+        if target == 0
+          return slides.results
+        else
+          return slides.results[0]
+        end
+      end
       return finaljson
     end
   end
@@ -52,3 +63,11 @@ class ApiHandler
     return startHash
   end
 end
+
+# # Testing
+# api=ApiHandler.new
+
+# #get single slide
+# puts api.getRecord(target:1001,parsed:true)
+# #get all slides
+# puts api.getRecord(fields:"min",parsed:true)

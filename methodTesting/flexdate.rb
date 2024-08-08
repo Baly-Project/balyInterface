@@ -1,4 +1,4 @@
-#This is a copy of the flexdate.rb file from the interface app. 
+#This is a copy of the flexdate.rb file from the interface app, stored in interface/app/models
 class Flexdate
   def initialize(array)
     if array.class==OpenStruct
