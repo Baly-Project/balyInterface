@@ -154,23 +154,28 @@ class Slide < OpenStruct
     return numberlist
   end
 
-  def locations
+  def locations(general:false)
     rtnHash=Hash.new
     lochash=Hash.new
     metadata=self.meta
     (gencoords,speccoords,objectcoords)=[0,0,0]
-    metadata.locations.each do |loc|
-      if loc.type=="general" and loc.title.to_s.length > 1
-        lochash["General Location"]=loc.title
-        gencoords=formatcoords([loc.coordinates])
-      elsif loc.type=="specific" and loc.title.to_s.length > 1
-        lochash["Camera Location"]=loc.title
-        speccoords=formatcoords([loc.coordinates])
-        rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle,"Degrees"=>stripAngleNum(loc.angle)}
-        # print " Additional: #{additional} "
-      elsif loc.type=="object" and loc.latitude.to_s.length > 1
-        lochash["Object Location"]=""
-        objectcoords=formatcoords([loc.latitude,loc.longitude])
+    if metadata.locations.to_s.length > 1
+        metadata.locations.each do |loc|
+        if loc.type=="general" and loc.title.to_s.length > 1
+          lochash["General Location"]=loc.title
+          gencoords=formatcoords([loc.coordinates])
+          if general
+            return [loc.title,loc.coordinates]
+          end
+        elsif loc.type=="specific" and loc.title.to_s.length > 1
+          lochash["Camera Location"]=loc.title
+          speccoords=formatcoords([loc.coordinates])
+          rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle,"Degrees"=>stripAngleNum(loc.angle)}
+          # print " Additional: #{additional} "
+        elsif loc.type=="object" and loc.latitude.to_s.length > 1
+          lochash["Object Location"]=""
+          objectcoords=formatcoords([loc.latitude,loc.longitude])
+        end
       end
     end
     if [gencoords,speccoords].include? objectcoords
