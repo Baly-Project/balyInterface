@@ -33,6 +33,23 @@ class Slide < OpenStruct
   def cleanDescription
     return cleantext(self.configured_field_t_description[0])
   end
+
+  def makePreview(char_limit:30)
+    if hasAbstract?
+      preview=cleanAbstract
+    elsif hasDescription?
+      preview=cleanDescription
+    else
+      preview=generateConciseNotes
+    end
+    if preview.length > char_limit
+      cut=preview[0...char_limit]
+      finished=cut+"..."
+    else 
+      finished=preview
+    end
+    return finished
+  end
   def medimg
     begin
       medlink=self.getImgLinks(self.download_link)[0]
@@ -158,7 +175,7 @@ class Slide < OpenStruct
     return numberlist
   end
 
-  def locations(general:false)
+  def locations(general:false,specificCoords:false)
     rtnHash=Hash.new
     lochash=Hash.new
     metadata=self.meta
@@ -174,6 +191,9 @@ class Slide < OpenStruct
         elsif loc.type=="specific" and loc.title.to_s.length > 1
           lochash["Camera Location"]=loc.title
           speccoords=formatcoords([loc.coordinates])
+          if specificCoords
+            return speccoords
+          end
           rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle,"Degrees"=>stripAngleNum(loc.angle)}
           # print " Additional: #{additional} "
         elsif loc.type=="object" and loc.latitude.to_s.length > 1
@@ -203,7 +223,14 @@ class Slide < OpenStruct
       #rtnHash["Extra"]=additional
     end
     rtnHash["Array"]=[names,coords]
-    return rtnHash
+    unless general or specificCoords
+      return rtnHash
+    end
+    if general
+      return ["",""]
+    elsif specificCoords
+      return ""
+    end
   end
   def stripAngleNum(stringAngle)
     words=stringAngle.split " "
@@ -315,5 +342,16 @@ class Slide < OpenStruct
   def prepYear
     cdate=Date.parse self.publication_date
     return cdate.year.to_s
+  end
+
+  def generateConciseNotes
+    notes=String.new
+    date=self.configured_field_t_documented_date[0]
+    notes+="Created in #{date}. "
+    collection=subcollection
+    notes+="Part of #{collection}. "
+    location=self.configured_field_t_coverage_spatial[0]
+    notes+="Located in #{location}"
+    return notes
   end
 end

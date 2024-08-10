@@ -38,10 +38,11 @@ print getImgLinks(sampleImgLink)
 
 
 #import model copies from interface
+load 'string.rb'
+load 'hash.rb'
 load 'flexdate.rb'
 load 'slide.rb'
 load 'api_handler.rb'
-load 'hash.rb'
 load 'enhanced_date.rb'
 load 'updater.rb'
 
@@ -107,7 +108,6 @@ class SampleSlide < Slide
   end
   def errorCheck(slides)
     (passed,unpassed,errors)=[Array.new,Array.new,Hash.new]
-    puts "CLASS=#{errors.class}"
     slides.each do |obj|
       begin
         if obj.configured_field_t_object_notation.class == NilClass
