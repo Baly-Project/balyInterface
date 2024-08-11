@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_08_184110) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_10_070903) do
   create_table "cities", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "title"
     t.bigint "region_id", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_184110) do
     t.string "img_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "alph_value"
   end
 
   create_table "countries", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_184110) do
     t.bigint "country_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "coordinates"
     t.index ["city_id"], name: "index_locations_on_city_id"
     t.index ["country_id"], name: "index_locations_on_country_id"
     t.index ["region_id"], name: "index_locations_on_region_id"
@@ -73,6 +75,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_184110) do
     t.bigint "year_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "coordinates"
     t.index ["city_id"], name: "index_previews_on_city_id"
     t.index ["collection_id"], name: "index_previews_on_collection_id"
     t.index ["country_id"], name: "index_previews_on_country_id"
