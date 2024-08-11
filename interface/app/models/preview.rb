@@ -31,4 +31,14 @@ class Preview < ApplicationRecord
       self.year = value
     end
   end
+  Alphabet=("A".."Z").to_a
+  def classification
+    sortnumber=self.sorting_number
+    firstLetter=sortnumber/26000
+    secondLetter=(sortnumber/1000)%26
+    number=sortnumber%1000
+    first=Alphabet[firstLetter-1]
+    second=Alphabet[secondLetter-1]
+    return first+second+"."+number.to_s
+  end    
 end

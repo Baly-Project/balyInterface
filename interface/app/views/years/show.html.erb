@@ -1,0 +1,14 @@
+<h1> Slides from <%= @year.number %> </h1>
+<div class="row row-cols-xl-4 row-cols-2 g-2">
+<% @year.previews.each do |prev| %>
+  <div class="row">
+    <div class="card vert">
+      <img src="<%= prev.img_link %>" alt="<%= prev.classification %>", class="card-img-top rounded-0">
+      <div class="card-body">
+	<h5 class="card-title"> <%= prev.title %> </h5>
+        <p class="card-text"> <%= prev.description %> </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
