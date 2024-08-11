@@ -144,7 +144,8 @@
         </div>
         <div class="data-item">
           <span class="data-bold"> Year </span>
-          <a class="data" role="button"> <%= @slide.year %></a>
+          <% thisyear=@preview.year.number %>
+          <a class="data" role="button" href="/years/<%=thisyear %>"> <%= @preview.year.number %> </a>
         </div>
 
         <div class="data-item">
