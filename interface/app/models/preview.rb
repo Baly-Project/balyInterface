@@ -31,6 +31,19 @@ class Preview < ApplicationRecord
       self.year = value
     end
   end
+
+  def makePlaceLinks
+    plurals=["cities","regions","countries"]
+    (city,region,country)=[self.city,self.region,self.country]
+    placeLinks=Hash.new
+    counter=0
+    [city,region,country].each do |place|
+      link="/places/"+plurals[counter]+"/"+place.id.to_s
+      placeLinks[place.title]=link
+      counter+=1
+    end
+    return placeLinks
+  end
   Alphabet=("A".."Z").to_a
   def classification
     sortnumber=self.sorting_number

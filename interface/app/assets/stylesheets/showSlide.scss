@@ -118,8 +118,11 @@
   a.data, a.nowrap {
     color: rgb(43, 9, 79);
   }
+  a.purple {
+    color:rgb(43, 9, 79);
+  }
 
-  a.data:hover, a.nowrap:hover {
+  a.data:hover, a.nowrap:hover, a.purple:hover {
     color: rgb(105, 19, 196);
   }
 

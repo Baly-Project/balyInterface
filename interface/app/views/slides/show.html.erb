@@ -138,9 +138,10 @@
           <span class="data-bold">Collection</span>
           <a class="data" role="button"> <%= @slide.configured_field_t_subcollection[0]%></a>
         </div>
-        <div class="data-item">
+        <% placeLinksHash=@preview.makePlaceLinks %>
+        <div class="data-item" data-controller="link-helper" data-link-helper-helpwith-value=<%=JSON.generate(placeLinksHash) %>>
           <span class="data-bold"> Location </span>
-          <a class="data" role="button"> <%= @slide.configured_field_t_coverage_spatial[0] %></a>
+          <span class="data" role="button" data-link-helper-target="linkbox"> <%= @slide.configured_field_t_coverage_spatial[0] %></span>
         </div>
         <div class="data-item">
           <span class="data-bold"> Year </span>
