@@ -1,0 +1,15 @@
+<h1> <%=@region.title %> of <a class="data" href="/places/countries/<%=@region.country.id%>"> <%=@region.country.title %> </a> </h1>
+<% @region.cities.each do |city| %>
+  <% count=city.previews.size %>
+  <% if count > 0 %>
+    <h4> Cities Included </h4>
+    <p class="cities-name">
+      <a class="data" href="/places/cities/<%=city.id%>"> <%= city.title %> </a>
+      <span class="count">
+        (<%= count %>)
+      </span>
+    </p>
+  <% end %>
+<% end %>
+<hr class="place-line">
+<%= render partial:"layouts/previewlist", object: @region, locals:{align:"left"} %>

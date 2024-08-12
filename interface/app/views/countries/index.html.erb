@@ -1,0 +1,8 @@
+<% @countries.each do |country| %>
+  <% countrycount=country.previews.size %>
+  <% if countrycount > 0 %>
+    <h2> <a class="data" href="/places/countries/<%= country.id %>"> <%= country.title %> </a> </h2>
+    <%= render country %>
+  <% end %>
+<% end %>
+    

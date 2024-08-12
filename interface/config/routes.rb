@@ -11,5 +11,9 @@ Rails.application.routes.draw do
   get "slides/:id" => "slides#show"
   get "years/all" => "years#index"
   get "years/:number" => "years#show"
+  get "places/all" => "countries#index"
+  get "places/countries/:id" => "countries#show"
+  get "places/regions/:id" => "regions#show"
+  get "places/cities/:id" => "cities#show"
   get "/home" => "pages#home"
 end
