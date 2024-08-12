@@ -1,0 +1,19 @@
+<% if previewlist.class == Array
+     array=previewlist
+   else
+     array=previewlist.previews
+   end
+%>
+<div class="row row-cols-xl-4 row-cols-2 g-2 prev-holder prev-align-<%=align.to_s%>">
+<% array.each do |prev| %>
+  <div class="row" data-controller="orient">
+    <a class="card" href="/slides/<%= prev.sorting_number %>">
+      <img src="<%= prev.img_link %>" alt="<%= prev.title %>", class="card-img-top rounded-0">
+      <div class="card-body">
+        <h5 class="card-title"> <%= prev.title %> </h5>
+        <p class="card-text"> <%= prev.description %> </p>
+      </div>
+    </a>
+  </div>
+<% end %>
+</div>

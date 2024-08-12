@@ -9,6 +9,7 @@ Rails.application.routes.draw do
    root "slides#index"
   get "index/:sortparam/:start/:last" => "slides#index"
   get "slides/:id" => "slides#show"
+  get "years/all" => "years#index"
   get "years/:number" => "years#show"
   get "/home" => "pages#home"
 end

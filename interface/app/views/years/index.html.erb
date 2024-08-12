@@ -1,0 +1,14 @@
+<% @years.each do |year| %>
+  <% unless year.number == 3000 %>
+  <h1> <%= year.number %> </h1>
+    <% year.months.each do |month| %>
+      <% unless month.number == 13 %>
+        <h4> <%= month.title %> </h4>
+      <% else %>
+        <hr>
+      <% end %>
+      <%= render partial:"layouts/previewlist", object:month, locals:{align:"left"} %>
+    <% end %>
+  <% end %>
+<% end %>
+    

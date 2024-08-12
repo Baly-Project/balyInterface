@@ -203,27 +203,30 @@ class Updater
     :ids,
     ]
     def prepareindices(data)
-      emptyYear=Year.new(number:3000)
+      emptyYear=Year.new(id:1,number:3000)
       emptyYear.save
-      emptyMonth=Month.new(title:"No Month",number:13,year:emptyYear)
+      emptyMonth=Month.new(id:1,title:"No Month",number:13,year:emptyYear)
       emptyMonth.save
       (yearindex,monthindex)=processTimes(data,emptyMonth,emptyYear)
       stampindex=processStamps(data.stamps,yearindex,monthindex,emptyMonth,emptyYear)
       #return yearindex,monthindex,stampindex
       (countryindex,regionindex,cityindex, emptyCountry,emptyRegion,emptyCity)=processPlaces(data.placeInfo)
-      emptyLocation=Location.new(title:"No Location", coordinates:"do not display",city:emptyCity,region:emptyRegion,country:emptyCountry)
+      emptyLocation=Location.new(id:1,title:"No Location", coordinates:"do not display",city:emptyCity,region:emptyRegion,country:emptyCountry)
       emptyLocation.save
       locationindex={"No Location"=>emptyLocation}
+      thislocation=2
       data.locationCoords.each do |title,coords|
         if title.length > 1
           #eventually we will analyze the idLists to identify locations that are subsets 
           #of countries, regions, and cities, but for now they are assigned empty objects
-          location=Location.new(title:title,coordinates:coords,city:emptyCity,region:emptyRegion,country:emptyCountry)
+          location=Location.new(id:thislocation,title:title,coordinates:coords,city:emptyCity,region:emptyRegion,country:emptyCountry)
+          thislocation+=1
           location.save
           locationindex[title]=location
         end
       end
       collectionsindex=Hash.new
+      thiscollection=1
       data.collections.keys.each do |title|
         if title.include? ":"
           alph=title.split(":")[0].fullstrip
@@ -237,7 +240,8 @@ class Updater
         else
           value=alph.alphValue
         end
-        collection=Collection.new(title:title,alph_value:value)
+        collection=Collection.new(id:thiscollection,title:title,alph_value:value)
+        thiscollection+=1
         collection.save
         collectionsindex[title]=collection
       end
@@ -246,11 +250,14 @@ class Updater
     end
     def processTimes(data,emptyMonth,emptyYear)
       yearindex={"No Year"=>emptyYear}
+      thisyear=2
       data.years.keys.each do |yearstring|
-        yearindex[yearstring]=Year.new(number:yearstring.to_i)
+        yearindex[yearstring]=Year.new(id:thisyear,number:yearstring.to_i)
         yearindex[yearstring].save
+        thisyear+=1
       end
       monthindex={"No Year"=>{"No Month"=>emptyMonth}}
+      thismonth=2
       data.timeperiods.each do |year, monthHash|
         yearToUse=yearindex[year]
         monthindex[year]=Hash.new
@@ -260,8 +267,9 @@ class Updater
           rescue
             mNumber=13
           end
-          monthindex[year][month]=Month.new(title:month,number:mNumber,year:yearToUse)
+          monthindex[year][month]=Month.new(id:thismonth,title:month,number:mNumber,year:yearToUse)
           monthindex[year][month].save
+          thismonth+=1
         end
       end
       return [yearindex,monthindex]
@@ -269,6 +277,7 @@ class Updater
     def processStamps(stampdata,yearindex,monthindex,emptyMonth,emptyYear)
       stampindex=Hash.new
       parser=EnhancedDate.new
+      thisstamp=1
       stampdata.keys.each do |stamp|
         begin
           dateHash=parser.parseStamp(stamp)
@@ -283,41 +292,51 @@ class Updater
         rescue
           (yearToUse,monthToUse)=[emptyYear,emptyMonth]
         ensure
-          stampindex[stamp]=Stamp.new(title:stamp,month:monthToUse,year:yearToUse)
+          stampindex[stamp]=Stamp.new(id:thisstamp,title:stamp,month:monthToUse,year:yearToUse)
+          thisstamp+=1
         end
         stampindex[stamp].save
       end
       return stampindex
     end
     def processPlaces(placedata)
-      emptyCountry=Country.new(title:"No Country")
+      emptyCountry=Country.new(id:1,title:"No Country")
       emptyCountry.save
-      emptyRegion=Region.new(title:"No Region",country:emptyCountry)
+      emptyRegion=Region.new(id:1,title:"No Region",country:emptyCountry)
       emptyRegion.save
-      emptyCity=City.new(title:"No City", region:emptyRegion, country:emptyCountry)
+      emptyCity=City.new(id:1,title:"No City", region:emptyRegion, country:emptyCountry)
       emptyCity.save
       countryindex={"No Country" => emptyCountry}
       regionindex={"No Country" => {"No Region"=>emptyRegion}}
       cityindex={"No Country" => {"No Region"=>{"No City" => emptyCity}}}
+      thiscountry=2
+      thisregion=2
+      thiscity=2
       placedata.each do |countrystring, regionHash|
-        country=Country.new(title:countrystring)
+        country=Country.new(id:thiscountry,title:countrystring)
+        thiscountry+=1
         country.save
         countryindex[countrystring] = country
-        emptyRegion2=Region.new(title:"No Region",country:country)
+        emptyRegion2=Region.new(id:thisregion,title:"No Region",country:country)
+        thisregion+=1
         emptyRegion2.save
         regionindex[countrystring] = {"No Region"=>emptyRegion2}
-        emptyCity2=City.new(title:"No City",region:emptyRegion2,country:country)
+        emptyCity2=City.new(id:thiscity,title:"No City",region:emptyRegion2,country:country)
+        thiscity+=1
         emptyCity2.save
         cityindex[countrystring] = {"No Region"=>{"No City" => emptyCity2}}
         regionHash.each do |regionstring,cityList|
-          region=Region.new(title:regionstring,country:country)
+          region=Region.new(id:thisregion,title:regionstring,country:country)
+          thisregion+=1
           region.save
           regionindex[countrystring][regionstring]=region
-          emptyCity3=City.new(title:"No City",region:region,country:country)
+          emptyCity3=City.new(id:thiscity,title:"No City",region:region,country:country)
+          thiscity+=1
           emptyCity3.save
           cityindex[countrystring][regionstring]={"No City" => emptyCity3}
           cityList.each do |citystring|
-            city=City.new(title:citystring,region:region,country:country)
+            city=City.new(id:thiscity,title:citystring,region:region,country:country)
+            thiscity+=1
             city.save
             cityindex[countrystring][regionstring][citystring]=city
           end
@@ -327,14 +346,16 @@ class Updater
     end
     def preparePrevIndex(passed)
       idindex=Hash.new
-      passed.each do |slide|
+      thispreview=1
+      passed.sort_by{|slide| slide.sortingNumber}.each do |slide|
         title=slide.title
         sortNum=slide.sortingNumber
         descpreview=slide.makePreview(char_limit:50)
         coordinates=slide.locations(specificCoords:true)
         img_link=slide.medimg
-        prev=Preview.new(title:title,sorting_number:sortNum,description:descpreview,
+        prev=Preview.new(id:thispreview,title:title,sorting_number:sortNum,description:descpreview,
                          coordinates:coordinates,img_link:img_link)
+        thispreview+=1
         idindex[sortNum]=prev
       end
       return idindex.sort.to_h
@@ -347,7 +368,7 @@ class Updater
         begin
           data.timeperiods[stringyear].each do |monthstring,idList2|
             monthToUse=index[:months][stringyear][monthstring]
-            assignToIdList(index[:ids],idList,:month,monthToUse)
+            assignToIdList(index[:ids],idList2,:month,monthToUse)
           end
         rescue
           puts "year #{stringyear} was not found in the timeperiods hash"

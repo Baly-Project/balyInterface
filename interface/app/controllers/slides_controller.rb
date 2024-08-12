@@ -7,14 +7,13 @@ class SlidesController < ApplicationController
     if sortparam.class == NilClass
       sortparam="title"
     end
-    objects=API.getRecord(parsed:true)
-    @count=objects.length    
+    @count=Preview.all.size
     if sortparam == "title"
-      @slides=objects.sort_by {|a| a.title}
+      @previews=Preview.order(:title)[@start..@last]
     elsif sortparam == "date"
-      @slides=objects.sort_by {|a| a.date} 
-    elsif sortparam == "upload_date"
-      @slides=objects.sort_by {|a| a.url}
+      @previews=Preview.order(year.number,month.number)[@start..@last] 
+    elsif sortparam == "country"
+      @previews=Preview.order(country.title)[@start..@last]
     end
   end
 

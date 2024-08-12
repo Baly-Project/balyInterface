@@ -23,19 +23,6 @@ a.page-link.pager.active {
   border-top: hidden;
 }
 a.page-link.pager.bottom.active {
+  color:white;
   background-color: purple;
 }
-div.row-cols-xl-4 {
-  background-color: $body-color;
-  justify-content: space-evenly;
-}
-div.card {
-  border-width: 0px;
-  background-color: $body-color;
-}
-
-div.card-body {
-  background-color: $body-color;
-}
-
-
