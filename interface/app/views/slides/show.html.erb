@@ -148,6 +148,13 @@
           <% thisyear=@preview.year.number %>
           <a class="data" role="button" href="/years/<%=thisyear %>"> <%= @preview.year.number %> </a>
         </div>
+        <% unless @preview.stamp.title == "unstamped" %>
+          <% stamp=@preview.stamp %>
+        <div class="data-item">
+          <span class="data-bold"> Batch Stamp </span>
+          <a class="data" role="button" href="/stamps/<%=stamp.id%>"> <%=stamp.title%> </a>
+        </div>
+        <% end %>
 
         <div class="data-item">
           <span class="data-bold"> Keywords </span>

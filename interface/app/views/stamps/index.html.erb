@@ -1,0 +1,5 @@
+<h1> All Stamps </h1>
+
+<% @stamps.each do |stamp| %>
+<h5> <a class="purple" href="/stamps/<%= stamp.id %>"> <%=stamp.title%> </a> </h5>
+<% end %>

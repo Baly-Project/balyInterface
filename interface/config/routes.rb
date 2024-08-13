@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   get "places/cities/:id" => "cities#show"
   get "collections/all" => "collections#index"
   get "collections/:alph" => "collections#show"
+  get "stamps/all" => "stamps#index"
+  get "stamps/:id" => "stamps#show"
   get "/home" => "pages#home"
 end

@@ -6,7 +6,7 @@ class CollectionsController < ApplicationController
   def show
     number=params[:alph]
     @collection=Collection.find_by alph_value: number
-    @yearsincluded=@collection.previews.extract_associated(:year)
+    @yearsincluded=Year.find(Preview.select(:year_id).where(collection_id:1).distinct.pluck(:year_id))
     print @yearsincluded
   end
 end
