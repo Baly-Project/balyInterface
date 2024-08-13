@@ -53,5 +53,13 @@ class Preview < ApplicationRecord
     first=Alphabet[firstLetter-1]
     second=Alphabet[secondLetter-1]
     return first+second+"."+number.to_s
-  end    
+  end
+  def fullImgLink
+    number=self.img_link.split("/")[-2]
+    unless number.is_integer? == false
+      return "https://digital.kenyon.edu/context/baly/article/#{number}/type/native/viewcontent"
+    else 
+      raise StandardError.new "Image link for slide #{self.title} is invalid, and other links could not be generated"
+    end    
+  end
 end

@@ -72,3 +72,5 @@ end
 gem "faraday", "~> 2.9"
 
 gem "mysql2"
+
+gem "fastimage", "~> 2.3"

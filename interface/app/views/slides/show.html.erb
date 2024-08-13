@@ -136,10 +136,10 @@
         </div>
         <div class="data-item">
           <span class="data-bold">Collection</span>
-          <a class="data" role="button"> <%= @slide.configured_field_t_subcollection[0]%></a>
+          <a class="data" role="button" href="/collections/<%=@preview.collection.alph_value%>"> <%= @preview.collection.title %></a>
         </div>
         <% placeLinksHash=@preview.makePlaceLinks %>
-        <div class="data-item" data-controller="link-helper" data-link-helper-helpwith-value=<%=JSON.generate(placeLinksHash) %>>
+        <div class="data-item" data-controller="link-helper" data-link-helper-helpwith-value='<%= JSON.generate(placeLinksHash) %>'>
           <span class="data-bold"> Location </span>
           <span class="data" role="button" data-link-helper-target="linkbox"> <%= @slide.configured_field_t_coverage_spatial[0] %></span>
         </div>
