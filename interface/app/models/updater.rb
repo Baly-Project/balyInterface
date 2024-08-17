@@ -15,9 +15,12 @@ class Updater
     end
     processor=DataProcessor.new
     data=processor.processSlides(passed)
-    #return data
+    analyzer=PatternAnalyzer.new
+    synthpatterns=analyzer.gatherLocationPatterns(data)
+    inputreader=CustomPattern.new
+    patterns=synthpatterns.merge inputreader.returnAll
     manager=ModelManager.new
-    index = manager.prepareindices(data)
+    index = manager.prepareindices(data,patterns)
     index[:ids] = manager.preparePrevIndex(passed)
     if index[:ids].keys.sort != data.ids
       puts "WARNING: IDs read on input do not match the models"
@@ -180,11 +183,78 @@ class Updater
       return "no"+sym.to_s
     end
   end
-  class PatternAnalyzer
-    def checkPatterns(data)
-      #need to add array methods for subset/superset, 
-      #and then run pairs of id arrays we suspect to have patterns between.
-      #Each time we find a sub/superset, we log it in a attributeSubsets array
+  class PatternAnalyzer #this subclass uses the Set class extensively to find suspected super/subsets among the idlists.
+    def checkAllPatterns(data)
+      locationPlaces=locationsToPlaces(data[:locations],data[:placeIds])
+      keywordsubsets=keywordSubsets(data[:keywords])
+      keywordTerms=keywordsToTerms(data[:keywords],data[:termIds])
+      return {
+        locations:locationPlaces,
+        keywords:keywordsubsets,
+        terms:keywordTerms
+      }
+    end
+    def gatherLocationPatterns(data)
+      locationPlaces=locationsToPlaces(data[:locations],data[:placeIds])
+      return {locationPlaces:locationPlaces}
+    end
+    def locationsToPlaces(locdata,placedata)
+      locsToPlaces={countries:Hash.new,regions:Hash.new,cities:Hash.new}
+      locdata.each do |locname, locidlist|
+        placedata.each do |sym,placeIdHash|
+          placeIdHash.each do |placename, placeidlist|
+            if Set.new(locidlist).subset? Set.new(placeidlist)
+              locsToPlaces[sym][locname]=placename
+            end
+          end
+        end
+      end
+      return locsToPlaces
+    end
+    def keywordSubsets(keyworddata)
+      keywordsubsetsall=Hash.new
+      keywordsubsets=Hash.new
+      keyworddata.each do |word1,idList1|
+        keyworddata.each do |word2,idList2|
+          if word1 != word2
+            if Set.new(idList1).subset?(Set.new(idList2)) and idList1.length < idList2.length
+              if keywordsubsetsall.keys.include? word1
+                keywordsubsetsall[word1].push word2
+              else
+                keywordsubsetsall[word1]=[word2]
+              end
+            end
+          end
+        end
+        if keywordsubsetsall.keys.include? word1
+          keywordsubsets[word1]=keywordsubsetsall[word1].sort_by{|superword| keyworddata[superword].length}[0]
+        end
+      end
+      return keywordsubsets
+    end
+    def keywordsToTerms(keyworddata,termdata)
+      keywordTerms=Hash.new
+      finalkeywordTerms=Hash.new
+      keyworddata.each do |word,idList1|
+        termdata.each do |term,idList2|
+          if idList1.sort == idList2.sort
+            if keywordTerms.keys.include? word
+              keywordTerms[word].push term
+            else
+              keywordTerms[word]=[term]
+            end
+          end
+        end
+      end
+      keywordTerms.each do |word,termlist|
+        terms=String.new
+        termlist.each do |term|
+          terms+=term+", "
+        end
+        finalterms=terms[0...-2]
+        finalkeywordTerms[word]=finalterms
+      end
+      return finalkeywordTerms
     end
   end
   class ModelManager # This subclass creates models for each attribute, finally assigning them to the various preview objects
@@ -202,7 +272,7 @@ class Updater
     :stamps,
     :ids,
     ]
-    def prepareindices(data)
+    def prepareindices(data,patterns)
       emptyYear=Year.new(id:1,number:3000)
       emptyYear.save
       emptyMonth=Month.new(id:1,title:"No Month",number:13,year:emptyYear)
@@ -215,16 +285,36 @@ class Updater
       emptyLocation.save
       locationindex={"No Location"=>emptyLocation}
       thislocation=2
+      keywordindex=processKeywords(data.keywordIds,patterns)
+      locPatterns=patterns[:locationPlaces]
+      terms=patterns[:keywordTerms]
       data.locationCoords.each do |title,coords|
         if title.length > 1
-          #eventually we will analyze the idLists to identify locations that are subsets 
-          #of countries, regions, and cities, but for now they are assigned empty objects
-          location=Location.new(id:thislocation,title:title,coordinates:coords,city:emptyCity,region:emptyRegion,country:emptyCountry)
+          if locPatterns[:countries][title].class == String
+            country=countryindex[locPatterns[:countries][title]]
+          else
+            country=emptyCountry
+          end
+          if locPatterns[:regions][title].class == String
+            region=regionindex[country.title][locPatterns[:regions][title]]
+          else
+            region=regionindex[country.title]["No Region"]
+          end
+          if locPatterns[:cities][title].class == String
+            city=cityindex[country.title][region.title][locPatterns[:cities][title]]
+          else
+            city=cityindex[country.title][region.title]["No City"]
+          end
+          location=Location.new(id:thislocation,title:title,coordinates:coords,city:city,region:region,country:country)
           thislocation+=1
+          if terms[title].class == String
+            location[:alternates]=terms[title]
+          end
           location.save
           locationindex[title]=location
         end
       end
+
       collectionsindex=Hash.new
       thiscollection=1
       data.collections.keys.each do |title|
@@ -245,8 +335,9 @@ class Updater
         collection.save
         collectionsindex[title]=collection
       end
-      return {years:yearindex,months:monthindex,stamps:stampindex,countries:countryindex,
-              regions:regionindex,cities:cityindex,locations:locationindex,collections:collectionsindex}
+      return {
+        years:yearindex,months:monthindex,stamps:stampindex,countries:countryindex,regions:regionindex,
+        cities:cityindex,keywords:keywordindex,locations:locationindex,collections:collectionsindex}
     end
     def processTimes(data,emptyMonth,emptyYear)
       yearindex={"No Year"=>emptyYear}
@@ -344,6 +435,27 @@ class Updater
       end
       return [countryindex,regionindex,cityindex,emptyCountry,emptyRegion,emptyCity]
     end
+    def processKeywords(keyworddata,patterns)
+      subsets=patterns[:keywordSubsets]
+      terms=patterns[:keywordTerms]
+      keywordindex=Hash.new
+      currentid=1
+      keyworddata.keys.each do |word|
+        newword=Keyword.new(id:currentid,title:word)
+        if subsets[word].class == String
+          largerword=subsets[word]
+          newword[:super]=largerword
+        end
+        if terms[word].class == String
+          altTerms=terms[word]
+          newword[:alternates]=altTerms
+        end
+        currentid+=1
+        newword.save
+        keywordindex[word]=newword
+      end
+      return keywordindex
+    end
     def preparePrevIndex(passed)
       idindex=Hash.new
       thispreview=1
@@ -380,6 +492,15 @@ class Updater
       end
       placeIds=data.placeIds
       assignPlaces(placeIds,index)
+      keywordindex=index[:keywords]
+      idindex=index[:ids]
+      data.keywordIds.each do |word,idList|
+        keywordToUse=keywordindex[word]
+        idList.each do |id|
+          currentPreview=idindex[id]
+          currentPreview.keywords << keywordToUse
+        end
+      end
       [[:collections,:collection],[:locations,:location]].each do |plsym,sym|
         data[plsym].each do |name,idList|
           begin

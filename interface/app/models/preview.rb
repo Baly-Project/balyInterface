@@ -7,6 +7,7 @@ class Preview < ApplicationRecord
   belongs_to :stamp
   belongs_to :month
   belongs_to :year
+  has_and_belongs_to_many :keywords, dependent: :destroy
 
   validates :title, presence:true
   validates :sorting_number, presence:true

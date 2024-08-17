@@ -1,5 +1,5 @@
 class SafeDeleter
-  Models=[Preview,Collection,Location,City,Region,Country,Stamp,Month,Year]
+  Models=[Preview,Collection,Keyword,Location,City,Region,Country,Stamp,Month,Year]
   def initialize
     createArchive
   end
@@ -18,7 +18,7 @@ class SafeDeleter
   end
   def clearDatabase
     Models.each do |classname|
-      classname.delete_all
+      classname.destroy_all
     end
   end
   def viewArchive

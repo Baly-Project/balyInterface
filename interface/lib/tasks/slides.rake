@@ -6,7 +6,7 @@ namespace :record do
     deleter=SafeDeleter.new
     deleter.clearDatabase
     logfile=File.new(Rails.root.join("log","updatelogs","update_on_#{now.getFileAddon}.txt"),"w")
-    begin 
+    begin
       data=updater.update
       logfile.puts "Updated without errors, producing the following records:"
       logdata=String.new
@@ -22,6 +22,6 @@ namespace :record do
       puts "Update unsuccessful with a #{e.class} stating #{e.message}, and the previous database has been restored" 
     ensure
       logfile.close
-    end      
+    end
   end
 end

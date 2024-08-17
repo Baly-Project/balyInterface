@@ -13,4 +13,7 @@ export default class extends Controller {
       }
     //}
   }
+  disconnect() {
+    console.log("disconnected")
+  }
 }

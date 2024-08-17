@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   get "collections/:alph" => "collections#show"
   get "stamps/all" => "stamps#index"
   get "stamps/:id" => "stamps#show"
+  get "keywords/all" => "keywords#index"
+  get "keywords/:id" => "keywords#show"
   get "/home" => "pages#home"
 end

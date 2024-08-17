@@ -159,8 +159,8 @@
         <div class="data-item">
           <span class="data-bold"> Keywords </span>
           <span class="data">
-          <% @slide.keywords.each do |word| %> 
-            <a class="nowrap" role="button" href="../keywords/<%=word%>"> <%= word %></a>,
+          <% @preview.keywords.each do |word| %> 
+            <a class="nowrap" role="button" href="/keywords/<%=word.id%>"> <%= word.title %></a>,
             <hr class="keyword-sep">
           <% end %>
           </span>
