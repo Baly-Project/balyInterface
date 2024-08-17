@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_10_070903) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_17_054449) do
   create_table "cities", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "title"
     t.bigint "region_id", null: false
@@ -36,6 +36,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_070903) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "keywords", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "title"
+    t.string "super"
+    t.string "alternates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "keywords_previews", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "preview_id", null: false
+    t.bigint "keyword_id", null: false
+    t.index ["keyword_id"], name: "index_keywords_previews_on_keyword_id"
+    t.index ["preview_id"], name: "index_keywords_previews_on_preview_id"
+  end
+
   create_table "locations", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "title"
     t.string "img_link"
@@ -46,6 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_070903) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "coordinates"
+    t.string "alternates"
     t.index ["city_id"], name: "index_locations_on_city_id"
     t.index ["country_id"], name: "index_locations_on_country_id"
     t.index ["region_id"], name: "index_locations_on_region_id"
@@ -92,6 +108,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_070903) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_regions_on_country_id"
+  end
+
+  create_table "slides", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "stamps", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|

@@ -19,7 +19,7 @@ class SlidesController < ApplicationController
 
   def show
     number=params[:id]
-    @slide=API.getRecord(target:number,fields:"display",parsed:true,check:[:configured_field_t_sorting_number])
+    @slide=API.getRecord(target:number,fields:"display",parsed:true,check:[:configured_field_t_sorting_number],maxtries:10)
     @slide.prepJSON
     @preview=Preview.find_by(sorting_number:number)
   end

@@ -1,0 +1,21 @@
+<h1> Keywords </h1>
+
+<h4> Time Periods </h4>
+<ul>
+<% @keywords.each do |word|
+  if word.title.include? "Century" or word.title.include? "Period"%>
+  <li class="time-word">
+    <a class="purple" href="/keywords/<%=word.id%>"> <%= word.title %> </a>
+  </li>
+  <% end %>
+<% end %>
+</ul
+
+<h4> All Keywords </h4>
+<div class="keyword-container">
+<% @keywords.each do |word| 
+   count=word.previews.size %>
+  <span class="keyword-item" style="font-size: <%= count*3+70 %>%;"> 
+    <a class="purple" href="/keywords/<%=word.id%>"> <%= word.title %> </a>
+  </span>
+<% end %>

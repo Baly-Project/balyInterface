@@ -1,0 +1,11 @@
+<div class="row card-row">
+  <a class="big card" href="/collections/<%= collection.alph_value %>">
+    <% samplePreview=collection.getRandomImage %>
+    <img class="card-img" src="<%= samplePreview.img_link %>" alt="<%= samplePreview.classification %>">
+    <div class="card-body">
+      <h3 class="card-title">
+        <%= collection.title %>
+      </h3>
+    </div>
+  </a>
+</div>

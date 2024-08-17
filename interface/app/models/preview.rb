@@ -7,6 +7,7 @@ class Preview < ApplicationRecord
   belongs_to :stamp
   belongs_to :month
   belongs_to :year
+  has_and_belongs_to_many :keywords, dependent: :destroy
 
   validates :title, presence:true
   validates :sorting_number, presence:true
@@ -31,6 +32,19 @@ class Preview < ApplicationRecord
       self.year = value
     end
   end
+
+  def makePlaceLinks
+    plurals=["cities","regions","countries"]
+    (city,region,country)=[self.city,self.region,self.country]
+    placeLinks=Hash.new
+    counter=0
+    [city,region,country].each do |place|
+      link="/places/"+plurals[counter]+"/"+place.id.to_s
+      placeLinks[place.title]=link
+      counter+=1
+    end
+    return placeLinks
+  end
   Alphabet=("A".."Z").to_a
   def classification
     sortnumber=self.sorting_number
@@ -40,5 +54,13 @@ class Preview < ApplicationRecord
     first=Alphabet[firstLetter-1]
     second=Alphabet[secondLetter-1]
     return first+second+"."+number.to_s
-  end    
+  end
+  def fullImgLink
+    number=self.img_link.split("/")[-2]
+    unless number.is_integer? == false
+      return "https://digital.kenyon.edu/context/baly/article/#{number}/type/native/viewcontent"
+    else 
+      raise StandardError.new "Image link for slide #{self.title} is invalid, and other links could not be generated"
+    end    
+  end
 end

@@ -1,0 +1,14 @@
+<h1> <%= @keyword.title %> </h1>
+
+<div class="keyword-about">
+<% if @keyword.super.class == String %>
+  <% superword=Keyword.find(title:@keyword.super) %>
+  A subset of keyword: <a class="purple" href="/keywords/<%=superword.id%>"> <%= superword.title %> </a>.
+<% end %>
+<% if @keyword.alternates.class == String %>
+  Also known as "<%=@keyword.alternates%>"
+<% end %>
+</div>
+
+<%= puts @keyword.previews.count %>
+<%= render partial:"layouts/previewlist", object:@keyword.previews.to_a, locals:{align:"left"} %>

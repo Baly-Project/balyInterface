@@ -1,4 +1,5 @@
-//window.onload=function(){
+function enableFullscreen(){
+      console.log("document loaded")
       var texthidden=true;
       var buttonpane=document.querySelector(".tophalf");
       var allbuttons=document.querySelectorAll(".tophalf a");
@@ -92,4 +93,5 @@
       if (sessionStorage["fullscreen"]){
         document.getElementById("blackscreen").style.display="none";
       }
-//}
+}
+$(document).on("page:load ready", enableFullscreen())
