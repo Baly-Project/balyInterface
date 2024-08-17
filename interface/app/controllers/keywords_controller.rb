@@ -1,6 +1,6 @@
 class KeywordsController < ApplicationController
   def index
-    @keywords=Keyword.all.sort_by {|kw| kw.previews.length}
+    @keywords=Keyword.all.sort_by {|kw| -kw.previews.length}
   end
 
   def show
