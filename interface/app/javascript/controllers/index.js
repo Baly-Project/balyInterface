@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import FullscreenController from "./fullscreen_controller"
+application.register("fullscreen", FullscreenController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

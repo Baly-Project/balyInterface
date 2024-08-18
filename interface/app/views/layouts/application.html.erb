@@ -15,9 +15,14 @@
       <%= yield :for_head %>
     <% end %>
   </head>
-
-  <body>
-    <div class="navbox">
+<% if content_for :above_content
+     activatefs=true
+   else
+     activatefs=false
+   end
+%>
+  <body <% if activatefs %> data-controller="fullscreen" data-action="mousemove->fullscreen#fsMouseWatch" <% end %>>
+    <div class="navbox" data-fullscreen-target="navbox">
       <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="/home">
           <%= image_tag("logo", class: "brand-image") %>
@@ -59,7 +64,7 @@
     <% if content_for :above_content %>
       <%= yield :above_content %>
     <% end %>
-    <div class="container">
+    <div class="container" <%if activatefs %> data-fullscreen-target="container" <% end %>>
       <%= yield %>
     </div>
   </body>
