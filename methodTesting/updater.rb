@@ -1,10 +1,13 @@
 require_relative 'api_handler.rb'
 require_relative 'hash.rb'
 require_relative 'enhanced_date.rb'
+require_relative 'custom_pattern.rb'
 require_relative 'activemodels.rb'
 #This is a copy of the updater.rb file from the interface app, stored in interface/app/models
+#NOTE: This file can provide error checking for updates, but only for the DataProcessor class. 
+#  The ModelManager communicates with the rails database and can produce 
 class Updater
-  def update(file="none") # The main update function, that is called in the rails app by "rake record:update"
+  def update(datatype="index",file="none") # The main update function, that is called in the rails app by "rake record:update"
     if file[-4..-1]=="json" #The file must be a json (.json) file
       json=IO.read(file)  
       parsed=JSON.parse(json, object_class: Slide)
@@ -20,16 +23,24 @@ class Updater
     end
     processor=DataProcessor.new
     data=processor.processSlides(passed)
-    #return data
+    if datatype=="data"
+      return data
+    end
+    analyzer=PatternAnalyzer.new
+    synthpatterns=analyzer.gatherLocationPatterns(data)
+    inputreader=CustomPattern.new
+    patterns=synthpatterns.merge inputreader.returnAll
     manager=ModelManager.new
-    index = manager.prepareindices(data)
+    index = manager.prepareindices(data,patterns)
     index[:ids] = manager.preparePrevIndex(passed)
     if index[:ids].keys.sort != data.ids
       puts "WARNING: IDs read on input do not match the models"
       return index[:ids].keys.sort, data.ids
     end
     manager.assignPreviewData(index,data)
-    
+    if datatype=="index"
+      return index
+    end
   end
   def getAllRecords()
     api=ApiHandler.new
@@ -73,6 +84,12 @@ class Updater
     puts "#{passed.length} slides passed, #{passedids}"
     return [passed,unpassed,errors]
   end
+  def collectPatterns(sym) #this function is only used with the methods.rb file in testing
+    data=update("data")
+    analyzer=PatternAnalyzer.new
+    patterns=analyzer.checkPatterns(data)
+    pp(patterns[sym])
+  end
   class DataProcessor #This subclass collects the attributes from the passed slides
     def processSlides(slides)
       ids=Array.new
@@ -112,7 +129,7 @@ class Updater
         :placeInfo => placeinfo,
         :locations => genLocstoids,
         :locationCoords => genLocstocoords,
-        :keywordIds => keywordstoids,
+        :keywords => keywordstoids,
         :termIds=>termstoids,
         :collections=>collections,
         :years => years,
@@ -186,11 +203,78 @@ class Updater
       return "no"+sym.to_s
     end
   end
-  class PatternAnalyzer
-    def checkPatterns(data)
-      #need to add array methods for subset/superset, 
-      #and then run pairs of id arrays we suspect to have patterns between.
-      #Each time we find a sub/superset, we log it in a attributeSubsets array
+  class PatternAnalyzer #this subclass uses the Set class extensively to find suspected super/subsets among the idlists.
+    def checkAllPatterns(data)
+      locationPlaces=locationsToPlaces(data[:locations],data[:placeIds])
+      keywordsubsets=keywordSubsets(data[:keywords])
+      keywordTerms=keywordsToTerms(data[:keywords],data[:termIds])
+      return {
+        locations:locationPlaces,
+        keywords:keywordsubsets,
+        terms:keywordTerms
+      }
+    end
+    def gatherLocationPatterns(data)
+      locationPlaces=locationsToPlaces(data[:locations],data[:placeIds])
+      return {locationPlaces:locationPlaces}
+    end
+    def locationsToPlaces(locdata,placedata)
+      locsToPlaces={countries:Hash.new,regions:Hash.new,cities:Hash.new}
+      locdata.each do |locname, locidlist|
+        placedata.each do |sym,placeIdHash|
+          placeIdHash.each do |placename, placeidlist|
+            if Set.new(locidlist).subset? Set.new(placeidlist)
+              locsToPlaces[sym][locname]=placename
+            end
+          end
+        end
+      end
+      return locsToPlaces
+    end
+    def keywordSubsets(keyworddata)
+      keywordsubsetsall=Hash.new
+      keywordsubsets=Hash.new
+      keyworddata.each do |word1,idList1|
+        keyworddata.each do |word2,idList2|
+          if word1 != word2
+            if Set.new(idList1).subset?(Set.new(idList2)) and idList1.length < idList2.length
+              if keywordsubsetsall.keys.include? word1
+                keywordsubsetsall[word1].push word2
+              else
+                keywordsubsetsall[word1]=[word2]
+              end
+            end
+          end
+        end
+        if keywordsubsetsall.keys.include? word1
+          keywordsubsets[word1]=keywordsubsetsall[word1].sort_by{|superword| keyworddata[superword].length}[0]
+        end
+      end
+      return keywordsubsets
+    end
+    def keywordsToTerms(keyworddata,termdata)
+      keywordTerms=Hash.new
+      finalkeywordTerms=Hash.new
+      keyworddata.each do |word,idList1|
+        termdata.each do |term,idList2|
+          if idList1.sort == idList2.sort
+            if keywordTerms.keys.include? word
+              keywordTerms[word].push term
+            else
+              keywordTerms[word]=[term]
+            end
+          end
+        end
+      end
+      keywordTerms.each do |word,termlist|
+        terms=String.new
+        termlist.each do |term|
+          terms+=term+", "
+        end
+        finalterms=terms[0...-2]
+        finalkeywordTerms[word]=finalterms
+      end
+      return finalkeywordTerms
     end
   end
   class ModelManager # This subclass creates models for each attribute, finally assigning them to the various preview objects
@@ -208,26 +292,51 @@ class Updater
     :stamps,
     :ids,
     ]
-    def prepareindices(data)
-      emptyYear=Year.new(number:3000)
+    def prepareindices(data,patterns)
+      emptyYear=Year.new(id:1,number:3000)
       emptyYear.save
-      emptyMonth=Month.new(title:"No Month",number:13,year:emptyYear)
+      emptyMonth=Month.new(id:1,title:"No Month",number:13,year:emptyYear)
       emptyMonth.save
       (yearindex,monthindex)=processTimes(data,emptyMonth,emptyYear)
       stampindex=processStamps(data.stamps,yearindex,monthindex,emptyMonth,emptyYear)
       #return yearindex,monthindex,stampindex
-      (countryindex,regionindex,cityindex)=processPlaces(data.placeInfo)
-      emptyLocation=Location.new(title:"No Location", coordinates:"do not display")
+      (countryindex,regionindex,cityindex, emptyCountry,emptyRegion,emptyCity)=processPlaces(data.placeInfo)
+      emptyLocation=Location.new(id:1,title:"No Location", coordinates:"do not display",city:emptyCity,region:emptyRegion,country:emptyCountry)
       emptyLocation.save
       locationindex={"No Location"=>emptyLocation}
+      thislocation=2
+      keywordindex=processKeywords(data.keywordIds,patterns)
+      locPatterns=patterns[:locationPlaces]
+      terms=patterns[:keywordTerms]
       data.locationCoords.each do |title,coords|
         if title.length > 1
-          location=Location.new(title:title,coordinates:coords)
+          if locPatterns[:countries][title].class == String
+            country=countryindex[locPatterns[:countries][title]]
+          else
+            country=emptyCountry
+          end
+          if locPatterns[:regions][title].class == String
+            region=regionindex[country.title][locPatterns[:regions][title]]
+          else
+            region=regionindex[country.title]["No Region"]
+          end
+          if locPatterns[:cities][title].class == String
+            city=cityindex[country.title][region.title][locPatterns[:cities][title]]
+          else
+            city=cityindex[country.title][region.title]["No City"]
+          end
+          location=Location.new(id:thislocation,title:title,coordinates:coords,city:city,region:region,country:country)
+          thislocation+=1
+          if terms[title].class == String
+            location[:alternates]=terms[title]
+          end
           location.save
           locationindex[title]=location
         end
       end
+
       collectionsindex=Hash.new
+      thiscollection=1
       data.collections.keys.each do |title|
         if title.include? ":"
           alph=title.split(":")[0].fullstrip
@@ -241,20 +350,25 @@ class Updater
         else
           value=alph.alphValue
         end
-        collection=Collection.new(title:title,alph_value:value)
+        collection=Collection.new(id:thiscollection,title:title,alph_value:value)
+        thiscollection+=1
         collection.save
         collectionsindex[title]=collection
       end
-      return {years:yearindex,months:monthindex,stamps:stampindex,countries:countryindex,
-              regions:regionindex,cities:cityindex,locations:locationindex,collections:collectionsindex}
+      return {
+        years:yearindex,months:monthindex,stamps:stampindex,countries:countryindex,regions:regionindex,
+        cities:cityindex,keywords:keywordindex,locations:locationindex,collections:collectionsindex}
     end
     def processTimes(data,emptyMonth,emptyYear)
       yearindex={"No Year"=>emptyYear}
+      thisyear=2
       data.years.keys.each do |yearstring|
-        yearindex[yearstring]=Year.new(number:yearstring.to_i)
+        yearindex[yearstring]=Year.new(id:thisyear,number:yearstring.to_i)
         yearindex[yearstring].save
+        thisyear+=1
       end
       monthindex={"No Year"=>{"No Month"=>emptyMonth}}
+      thismonth=2
       data.timeperiods.each do |year, monthHash|
         yearToUse=yearindex[year]
         monthindex[year]=Hash.new
@@ -264,8 +378,9 @@ class Updater
           rescue
             mNumber=13
           end
-          monthindex[year][month]=Month.new(title:month,number:mNumber,year:yearToUse)
+          monthindex[year][month]=Month.new(id:thismonth,title:month,number:mNumber,year:yearToUse)
           monthindex[year][month].save
+          thismonth+=1
         end
       end
       return [yearindex,monthindex]
@@ -273,6 +388,7 @@ class Updater
     def processStamps(stampdata,yearindex,monthindex,emptyMonth,emptyYear)
       stampindex=Hash.new
       parser=EnhancedDate.new
+      thisstamp=1
       stampdata.keys.each do |stamp|
         begin
           dateHash=parser.parseStamp(stamp)
@@ -287,58 +403,91 @@ class Updater
         rescue
           (yearToUse,monthToUse)=[emptyYear,emptyMonth]
         ensure
-          stampindex[stamp]=Stamp.new(title:stamp,month:monthToUse,year:yearToUse)
+          stampindex[stamp]=Stamp.new(id:thisstamp,title:stamp,month:monthToUse,year:yearToUse)
+          thisstamp+=1
         end
         stampindex[stamp].save
       end
       return stampindex
     end
     def processPlaces(placedata)
-      emptyCountry=Country.new(title:"No Country")
+      emptyCountry=Country.new(id:1,title:"No Country")
       emptyCountry.save
-      emptyRegion=Region.new(title:"No Region",country:emptyCountry)
+      emptyRegion=Region.new(id:1,title:"No Region",country:emptyCountry)
       emptyRegion.save
-      emptyCity=City.new(title:"No City", region:emptyRegion, country:emptyCountry)
+      emptyCity=City.new(id:1,title:"No City", region:emptyRegion, country:emptyCountry)
       emptyCity.save
       countryindex={"No Country" => emptyCountry}
       regionindex={"No Country" => {"No Region"=>emptyRegion}}
       cityindex={"No Country" => {"No Region"=>{"No City" => emptyCity}}}
+      thiscountry=2
+      thisregion=2
+      thiscity=2
       placedata.each do |countrystring, regionHash|
-        country=Country.new(title:countrystring)
+        country=Country.new(id:thiscountry,title:countrystring)
+        thiscountry+=1
         country.save
         countryindex[countrystring] = country
-        emptyRegion2=Region.new(title:"No Region",country:country)
+        emptyRegion2=Region.new(id:thisregion,title:"No Region",country:country)
+        thisregion+=1
         emptyRegion2.save
         regionindex[countrystring] = {"No Region"=>emptyRegion2}
-        emptyCity2=City.new(title:"No City",region:emptyRegion2,country:country)
+        emptyCity2=City.new(id:thiscity,title:"No City",region:emptyRegion2,country:country)
+        thiscity+=1
         emptyCity2.save
         cityindex[countrystring] = {"No Region"=>{"No City" => emptyCity2}}
         regionHash.each do |regionstring,cityList|
-          region=Region.new(title:regionstring,country:country)
+          region=Region.new(id:thisregion,title:regionstring,country:country)
+          thisregion+=1
           region.save
           regionindex[countrystring][regionstring]=region
-          emptyCity3=City.new(title:"No City",region:region,country:country)
+          emptyCity3=City.new(id:thiscity,title:"No City",region:region,country:country)
+          thiscity+=1
           emptyCity3.save
           cityindex[countrystring][regionstring]={"No City" => emptyCity3}
           cityList.each do |citystring|
-            city=City.new(title:citystring,region:region,country:country)
+            city=City.new(id:thiscity,title:citystring,region:region,country:country)
+            thiscity+=1
             city.save
             cityindex[countrystring][regionstring][citystring]=city
           end
         end
       end
-      return countryindex,regionindex,cityindex
+      return [countryindex,regionindex,cityindex,emptyCountry,emptyRegion,emptyCity]
+    end
+    def processKeywords(keyworddata,patterns)
+      subsets=patterns[:keywordSubsets]
+      terms=patterns[:keywordTerms]
+      keywordindex=Hash.new
+      currentid=1
+      keyworddata.keys.each do |word|
+        newword=Keyword.new(id:currentid,title:word)
+        if subsets[word].class == String
+          largerword=subsets[word]
+          newword[:super]=largerword
+        end
+        if terms[word].class == String
+          altTerms=terms[word]
+          newword[:alternates]=altTerms
+        end
+        currentid+=1
+        newword.save
+        keywordindex[word]=newword
+      end
+      return keywordindex
     end
     def preparePrevIndex(passed)
       idindex=Hash.new
-      passed.each do |slide|
+      thispreview=1
+      passed.sort_by{|slide| slide.sortingNumber}.each do |slide|
         title=slide.title
         sortNum=slide.sortingNumber
         descpreview=slide.makePreview(char_limit:50)
         coordinates=slide.locations(specificCoords:true)
         img_link=slide.medimg
-        prev=Preview.new(title:title,sorting_number:sortNum,description:descpreview,
+        prev=Preview.new(id:thispreview,title:title,sorting_number:sortNum,description:descpreview,
                          coordinates:coordinates,img_link:img_link)
+        thispreview+=1
         idindex[sortNum]=prev
       end
       return idindex.sort.to_h
@@ -351,7 +500,7 @@ class Updater
         begin
           data.timeperiods[stringyear].each do |monthstring,idList2|
             monthToUse=index[:months][stringyear][monthstring]
-            assignToIdList(index[:ids],idList,:month,monthToUse)
+            assignToIdList(index[:ids],idList2,:month,monthToUse)
           end
         rescue
           puts "year #{stringyear} was not found in the timeperiods hash"
@@ -363,6 +512,15 @@ class Updater
       end
       placeIds=data.placeIds
       assignPlaces(placeIds,index)
+      keywordindex=index[:keywords]
+      idindex=index[:ids]
+      data.keywordIds.each do |word,idList|
+        keywordToUse=keywordindex[word]
+        idList.each do |id|
+          currentPreview=idindex[id]
+          currentPreview.keywords << keywordToUse
+        end
+      end
       [[:collections,:collection],[:locations,:location]].each do |plsym,sym|
         data[plsym].each do |name,idList|
           begin
@@ -377,7 +535,13 @@ class Updater
           assignToIdList(index[:ids],idList,sym,modelToUse)
         end
       end
-      index[:ids].each do |key,value| value.save end
+      index[:ids].each do |key,value| 
+        begin
+          value.save 
+        rescue => e
+          puts "Preview number #{key} failed to save due to a #{e.class} stating #{e.message}"
+        end
+      end
     end
 
     def assignPlaces(placeIds,index)

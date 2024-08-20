@@ -44,6 +44,8 @@ load 'flexdate.rb'
 load 'slide.rb'
 load 'api_handler.rb'
 load 'enhanced_date.rb'
+load 'custom_pattern.rb'
+load 'activemodels.rb'
 load 'updater.rb'
 
 class SampleSlide < Slide
@@ -322,4 +324,13 @@ def loadSamples(jsonfile)
   results=JSON.parse(json, object_class: SampleSlide)
   slides=results.results
   return slides
+end
+
+def collectKeywordPatterns
+  updater=Updater.new
+  updater.collectPatterns(:keywords)
+end
+def collectTermPatterns
+  updater=Updater.new
+  updater.collectPatterns(:terms)
 end
