@@ -7,6 +7,9 @@ import { application } from "./application"
 import BackForthController from "./back_forth_controller"
 application.register("back-forth", BackForthController)
 
+import BigmapController from "./bigmap_controller"
+application.register("bigmap", BigmapController)
+
 import FullscreenController from "./fullscreen_controller"
 application.register("fullscreen", FullscreenController)
 
@@ -22,5 +25,8 @@ application.register("map", MapController)
 import OrientController from "./orient_controller"
 application.register("orient", OrientController)
 
-import BigMapController from "./bigmap_controller"
-application.register("bigmap", BigMapController)
+import PopoverController from "./popover_controller"
+application.register("popover", PopoverController)
+
+import WorldmapController from "./worldmap_controller"
+application.register("worldmap", WorldmapController)
