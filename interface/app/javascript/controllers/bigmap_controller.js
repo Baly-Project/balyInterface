@@ -3,13 +3,13 @@ import L from "leaflet"
 
 export default class extends Controller {
   static targets = ["container"];
-  static values = { latlong: Array, labels:Array, angle:Number };
+  static values = { latlong: Array, labels:Array, scales:Array};
 
   connect() {
     this.createMap()
     this.map.fitBounds(this.latlongValue)
     for(let i=0;i<this.latlongValue.length;i++){
-      this.addMarker(this.latlongValue[i],this.labelsValue[i],this.angleValue)
+      this.addMarker(this.latlongValue[i],this.labelsValue[i],this.scalesValue[i])
     }
     console.log("Info read:", this.latlongValue);
   }
@@ -31,38 +31,28 @@ export default class extends Controller {
     L.control.layers(baseMaps).addTo(this.map);
   }
 
-  addMarker(place,label,angle) {
+  addMarker(place,label,scale) {
     var hasAngle=false;
     const [latitude, longitude] = place;
-    if(label.includes("Object")){
+    if(scale>=1.5){
       var urlToUse = document.getElementById("green-icon").src}
-    else if(label.includes("General")){
+    else if((scale>1)&&(scale < 1.5)){
       var urlToUse = document.getElementById("blue-icon").src}
-    else if(label.includes("Camera")){
+    else if(scale <= 1){
       var urlToUse = document.getElementById("orange-icon").src;
-      hasAngle=true;
-      var fovUrl = document.getElementById("fov-icon").src;
     };
     var shadowurl = document.getElementById("shadow-icon").src;
     var icontouse = L.icon({
       iconUrl: urlToUse,
-      iconSize: [36,60],
-      iconAnchor: [18, 59],
-      popupAnchor: [0, -35],
+      iconSize: [scale*36,scale*60],
+      iconAnchor: [scale*18, scale*60-1],
+      popupAnchor: [0, -scale*35],
       shadowUrl: shadowurl,
-      shadowSize: [68, 95],
-      shadowAnchor: [22, 94]
+      shadowSize: [scale*68, scale*95],
+      shadowAnchor: [scale*22, scale*94]
     });
-    if(hasAngle){
-      var fovIcon = L.icon({
-        iconUrl: fovUrl,
-        iconSize:[48,44],
-        iconAnchor: [24,44],
-      })
-      var fovMarker=L.marker([latitude,longitude], {icon: fovIcon, rotationAngle:Number(angle)})
-      fovMarker.addTo(this.map)
-    }
     var marker=L.marker([latitude, longitude], {icon: icontouse})
+    console.log(label)
     marker.addTo(this.map).bindPopup(label,{
       permanent: true, direction: 'top',offset:L.point(0, -5)
     })

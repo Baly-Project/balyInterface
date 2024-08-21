@@ -1,0 +1,18 @@
+<h1> <%=@location.title %></h1>
+<div class="hidden" style="display:none;">
+  <%=image_tag("marker-icon-green", id:"green-icon") %>
+  <%=image_tag("marker-icon-blue", id:"blue-icon") %>
+  <%=image_tag("marker-icon-orange", id:"orange-icon") %>
+  <%=image_tag("marker-shadow", id:"shadow-icon") %>
+  <%=image_tag("fov",id:"fov-icon") %>
+</div>
+<div class="location-map" data-controller="bigmap"
+   data-bigmap-latlong-value="<%= @mapHash[:coordinates] %>"
+   data-bigmap-labels-value="<%= @mapHash[:labels] %>"
+   data-bigmap-scales-value="<%= @mapHash[:scales] %>"
+> 
+  <div id="map" data-bigmap-target="container"> 
+  </div>
+</div> 
+<h4> Contains <%= @location.previews.size %> slides </h4>
+<%= render partial:"layouts/previewlist", object:@location, locals:{align:"center"} %>

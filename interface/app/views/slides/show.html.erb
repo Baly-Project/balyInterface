@@ -10,7 +10,7 @@
 
 <% content_for :above_content do %>
     <div id="blackbox" data-fullscreen-target="blackbox"></div>
-    <div class="img-holder carousel slide" id="imgCarousel" data-fullscreen-target="image" onmouseover="addArrows()" onmouseout="removeArrows()">
+    <div class="img-holder carousel slide" id="imgCarousel" data-fullscreen-target="image" data-controller="back-forth" data-action="mouseover->back-forth#addArrows mouseout->back-forth#removeArrows">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="<%= @slide.download_link %>" alt="<%= @slide.title%>" class="main-image">
@@ -18,16 +18,16 @@
       </div>
       <% prevNum=@slide.sortingNumber-1%>
       <% nextNum=@slide.sortingNumber+1%>
-      <a class="carousel-control-prev" type="button" data-bs-target="#imgCarousel" href="/slides/<%=prevNum%>">
+      <a class="carousel-control-prev" type="button" data-bs-target="#imgCarousel" data-back-forth-target="backbtn" data-action="click->back-forth#prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </a>
-      <a class="carousel-control-next" type="button" data-bs-target="#imgCarousel" href="/slides/<%=nextNum%>">
+      <a class="carousel-control-next" type="button" data-bs-target="#imgCarousel" data-back-forth-target="fwdbtn" data-action="click->back-forth#next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </a>
     </div>
-    <div id="buttons-pane" style="display:none" data-fullscreen-target="buttons">
+    <div id="buttons-pane" style="display:none" data-fullscreen-target="buttons" data-back-forth-target="fsdetect">
       <div class="bottomrow bottom-content">
       </div>
       <div class="tophalf">
@@ -39,7 +39,7 @@
           </a>        
         </div>
         <div class="middlerow">
-      <a class="fs-control prev" type="button" data-bs-target="#imgCarousel" href="/slides/<%=prevNum%>">
+      <a class="fs-control prev" type="button" data-bs-target="#imgCarousel" data-action="click->back-forth#prev">
         <span class="prev-icon" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
@@ -47,7 +47,7 @@
         </span>
         <span class="visually-hidden">Previous</span>
       </a>
-      <a class="fs-control next" type="button" data-bs-target="#imgCarousel" href="/slides/<%=prevNum%>">
+      <a class="fs-control next" type="button" data-bs-target="#imgCarousel" data-action="click->back-forth#next">
         <span class="next-icon" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
@@ -262,14 +262,14 @@
              color=""
            end
       %>                    
-        <div class="data-item">
+        <div class="data-item" data-controller="link-helper" data-link-helper-helpwith-value="<%=JSON.generate({@preview.location.title => "/places/locations/#{@preview.location.id}"})%>">
           <span class="data-bold iconholder">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-geo-alt-fill placemark <%= color %>" viewBox="0 0 16 16">
               <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
             </svg>
 	    <%= key %>
           </span>
-          <span class="data"> <%= value %></span>
+          <span class="data" data-link-helper-target="linkbox"> <%= value %></span>
         </div>
       <% end %>
       <% puts locs %>
@@ -306,17 +306,6 @@
       </div>
     </div>
     <script>
-      prev=document.querySelector(".carousel-control-prev")
-      next=document.querySelector(".carousel-control-next")
-      function removeArrows(){
-        prev.style.display="none"
-        next.style.display="none"
-      }
-      function addArrows(){
-        prev.style.display="flex"
-        next.style.display="flex"
-      }
-
       function expandContract() {
         $("#expand-contract").slideToggle(350, function() {
          $("#expander").html(function() {

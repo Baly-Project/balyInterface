@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "places/countries/:id" => "countries#show"
   get "places/regions/:id" => "regions#show"
   get "places/cities/:id" => "cities#show"
+  get "places/locations/:id" => "locations#show"
   get "collections/all" => "collections#index"
   get "collections/:alph" => "collections#show"
   get "stamps/all" => "stamps#index"
