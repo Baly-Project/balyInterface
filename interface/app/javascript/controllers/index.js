@@ -25,6 +25,9 @@ application.register("map", MapController)
 import OrientController from "./orient_controller"
 application.register("orient", OrientController)
 
+import OverflowController from "./overflow_controller"
+application.register("overflow", OverflowController)
+
 import PopoverController from "./popover_controller"
 application.register("popover", PopoverController)
 

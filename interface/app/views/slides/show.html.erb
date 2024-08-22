@@ -131,7 +131,7 @@
           </svg>
         </a>
       </div>
-      <div class="additional-data">
+      <div class="additional-data" data-controller="overflow">
         <div class="data-item">
           <span class="data-bold"> Identifier </span>
           <span class="data"> <%= @slide.configured_field_t_identifier[0] %></span>
@@ -158,7 +158,7 @@
         </div>
         <% end %>
 
-        <div class="data-item">
+        <div class="data-item" data-overflow-target="wrapcontainer">
           <span class="data-bold"> Keywords </span>
           <span class="data">
           <% @preview.keywords.each do |word| %> 
