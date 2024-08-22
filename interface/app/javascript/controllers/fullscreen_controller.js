@@ -10,32 +10,39 @@ export default class extends Controller {
     this.timer=0
   }
   connect() {
+    this.buttons=this.buttonsTarget.querySelectorAll(".fs-control");
+    this.img=this.imageTarget.querySelector("img");
     if(this.imageTarget.innerHTML.length > 0) {
       console.log("fullscreen enabled");
       this.allbuttons=this.buttonsTarget.querySelectorAll("a");
       this.texthidden=true;
-      if (this.activated) {
-        this.fsActivate()
+      if (sessionStorage["fullscreen"]=="true") {
+        sessionStorage["reload-map"]="true";
+        this.fsActivate();
+        let fs=this
+        window.onload=function(){
+          fs.placebuttons();
+          console.log("IT WORKED")
+        }
+        document.getElementById("blackscreen").style.display="none";
+        console.log("fullscreen migrated");
       }
     }
   }
 
   placebuttons(){
-    var buttons=this.buttonsTarget.querySelectorAll(".fs-control");
-    var img=this.imageTarget.querySelector("img");
-    if (Array.from(this.navboxTarget.classList).includes("hidden")){
-      console.log(window.innerWidth-img.width)
-      if ((window.innerWidth-img.width)/2 < 50){
-        buttons.forEach(element => {
-          element.style="align-content:end";
-        });
-      }
-      else {
-        buttons.forEach(element => {
-          element.style="align-content:center";
-        });
-      }
+    console.log(window.innerWidth-this.img.width)
+    if ((window.innerWidth-this.img.width)/2 < 50){
+      this.buttons.forEach(element => {
+        element.style="align-content:end";
+      });
     }
+    else {
+      this.buttons.forEach(element => {
+        element.style="align-content:center";
+      });
+    }
+    console.log("buttons placed");
   }
 
   fsActivate() {
@@ -46,7 +53,7 @@ export default class extends Controller {
     this.buttonsTarget.style="display:flex";
     console.log(this.buttonsTarget)
     this.placebuttons();
-    this.activated=true;
+    sessionStorage["fullscreen"]='true';
   }
 
   fsDeactivate() {
@@ -55,11 +62,11 @@ export default class extends Controller {
     this.blackboxTarget.classList.remove("fs-backer");
     this.imageTarget.classList.remove("fs-img");
     this.buttonsTarget.style="display:none";
-    this.activated=false
+    sessionStorage["fullscreen"]='false';
   }
 
   fsMouseWatch(e) {
-    if(!this.activated){
+    if(!(sessionStorage["fullscreen"]=="true")){
       return false
     }
     var ycord=e.clientY;

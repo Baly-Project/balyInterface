@@ -10,6 +10,7 @@ class SlidesController < ApplicationController
     @count=Preview.all.size
     if sortparam == "title"
       @previews=Preview.order(:title)[@start..@last]
+      @allIds=Preview.order(:title).pluck(:sorting_number)
     elsif sortparam == "date"
       @previews=Preview.order(year.number,month.number)[@start..@last] 
     elsif sortparam == "country"

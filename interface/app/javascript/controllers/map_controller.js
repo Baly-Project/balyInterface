@@ -12,6 +12,18 @@ export default class extends Controller {
       this.addMarker(this.latlongValue[i],this.labelsValue[i],this.angleValue)
     }
     console.log("Info read:", this.latlongValue);
+    let mapper=this
+    const reloadObserver= new ResizeObserver(function(){
+      if(sessionStorage["reload-map"]=="true"){
+        mapper.map.invalidateSize();
+        mapper.map.fitBounds(mapper.latlongValue);
+        console.log("map reloaded");
+        if(mapper.containerTarget.offsetWidth > 0){
+          sessionStorage["reload-map"]="false";
+        }
+      }
+    })
+    reloadObserver.observe(this.containerTarget);
   }
 
   createMap() {

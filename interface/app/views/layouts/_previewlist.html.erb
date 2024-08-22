@@ -3,11 +3,19 @@
    else
      array=previewlist.previews
    end
+   if local_assigns[:customlist].to_s.length > 0
+     numbers=customlist
+   else
+     numbers=Array.new
+     array.each do |prev|
+       numbers.push prev.sorting_number
+     end
+   end
 %>
-<div class="row row-cols-xl-4 row-cols-2 g-2 prev-holder prev-align-<%=align.to_s%>">
+<div class="row row-cols-xl-4 row-cols-2 g-2 prev-holder prev-align-<%=align.to_s%>" data-controller="back-forth" data-back-forth-currentlist-value="<%=numbers%>">
 <% array.each do |prev| %>
   <div class="row card-row" data-controller="orient">
-    <a class="card" href="/slides/<%= prev.sorting_number %>" data-orient-target="card">
+    <a class="card" href="/slides/<%= prev.sorting_number %>" data-orient-target="card" data-action="click->back-forth#setList">
       <img src="<%= prev.img_link %>" alt="<%= prev.title %>", class="card-img-top rounded-0" data-orient-target="img">
       <div class="card-body">
         <h5 class="card-title"> <%= prev.title %> </h5>
