@@ -16,7 +16,7 @@ class Location < ApplicationRecord
         coords.push prepcoords(preview.coordinates)
         label="<a class='purple' href='/slides/"
         label+= preview.sorting_number.to_s 
-        label+= "'> #{preview.title} </a>"
+        label+= "' data-action='click->back-forth/#setList'> #{preview.title} </a>"
         labels.push label
         scales.push 1
       end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_17_054449) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_23_142108) do
   create_table "cities", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "title"
     t.bigint "region_id", null: false
@@ -92,6 +92,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_17_054449) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "coordinates"
+    t.string "orientation"
     t.index ["city_id"], name: "index_previews_on_city_id"
     t.index ["collection_id"], name: "index_previews_on_collection_id"
     t.index ["country_id"], name: "index_previews_on_country_id"

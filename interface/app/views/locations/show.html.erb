@@ -6,7 +6,7 @@
   <%=image_tag("marker-shadow", id:"shadow-icon") %>
   <%=image_tag("fov",id:"fov-icon") %>
 </div>
-<div class="location-map" data-controller="bigmap"
+<div class="location-map" data-controller="bigmap back-forth"
    data-bigmap-latlong-value="<%= @mapHash[:coordinates] %>"
    data-bigmap-labels-value="<%= @mapHash[:labels] %>"
    data-bigmap-scales-value="<%= @mapHash[:scales] %>"

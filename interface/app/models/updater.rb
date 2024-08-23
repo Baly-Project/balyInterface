@@ -459,20 +459,34 @@ class Updater
     def preparePrevIndex(passed)
       idindex=Hash.new
       thispreview=1
+      print "Preparing Slides"
       passed.sort_by{|slide| slide.sortingNumber}.each do |slide|
         title=slide.title
         sortNum=slide.sortingNumber
         descpreview=slide.makePreview(char_limit:50)
         coordinates=slide.locations(specificCoords:true)
         img_link=slide.medimg
+        orientation=getImgDims(img_link)
         prev=Preview.new(id:thispreview,title:title,sorting_number:sortNum,description:descpreview,
-                         coordinates:coordinates,img_link:img_link)
+                         coordinates:coordinates,img_link:img_link,orientation:orientation)
         thispreview+=1
         idindex[sortNum]=prev
+        print "."
       end
+      puts " "
       return idindex.sort.to_h
     end
-    
+    def getImgDims(link)
+      dims=FastImage.size(link)
+      ratio=dims[0].to_f/dims[1].to_f
+      if ratio > 1.2
+        return "L"
+      elsif ratio < 0.83
+        return "P"
+      else
+        return "S"
+      end
+    end    
     def assignPreviewData(index,data)
       data.years.each do |stringyear,idList|
         yearToUse=index[:years][stringyear]

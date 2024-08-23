@@ -5,10 +5,9 @@ class Collection < ApplicationRecord
     unfound=true
     (self.previews.size*3).times do |i|
       preview=self.previews.sample
-      dims=FastImage.size(preview.img_link)
-      if dims[0] > dims[1]
+      if preview.orientation == "L"
         return preview
-        unfound=false
+        unfound=falsex
       end
     end
   end
