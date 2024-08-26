@@ -1,13 +1,15 @@
 <% @years.each do |year| %>
   <% unless year.number == 3000 %>
-  <h1> <%= year.number %> </h1>
-    <% year.months.each do |month| %>
+  <h1 class="yearitem"> <%= year.number %> </h1>
+    <% year.months.sort_by{|month| month.number}.each do |month| %>
       <% unless month.number == 13 %>
-        <h4> <%= month.title %> </h4>
+        <h4 class="monthitem"> <%= month.title %> </h4>
       <% else %>
         <hr>
       <% end %>
-      <%= render partial:"layouts/previewlist", object:month, locals:{align:"left"} %>
+      <div class="slide-group">
+        <%= render partial:"layouts/previewlist", object:month, locals:{align:"left med-indent"} %>
+      </div>
     <% end %>
   <% end %>
 <% end %>

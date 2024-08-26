@@ -1,0 +1,26 @@
+@media screen and (max-width: 576px) {
+  div.col-9 {
+    padding:4px;
+    padding-left:8px;
+    width: 65%;
+  }
+  div.col-3 {
+    padding-left:5px;
+    width:35%
+  }
+  .ext-links {
+    padding-top: 5px;
+  }x
+  div.additional-data {
+    padding-top:10px;
+  }
+  div.additional-data .data-item {
+    font-size:13pt;
+  }
+  .wrap .data hr.keyword-sep {
+    margin-left:-12px;
+  }
+  .iconholder {
+    margin-left:0px;
+  }
+}

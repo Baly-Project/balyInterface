@@ -1,6 +1,7 @@
 class KeywordsController < ApplicationController
   def index
     @keywords=Keyword.all.sort_by {|kw| -kw.previews.length}
+    @periods=Keyword.first.getPeriods
   end
 
   def show

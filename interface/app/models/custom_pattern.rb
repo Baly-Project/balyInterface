@@ -65,6 +65,54 @@ class CustomPattern
     "Tomb"=>"Turba, Turbat"
   }
 
+  KeywordPeriods={
+    #A collection of special keywords referring to time intervals that must be given an order.
+    #The centuries list should be more or less fixed, but can be expanded if need be.
+    #The periods list should refer to formal archaeological time periods, and distinct 
+    #archaeological traditions should be kept separate.
+    #These will only display if the keywords are found within the collection.  
+    "Period" => [
+      "Archaic Period",
+      "Classical Period",
+      "Early Hellenistic Period",
+      "Hellenistic Period",
+      "Roman Period",
+      "Byzantine Period"
+    ],
+    "Century" => [
+      "Tenth Century BC",
+      "Ninth Century BC",
+      "Eighth Century BC",
+      "Seventh Century BC",
+      "Sixth Century BC",
+      "Fifth Century BC",
+      "Fourth Century BC",
+      "Third Century BC",
+      "Second Century BC",
+      "First Century BC",
+      "First Century AD",
+      "Second Century AD",
+      "Third Century AD",
+      "Fourth Century AD",
+      "Fifth Century AD",
+      "Sixth Century AD",
+      "Seventh Century AD",
+      "Eighth Century AD",
+      "Ninth Century AD",
+      "Tenth Century",
+      "Eleventh Century",
+      "Twelfth Century",
+      "Thirteenth Century",
+      "Fourteenth Century",
+      "Fifteenth Century",
+      "Sixteenth Century",
+      "Seventeenth Century",
+      "Eighteenth Century",
+      "Nineteenth Century",
+      "Twentieth Century"
+    ]
+  }
+
   def keywordSubsets
     return KeywordSubsets
   end
@@ -75,5 +123,9 @@ class CustomPattern
 
   def returnAll
     return {keywordSubsets:KeywordSubsets,keywordTerms:KeywordTerms}
+  end
+
+  def returnPeriodHash
+    return KeywordPeriods
   end
 end

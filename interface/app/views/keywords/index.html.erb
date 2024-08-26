@@ -1,17 +1,25 @@
 <h1> Keywords </h1>
 
-<h4> Time Periods </h4>
-<ul>
-<% @keywords.each do |word|
-  if word.title.include? "Century" or word.title.include? "Period"%>
-  <li class="time-word">
-    <a class="purple" href="/keywords/<%=word.id%>"> <%= word.title %> </a>
-  </li>
-  <% end %>
-<% end %>
-</ul
+<h4 id="timeperiods"> Time Periods </h4>
 
-<h4> All Keywords </h4>
+<% @periods.each do |key,wordlist| %>
+  <% if key=="Period" %>
+  <h5> Periods </h5>
+  <% elsif key=="Century" %>
+  <h5> Centuries </h5>
+  <% end %>
+<div class="century-list">
+  <% wordlist.each do |posword|
+       word=Keyword.find_by(title:posword)
+       if word.class == Keyword %>
+         <div class="century-item">
+           <a class="purple" href="/keywords/<%=word.id%>"> <%= word.title %> </a>
+         </div>
+    <% end 
+     end %>
+</div>
+<% end %>  
+<h4 id="allkeywords"> All Keywords </h4>
 <div class="keyword-container">
 <% @keywords.each do |word| 
    count=word.previews.size %>

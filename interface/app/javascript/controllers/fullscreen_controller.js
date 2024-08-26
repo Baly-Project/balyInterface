@@ -87,8 +87,8 @@ export default class extends Controller {
       this.buttonsTarget.style="display:flex;";
     }
     if (this.timer){clearTimeout(this.timer)};
-    var allbuttons=this.buttonsTarget.querySelectorAll("a");
-    var selectbutton=this.buttonsTarget.querySelector("a:hover");
+    var allbuttons=this.buttonsTarget.querySelectorAll("a, .bottomtext");
+    var selectbutton=this.buttonsTarget.querySelector("a:hover,.bottomtext:hover");
     var buttonpane=this.buttonsTarget;
     this.timer = setTimeout(function(){
       console.log(allbuttons);
