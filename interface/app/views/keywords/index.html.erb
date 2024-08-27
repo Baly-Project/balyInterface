@@ -1,27 +1,37 @@
 <h1> Keywords </h1>
 
-<h4 id="timeperiods"> Time Periods </h4>
-
+<div class="row row-cols-2">
 <% @periods.each do |key,wordlist| %>
-  <% if key=="Period" %>
-  <h5> Periods </h5>
-  <% elsif key=="Century" %>
-  <h5> Centuries </h5>
-  <% end %>
-<div class="century-list">
-  <% wordlist.each do |posword|
-       word=Keyword.find_by(title:posword)
-       if word.class == Keyword %>
-         <div class="century-item">
-           <a class="purple" href="/keywords/<%=word.id%>"> <%= word.title %> </a>
-         </div>
-    <% end 
-     end %>
+  <div class="timeperiod row">
+    <% if key=="Period" %>
+      <h5> Periods </h5>
+    <% elsif key=="Century" %>
+      <h5> Centuries </h5>
+    <% end %>
+    <div class="century-list">
+    <% wordlist.each do |posword|
+         id=@periodObjects[posword]
+         if id.class == Integer %>
+           <div class="century-item">
+             <a class="purple" href="/keywords/<%= id %>"> <%= posword %> </a>
+           </div>
+      <% end 
+       end %>
+    </div>
+  </div>
+<% end %>
 </div>
-<% end %>  
-<h4 id="allkeywords"> All Keywords </h4>
+  
+<div id=allkeywords>
+<% @keywords.order(:title).pluck(:title,:id).each do |word,id| %>
+  <div class="keyword-item">
+    <a class="purple" href="/keywords/<%=id%>"> <%=word%> </a>
+  </div>
+<% end %>
+</div>
+<h4 id="wordcloud"> Wordcloud </h4>
 <div class="keyword-container">
-<% @keywords.each do |word| 
+<% @keywords.sort_by{|kw| -kw.previews.size}.each do |word| 
    count=word.previews.size %>
   <span class="keyword-item" style="font-size: <%= count*3+70 %>%;"> 
     <a class="purple" href="/keywords/<%=word.id%>"> <%= word.title %> </a>

@@ -1,16 +1,11 @@
-
-#timeperiods,#allkeywords {
-  margin-left: .5in;
-}
-#timeperiods h4,h5 {
-  margin-left: .7in;
-}
+/* index.html.erb */
 
 .period-list {
   margin-left: 1in;
 }
 .century-list {
-  margin-left:1in;
+  margin-left:auto;
+  margin-right:auto;
   padding-bottom: .5in;
 }
 
@@ -24,3 +19,17 @@
   overflow-wrap: break-word;
 }
 
+.row h5 {
+  height: min-content;
+}
+
+.timeperiod.row {
+  align-content:flex-start;
+}
+
+/* show.html.erb */
+
+.keyword-about {
+  margin-left:.5in;
+  margin-bottom: .3in;
+}
