@@ -86,17 +86,17 @@
   </style>
 
   <div class="row" data-controller="popover">
-    <div class="img-info col-9">
+    <div class="img-info col-9" data-controller="link-helper" data-link-helper-helpwith-value="<%=JSON.generate(@slide.prepIntLinks) %>">
       <h3 class="title"> <%= @slide.cleanTitle %></h3>
     <% if @slide.hasAbstract? %>
       <h5 class="subtitle"> Abstract <hr class="itemline"> </h5>
-      <p class="sdesc">
+      <p class="sdesc" data-link-helper-target="linkbox">
         <%=@slide.cleanAbstract%>
       </p>
     <% end %>
     <% if @slide.hasDescription? %>
       <h5 class="subtitle"> Description <hr class="itemline"> </h5>
-      <p class="sdesc">
+      <p class="sdesc" data-link-helper-target="linkbox">
         <%=@slide.cleanDescription%>
       </p>
     <% end %>
@@ -108,7 +108,7 @@
     <% end %>
     <% if @slide.hasCuratorNotes? %>
       <h5 class="subtitle"> Curator Notes <hr class="itemline"> </h5>
-      <p class="sdesc">
+      <p class="sdesc" data-link-helper-target="linkbox">
         <%=@slide.cleanCuratorNotes%>
       </p>
     <% end %>

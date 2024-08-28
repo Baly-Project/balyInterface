@@ -1,0 +1,3 @@
+<h1> <%= @previews[0].classification %> - <%= @previews[-1].classification %> </h1>
+
+<%= render partial:"layouts/previewlist", object:@previews.to_a, locals:{align:"left"} %>

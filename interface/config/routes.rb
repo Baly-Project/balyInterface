@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
    root "slides#index"
   get "index/:sortparam/:start/:last" => "slides#index"
+  get "slides/range/:range" => "slides#range"
   get "slides/:id" => "slides#show"
   get "years/all" => "years#index"
   get "years/:number" => "years#show"

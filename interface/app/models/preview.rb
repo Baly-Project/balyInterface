@@ -51,7 +51,11 @@ class Preview < ApplicationRecord
     firstLetter=sortnumber/26000
     secondLetter=(sortnumber/1000)%26
     number=sortnumber%1000
-    first=Alphabet[firstLetter-1]
+    if firstLetter == 0
+      first=""
+    else
+      first=Alphabet[firstLetter-1]
+    end
     second=Alphabet[secondLetter-1]
     return first+second+"."+number.to_s
   end
@@ -62,5 +66,18 @@ class Preview < ApplicationRecord
     else 
       raise StandardError.new "Image link for slide #{self.title} is invalid, and other links could not be generated"
     end    
+  end
+  def parseRange(range)
+    rp=RangeParser.new
+    (classifications,first,last)=rp.parseSlideRange(range)
+    return "#{generateSortingNumber(first)}-#{generateSortingNumber(last)}"
+  end
+  
+  def generateSortingNumber(classification)
+    (alphnum,number)=classification.split(".")
+    alphvalue=alphnum.alphValue
+    number=number.to_i
+    sortnum=alphvalue*1000+number
+    return sortnum
   end
 end

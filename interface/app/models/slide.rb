@@ -30,6 +30,54 @@ class Slide < OpenStruct
     return cleantext(self.configured_field_t_description[0])
   end
 
+  def intLinks
+    if self.hasJSONinfo?
+      if self.meta.internal_links.class==Array
+        links=self.meta.internal_links
+        return links
+      end
+    end
+    return []
+  end
+
+  def prepIntLinks
+    linkHash=Hash.new
+    if self.intLinks.class==Array
+      self.intLinks.each do |link|
+        begin
+          if link.include? "-"
+            range=parseRange(link)
+            (first,last)=range.split("-")
+            Preview.find_by!(sorting_number:(first..last))
+            linkHash[link]="/slides/range/"+range
+          else
+            sortnum=generateSortingNumber(link)
+            Preview.find_by!(sorting_number:sortnum)
+            linkHash[link]="/slides/"+sortnum.to_s
+          end
+        rescue 
+          puts "Internal Link: '#{link}' caused an error and has been ignored"
+        end
+      end
+    end
+    return linkHash
+  end
+            
+
+  def parseRange(range)
+    rp=RangeParser.new
+    (classifications,first,last)=rp.parseSlideRange(range)
+    return "#{generateSortingNumber(first)}-#{generateSortingNumber(last)}"
+  end
+
+  def generateSortingNumber(classification)
+    (alphnum,number)=classification.split(".")
+    alphvalue=alphnum.alphValue
+    number=number.to_i
+    sortnum=alphvalue*1000+number
+    return sortnum
+  end
+
   def makePreview(char_limit:30)
     if hasAbstract?
       preview=cleanAbstract
@@ -280,6 +328,9 @@ class Slide < OpenStruct
   end
   def hasJSONinfo?
     return self.meta.to_s.length > 1
+  end
+  def hasIntLinks?
+    return self.intLinks.length > 0
   end
   def hasSortingNumber?
     return self.configured_field_t_sorting_number.to_s.length > 2
