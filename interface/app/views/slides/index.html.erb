@@ -10,13 +10,13 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <% perpage=@last-@start%>
+    <% perpage=@last-@start+1%>
     <% pages=@count/perpage %>
     <% if pages*perpage < @count
          pages+=1
        end %>
     <% pages.times do |i| %>
-    <li class="page-item"><a class="page-link pager <% if i*perpage == @start %> active rounded-bottom <%end%>" href="../<%=i*perpage%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
+    <li class="page-item"><a class="page-link pager <% if i*perpage == @start %> active rounded-bottom <%end%>" href="../<%=i*perpage+1%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
     <% end %>
     <li class="page-item">
       <a class="page-link pager" href="#" aria-label="Next">
@@ -24,7 +24,7 @@
       </a>
     </li>
   </ul>
-    <p> showing results <%= @start %>-<%=[@last,@count].min%> of <%= @count %> </p>
+    <p> showing results <%= @start+1 %>-<%=[@last+1,@count].min%> of <%= @count %> </p>
   </div>   
 </nav>
 

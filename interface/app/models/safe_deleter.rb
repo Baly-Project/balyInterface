@@ -14,6 +14,7 @@ class SafeDeleter
       symToUse=classname.getSymbol
       @archive[symToUse]=archiveList
     end
+    @keywordsPreviews=capturePrevJoin(Preview,:keywords)
     puts "New Database Archive Initialized"
   end
   def clearDatabase
@@ -36,6 +37,34 @@ class SafeDeleter
         newmodel.save
       end
     end
+    effectPrevJoin(@keywordsPreviews,Preview,:keywords)
     puts "Database Restored"
+  end
+
+  private
+
+  def capturePrevJoin(model,joinedsym)
+    joinHash=Hash.new
+    model.includes(joinedsym).each do |prev|
+      if joinedsym == :keywords
+        ids=prev.keywords.pluck(:id)
+      else 
+        puts "Join symbol #{joinedsym} not recognized, and its join table with #{model} could not be saved"
+      end
+      joinHash[prev.id]=ids
+    end
+    return joinHash
+  end
+
+  def effectPrevJoin(joinHash,model,joinedsym)
+    joinHash.each do |parent,idList|
+      parentModel=model.find(parent)
+      idList.each do |child|
+        if joinedsym == :keywords
+          childModel=Keyword.find(child)
+          parentModel.keywords << childModel
+        end
+      end
+    end
   end
 end
