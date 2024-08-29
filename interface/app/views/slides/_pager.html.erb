@@ -1,0 +1,38 @@
+<% defaultValues={first:1,last:100}
+   defaultValues.each do |sym, val|
+     if local_assigns[sym].to_s.length == 0
+       local_assigns[sym]=val
+     end
+   end
+   if local_assigns[:bottom]==true
+     classToAdd="bottom"
+   else
+     classToAdd=""
+   end
+%>
+
+<nav aria-label="Page navigation">
+  <div>
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link pager" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    <% perpage=last-first+1%>
+    <% pages=count/perpage%>
+    <% if pages*perpage < @count
+         pages+=1
+       end %>
+    <% pages.times do |i| %>
+      <li class="page-item"><a class="page-link pager <%= classToAdd %> <% if i*perpage == first %> active <%end%>" href="../<%=i*perpage+1%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
+    <% end %>
+      <li class="page-item">
+        <a class="page-link pager" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+    <p class="pager-info"> showing results <%= first+1 %>-<%=[last+1,count].min%> of <%= count %> </p>
+  </div>
+</nav>

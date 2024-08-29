@@ -2,60 +2,13 @@
 <%=javascript_include_tag "pager" %>
 <% end %>
 
-<nav aria-label="Page navigation">
-  <div>
-   <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link pager" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <% perpage=@last-@start+1%>
-    <% pages=@count/perpage %>
-    <% if pages*perpage < @count
-         pages+=1
-       end %>
-    <% pages.times do |i| %>
-    <li class="page-item"><a class="page-link pager <% if i*perpage == @start %> active rounded-bottom <%end%>" href="../<%=i*perpage+1%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
-    <% end %>
-    <li class="page-item">
-      <a class="page-link pager" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-    <p> showing results <%= @start+1 %>-<%=[@last+1,@count].min%> of <%= @count %> </p>
-  </div>   
-</nav>
+<%= render partial: "pager", locals:{first:@start,last:@last,count:@count} %>
 
 <h1> All Slides </h1>
+
 <%= render partial: "layouts/previewlist", object:@previews, locals:{align:"center",customlist:@allIds} %>
 
-  <nav aria-label="Page navigation">
-    <div>
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link pager" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-    <% perpage=@last-@start%>
-    <% pages=@count/perpage %>
-    <% if pages*perpage < @count
-         pages+=1
-       end %>
-    <% pages.times do |i| %>
-        <li class="page-item"><a class="page-link pager bottom<% if i*perpage == @start %> active <%end%>" href="../<%=i*perpage%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
-    <% end %>
-        <li class="page-item">
-          <a class="page-link pager" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-      <p> showing results <%= @start %>-<%=[@last,@count].min%> of <%= @count %> </p>
-    </div>   
-  </nav>
+<%= render partial: "pager", locals:{first:@start,last:@last,count:@count,bottom:true} %>
 
 <script>
   animatePager()
