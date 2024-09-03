@@ -25,7 +25,7 @@
          pages+=1
        end %>
     <% pages.times do |i| %>
-      <li class="page-item"><a class="page-link pager <%= classToAdd %> <% if i*perpage == first %> active <%end%>" href="../<%=i*perpage+1%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
+      <li class="page-item"><a class="page-link pager <%= classToAdd %> <% if i*perpage == first %> active <% if classToAdd.length == 0 %> rounded-bottom <% end end%>" href="../<%=i*perpage+1%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
     <% end %>
       <li class="page-item">
         <a class="page-link pager" href="#" aria-label="Next">

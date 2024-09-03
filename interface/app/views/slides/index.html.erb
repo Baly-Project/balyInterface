@@ -4,7 +4,21 @@
 
 <%= render partial: "pager", locals:{first:@start,last:@last,count:@count} %>
 
-<h1> All Slides </h1>
+<h1> Full Collection </h1>
+<div class="sort-params">
+  Displaying <input id="perpage-in" type="number" min="10" max="1000" value="<%=@last-@start +1 %>">
+  results sorted by 
+  <select id="sortparam-in" class="form-select form-select-sm" aria-label="Small select example">
+ <% optionsHash={title:"Title",date:"Creation Date", country:"Country (A-Z)",random:"Random"}
+    paramtofind=@sortparam
+    optionsHash.each do |sym,title|
+      keystring=sym.to_s %>
+      <option <% if keystring == paramtofind %> selected <% end %> value="<%=keystring%>"><%=title%></option>
+ <% end %>	
+  </select>
+  <button id="params-submit" class="btn btn-outline-secondary inline-btn" onclick="applySortPrefs()"> Apply </button>
+<hr class="itemline">
+</div>
 
 <%= render partial: "layouts/previewlist", object:@previews, locals:{align:"center",customlist:@allIds} %>
 
@@ -12,4 +26,11 @@
 
 <script>
   animatePager()
+
+  function applySortPrefs() {
+    perpage=document.getElementById("perpage-in").value
+    sortparam=document.getElementById("sortparam-in").value
+    window.location.href="/index/"+sortparam+"/1/"+String(perpage)
+  }
+
 </script>

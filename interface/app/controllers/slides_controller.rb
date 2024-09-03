@@ -10,17 +10,16 @@ class SlidesController < ApplicationController
     @count=Preview.all.size
     if sortparam == "title"
       previews=Preview.order(:sorting_number)
-      @previews=previews[@start..@last]
-      @allIds=previews.pluck(:sorting_number)
     elsif sortparam == "date"
       previews=Preview.eager_load(:year,:month).sort_by{|prev| prev.year.number*20+prev.month.number}
-      @previews=previews[@start..@last]
-      @allIds=previews.pluck(:sorting_number)
     elsif sortparam == "country"
       previews=Preview.eager_load(:country).sort_by{|prev| prev.country.title}
-      @previews=previews[@start..@last]
-      @allIds=previews.pluck(:sorting_number)
+    elsif sortparam == "random"
+      previews=Preview.all.shuffle
     end
+    @sortparam=sortparam
+    @previews=previews[@start..@last]
+    @allIds=previews.pluck(:sorting_number)
   end
 
   def range

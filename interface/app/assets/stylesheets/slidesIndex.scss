@@ -26,3 +26,24 @@ a.page-link.pager.bottom.active {
   color:white;
   background-color: purple;
 }
+
+.sort-params {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: .25in;
+  padding-right: .25in;
+}
+
+#sortparam-in {
+  width: fit-content;
+}
+#perpage-in, #sortparam-in {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.inline-btn {
+  padding-top:2px;
+  padding-bottom:3px;
+}
