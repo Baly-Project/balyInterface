@@ -3,6 +3,7 @@ require_relative 'hash.rb'
 require_relative 'enhanced_date.rb'
 require_relative 'custom_pattern.rb'
 require_relative 'activemodels.rb'
+require 'fastimage'
 #This is a copy of the updater.rb file from the interface app, stored in interface/app/models
 #NOTE: This file can provide error checking for updates, but only for the DataProcessor class. 
 #  The ModelManager communicates with the rails database and can produce 
@@ -129,7 +130,7 @@ class Updater
         :placeInfo => placeinfo,
         :locations => genLocstoids,
         :locationCoords => genLocstocoords,
-        :keywords => keywordstoids,
+        :keywordIds => keywordstoids,
         :termIds=>termstoids,
         :collections=>collections,
         :years => years,
@@ -479,20 +480,34 @@ class Updater
     def preparePrevIndex(passed)
       idindex=Hash.new
       thispreview=1
+      print "Preparing Slides"
       passed.sort_by{|slide| slide.sortingNumber}.each do |slide|
         title=slide.title
         sortNum=slide.sortingNumber
         descpreview=slide.makePreview(char_limit:50)
         coordinates=slide.locations(specificCoords:true)
         img_link=slide.medimg
+        orientation=getImgDims(img_link)
         prev=Preview.new(id:thispreview,title:title,sorting_number:sortNum,description:descpreview,
-                         coordinates:coordinates,img_link:img_link)
+                         coordinates:coordinates,img_link:img_link,orientation:orientation)
         thispreview+=1
         idindex[sortNum]=prev
+        print "."
       end
+      puts " "
       return idindex.sort.to_h
     end
-    
+    def getImgDims(link)
+      dims=FastImage.size(link)
+      ratio=dims[0].to_f/dims[1].to_f
+      if ratio > 1.2
+        return "L"
+      elsif ratio < 0.83
+        return "P"
+      else
+        return "S"
+      end
+    end
     def assignPreviewData(index,data)
       data.years.each do |stringyear,idList|
         yearToUse=index[:years][stringyear]
@@ -518,7 +533,10 @@ class Updater
         keywordToUse=keywordindex[word]
         idList.each do |id|
           currentPreview=idindex[id]
-          currentPreview.keywords << keywordToUse
+          begin #this method will raise an error outside the rails environment
+            currentPreview.keywords << keywordToUse
+          rescue
+          end
         end
       end
       [[:collections,:collection],[:locations,:location]].each do |plsym,sym|

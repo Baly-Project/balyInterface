@@ -34,6 +34,16 @@ class Slide < OpenStruct
     return cleantext(self.configured_field_t_description[0])
   end
 
+  def intLinks
+    if self.hasJSONinfo?
+      if self.meta.internal_links.class==Array
+        links=self.meta.internal_links[0]
+        return links
+      end
+    end
+    return ""
+  end
+
   def makePreview(char_limit:30)
     if hasAbstract?
       preview=cleanAbstract
@@ -141,9 +151,11 @@ class Slide < OpenStruct
     keywordslist=Array.new
     metadata=self.meta
     #print self.meta
-    metadata.Keywords.each do |word|
-      if word.length > 1 
-        keywordslist.push word.lstrip.rstrip
+    if metadata.Keywords.to_s.length > 0
+      metadata.Keywords.each do |word|
+        if word.length > 1 
+          keywordslist.push word.lstrip.rstrip
+        end
       end
     end
     return keywordslist
@@ -285,15 +297,26 @@ class Slide < OpenStruct
   def hasJSONinfo?
     return self.meta.to_s.length > 1
   end
+
+  def hasIntLinks?
+    return self.intLinks.length > 0
+  end
+
   def hasSortingNumber?
     return self.configured_field_t_sorting_number.to_s.length > 2
+  end
+  def hasSpecificLocation?
+    if self.hasJSONinfo?
+      return self.locations(specificCoords:true).length > 0
+    else
+      return false
+    end
   end
   #the next method tries all the operations that could throw errors to check incoming slides
   def detectErrors
     self.prepJSON
     valuesToCheck=[ #These values must be possessed by the slide, but may not throw errors when missing
       [self.configured_field_t_subcollection,"Subcollection"],
-      [self.keywords[0],"Keywords"],
       [self.cleanTitle, "Title"],
       [self.cleanImageNotes,"Image Notes"]
     ]
@@ -303,6 +326,7 @@ class Slide < OpenStruct
       end
     end
     #the following values can be empty, but there cannot be errors when they are requested
+    self.keywords[0]
     self.dates
     self.locations
     self.year
