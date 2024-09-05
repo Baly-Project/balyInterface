@@ -216,7 +216,9 @@
     position:fixed;
     background-color: rgb(6, 6, 9);
     height: 100vh;
+    height: 100svh;
     width: 100vw;
+    width: 100svw;
     z-index: 1;
   }
   .img-holder.fs-img {
@@ -224,15 +226,20 @@
     z-index: 2;
     padding: 0px;
     width: 100vw;
+    width: 100svw;
     height: 100vh;
+    height: 100svh;
     padding-top: 5vh;
+    padding-top: 5svh;
   }
 
   .fs-img img {
     width: auto;
     height: auto;
     max-height: 85vh;
+    max-height: 85svh;
     max-width: 100vw;
+    max-width: 100svw;
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -241,7 +248,9 @@
    }
   #buttons-pane {
     height: 100vh;
-    width:100vw;
+    height: 100svh;
+    width: 100vw;
+    width: 100svw;
     position:fixed;
     z-index: 3;
     align-content: space-between;
@@ -255,13 +264,16 @@
   }
   #buttons-pane .toprow {
     width: 100vw;
+    width: 100svw;
     height: 5vh;
+    height: 5svh;
     display: flex;
     justify-content: flex-end;
   }
   .btn.delete-button {
     padding: 5px;
     width: 5vh;
+    width: 5svh;
   }
   #buttons-pane .middlerow {
     position:absolute;
@@ -269,7 +281,9 @@
     align-items: flex-end;
     justify-content: space-between;
     width:100vw;
+    width:100svw;
     height:88vh;
+    height:88svh;
     z-index: 2;
   }
   .tophalf a {
@@ -277,6 +291,7 @@
   }
   .fs-control {
     height: 88vh;
+    height: 88svh;
     align-content: end;
   }
   .tophalf a:hover {
@@ -292,21 +307,29 @@
     padding-left: 10vw;
     padding-right: 5vw;
     width: 100vw;
+    width: 100svw;
     padding-bottom: 20vw;
+    padding-bottom: 20svw;
     margin-top: 80vh;
+    margin-top: 80svh;
     z-index: 2;
   
   }
   .bottomtext {
     height:18vh;
+    height:18svh;
     min-height: 1in;
     padding-right: .5in;
     padding-top: 3vh;
+    padding-top: 3svh;
     overflow-y: scroll;
     position: fixed;
     margin-top:80vh;
+    margin-top:80svh;
     margin-left:10vw;
+    margin-left:10svw;
     width: 80vw;
+    width: 80svw;
     z-index: 4;
   }
   .carousel-control-prev, .carousel-control-next, .fs-control {
