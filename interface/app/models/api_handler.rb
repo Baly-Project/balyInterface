@@ -47,7 +47,7 @@ class ApiHandler
   end
   private
   
-  FieldLists={"display"=>"title,abstract,configured_field_t_description,download_link,url,configured_field_t_sorting_number,configured_field_t_identifier,configured_field_t_alternate_identifier,configured_field_t_creation_year,configured_field_t_subcollection,configured_field_t_city,configured_field_t_country,configured_field_t_coverage_spatial,configured_field_t_image_notes,configured_field_t_curator_notes,configured_field_t_object_notation",
+  FieldLists={"display"=>"title,abstract,configured_field_t_description,configured_field_t_references,download_link,url,configured_field_t_sorting_number,configured_field_t_identifier,configured_field_t_alternate_identifier,configured_field_t_coverage_spatial,configured_field_t_image_notes,configured_field_t_curator_notes,configured_field_t_object_notation",
               "min" => "title,configured_field_t_identifier,configured_field_t_sorting_number"}
   def prepareFields(target,fields)
     startHash={parent_key: 5047491}

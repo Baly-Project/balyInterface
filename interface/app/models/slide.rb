@@ -30,6 +30,14 @@ class Slide < OpenStruct
     return cleantext(self.configured_field_t_description[0])
   end
 
+  def references
+    if self.hasReferences?
+      return configured_field_t_references[0].html_safe
+    else
+      return ""
+    end
+  end
+
   def intLinks
     if self.hasJSONinfo?
       if self.meta.internal_links.class==Array
@@ -319,6 +327,9 @@ class Slide < OpenStruct
   end
   def hasDescription?
     return self.configured_field_t_description.to_s.length > 1
+  end
+  def hasReferences?
+    return self.configured_field_t_references.to_s.length > 1
   end
   def hasImageNotes?
     return self.configured_field_t_image_notes.to_s.length > 1

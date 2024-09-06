@@ -100,6 +100,12 @@
         <%=@slide.cleanDescription%>
       </p>
     <% end %>
+    <% if @slide.hasReferences? %>
+      <h5 class="subtitle"> References <hr class="itemline"> </h5>
+      <div class="referencebox">
+        <%=@slide.references%>
+      </div>
+    <% end %>
     <% if @slide.hasImageNotes? %>
       <h5 class="subtitle"> Image Notes <hr class="itemline"> </h5>
       <p class="sdesc">

@@ -59,7 +59,11 @@
     margin-bottom: 0%;
     width: 105%;
   }
-
+  .referencebox p {
+    padding-left: 36px;
+    text-indent: -36px;
+    word-break: break-word;
+  }
   div.img-data {
     background-color: #0000000d;
   }
