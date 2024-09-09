@@ -1,0 +1,19 @@
+<div class="timeline-header">
+  <h1 class="timeline-title center"> Timeline </h1>
+  <div class="timeline-about center">
+    A short timeline summarizing the life and work of Denis Baly.
+  </div>
+</div>
+
+<div class="timeline">
+<% @timeline.each do |year,event| %>
+  <li class="event" data-date="<%=year%>">
+    <p> <%= event.html_safe %> </p>
+  </li>
+<% end %>
+</div>
+
+<script>
+  document.querySelector(".nav-link.active").classList.remove("active")
+  document.getElementById("timeline-link").classList.add("active")
+</script>

@@ -113,6 +113,32 @@ class CustomPattern
     ]
   }
 
+  Timeline={
+    #enter a year and caption to be included in the timeline. This can be significant events in baly's life 
+    # or moments notable to the collection (such as destruction of sites). Links can be included in captions
+    1913 => 
+      "A. Denis Baly is born in Liverpool, England on April 24.",
+    1935 => 
+      "Baly receives an undergraduate degree in geography from the University of Liverpool.",
+    1937 => 
+      "Baly moves to the Near East, teaching in Amman and Haifa, then in British Mandatory Palestine.",
+    1948 =>
+      "During unrest and conflict surrounding the establishment of Israel, schools in Palestine 
+       are closed and Baly serves with the World Council of Churches in Geneva, Switzerland.",
+    1950 => 
+      "Baly returns to Palestine as headmaster of St. George's College in Jerusalem, where he stayed until 1953.",
+    1954 => 
+      "Baly goes to the United States as a lecturer at St. George's Episcopal Church in New York City.",
+    1956 => 
+      "Baly begins teaching at Kenyon College in the Political Science Department. That same year, 
+       he takes photos of the University of Virginia and Monticello, the first of what would become 
+       the Slide Collection. He also published his first two books,<em> Challenge and Decision </em> and <em> Chosen Peoples</em>.",
+    1957 => 
+      "Baly publishes the first version of his most famous work, <em>The Geography of the Bible</em>, 
+       as well as the lesser-known <em>Multitudes in the Valley. Church and Crisis in the Middle East</em>.",
+    1964 => 
+      "Baly joins the department of Religious Studies at Kenyon College."
+    }
   def keywordSubsets
     return KeywordSubsets
   end
@@ -127,5 +153,9 @@ class CustomPattern
 
   def returnPeriodHash
     return KeywordPeriods
+  end
+
+  def timeline
+    return Timeline
   end
 end

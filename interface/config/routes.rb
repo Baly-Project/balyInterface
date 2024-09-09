@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-   root "slides#index"
+  root "pages#home"
   get "index/:sortparam/:start/:last" => "slides#index"
   get "slides/range/:range" => "slides#range"
   get "slides/:id" => "slides#show"
@@ -23,5 +23,7 @@ Rails.application.routes.draw do
   get "stamps/:id" => "stamps#show"
   get "keywords/all" => "keywords#index"
   get "keywords/:id" => "keywords#show"
-  get "/home" => "pages#home"
+  get "home" => "pages#home"
+  get "timeline" => "pages#timeline"
+  get "about" => "pages#about"
 end
