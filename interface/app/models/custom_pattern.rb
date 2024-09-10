@@ -121,12 +121,12 @@ class CustomPattern
     1935 => 
       "Baly receives an undergraduate degree in geography from the University of Liverpool.",
     1937 => 
-      "Baly moves to the Near East, teaching in Amman and Haifa, then in British Mandatory Palestine.",
+      "Baly moves to the Near East, teaching in Amman and Haifa in British Mandatory Palestine over the next nine years.",
     1948 =>
       "During unrest and conflict surrounding the establishment of Israel, schools in Palestine 
        are closed and Baly serves with the World Council of Churches in Geneva, Switzerland.",
     1950 => 
-      "Baly returns to Palestine as headmaster of St. George's College in Jerusalem, where he stayed until 1953.",
+      "Baly returns to Palestine as headmaster of St. George's College in East Jerusalem, where he stayed until 1953.",
     1954 => 
       "Baly goes to the United States as a lecturer at St. George's Episcopal Church in New York City.",
     1956 => 
@@ -137,8 +137,10 @@ class CustomPattern
       "Baly publishes the first version of his most famous work, <em>The Geography of the Bible</em>, 
        as well as the lesser-known <em>Multitudes in the Valley. Church and Crisis in the Middle East</em>.",
     1964 => 
-      "Baly joins the department of Religious Studies at Kenyon College."
-    }
+      "Baly joins the department of Religious Studies at Kenyon College, remaining involved with the Political Science Department.",
+    1983 => 
+      "Baly retires from teaching, but continues to live in Gambier, OH until his death in 1987"
+  }
   def keywordSubsets
     return KeywordSubsets
   end
