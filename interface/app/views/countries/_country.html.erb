@@ -1,0 +1,20 @@
+      <div class="row places-row">
+      <%  {"Regions" => country.regions, "Cities" => country.cities}.each do |header,arr| %>
+      <% styletag=header.downcase %>
+      <div class="row <%=styletag%>-row col-5">
+        <h4> <%= header %> </h4>
+        <% arr.each do |subplace| %>
+          <% count=subplace.previews.size %>
+          <% if count > 0 %>
+            <p class="<%= styletag %>-name">
+              <a class="data" href="/places/<%=styletag%>/<%=subplace.id%>"> <%=subplace.title%> </a>
+              <span class="count">
+                (<%= count %>)
+              </span>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <hr class="country-line">

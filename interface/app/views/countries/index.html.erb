@@ -1,0 +1,24 @@
+<div class="hidden" style="display:none;">
+  <%=image_tag("marker-icon-green", id:"green-icon") %>
+  <%=image_tag("marker-icon-blue", id:"blue-icon") %>
+  <%=image_tag("marker-icon-orange", id:"orange-icon") %>
+  <%=image_tag("marker-shadow", id:"shadow-icon") %>
+  <%=image_tag("fov",id:"fov-icon") %>
+</div>
+
+<div class="world-map" data-controller="worldmap" data-worldmap-latlong-value="<%=@mapHash[:coordinates]%>" data-worldmap-labels-value="<%= @mapHash[:labels] %>" data-worldmap-scales-value="<%= @mapHash[:scales] %>" >
+  <div id="map" data-worldmap-target="container"> </div>
+</div>
+
+<% @countries.each do |country| %>
+  <% countrycount=country.previews.size %>
+  <% if countrycount > 0 %>
+    <h2> <a class="data" href="/places/countries/<%= country.id %>"> <%= country.title %> </a> </h2>
+    <%= render country %>
+  <% end %>
+<% end %>
+    
+<script>
+  document.querySelector(".nav-link.active").classList.remove("active");
+  document.getElementById("browse-link").classList.add("active");
+</script>

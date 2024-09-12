@@ -1,0 +1,20 @@
+<% @years.each do |year| %>
+  <% unless year.number == 3000 %>
+  <h1 class="yearitem"> <%= year.number %> </h1>
+    <% year.months.sort_by{|month| month.number}.each do |month| %>
+      <% unless month.number == 13 %>
+        <h4 class="monthitem"> <%= month.title %> </h4>
+      <% else %>
+        <hr>
+      <% end %>
+      <div class="slide-group">
+        <%= render partial:"layouts/previewlist", object:month, locals:{align:"left med-indent"} %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+    
+<script>
+  document.querySelector(".nav-link.active").classList.remove("active");
+  document.getElementById("browse-link").classList.add("active");
+</script>

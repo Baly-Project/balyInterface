@@ -1,0 +1,33 @@
+<% if previewlist.class == Array
+     array=previewlist
+   else
+     array=previewlist.previews
+   end
+   if local_assigns[:customlist].to_s.length > 0
+     numbers=customlist
+   else
+     numbers=Array.new
+     array.each do |prev|
+       numbers.push prev.sorting_number
+     end
+   end
+%>
+<div class="row row-cols-xl-4 row-cols-lg-3 row-cols-2 g-2 prev-holder prev-align-<%=align.to_s%>" data-controller="back-forth" data-back-forth-currentlist-value="<%=numbers%>">
+<% array.each do |prev|
+   if prev.orientation != "L"
+     vertclass="vert"
+   else
+     vertclass=""
+   end 
+%>
+  <div class="row card-row">
+    <a class="card <%=vertclass%>" href="/slides/<%= prev.sorting_number %>" data-action="click->back-forth#setList">
+      <img src="<%= prev.img_link %>" alt="<%= prev.title %>", class="card-img-top rounded-0">
+      <div class="card-body">
+        <h5 class="card-title"> <%= prev.title %> </h5>
+        <p class="card-text"> <%= prev.description %> </p>
+      </div>
+    </a>
+  </div>
+<% end %>
+</div>

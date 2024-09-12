@@ -1,0 +1,10 @@
+<div class="pano-image">
+  <% candidate=@collection.getRandomImage %>
+  <img class="candidate-image" src="<%=candidate.fullImgLink %>" alt="candidate.classification">
+</div>
+<h1 class="large-title">
+  <%= @collection.title %>
+</h1>
+<hr class="navline">
+<%= render partial:"layouts/previewlist", object:@collection, locals:{align:"center"} %>
+

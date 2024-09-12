@@ -1,0 +1,44 @@
+<h1> Keywords </h1>
+
+<div class="row row-cols-2">
+<% @periods.each do |key,wordlist| %>
+  <div class="timeperiod row">
+    <% if key=="Period" %>
+      <h5> Periods </h5>
+    <% elsif key=="Century" %>
+      <h5> Centuries </h5>
+    <% end %>
+    <div class="century-list">
+    <% wordlist.each do |posword|
+         id=@periodObjects[posword]
+         if id.class == Integer %>
+           <div class="century-item">
+             <a class="purple" href="/keywords/<%= id %>"> <%= posword %> </a>
+           </div>
+      <% end 
+       end %>
+    </div>
+  </div>
+<% end %>
+</div>
+  
+<div id=allkeywords>
+<% @keywords.order(:title).pluck(:title,:id).each do |word,id| %>
+  <div class="keyword-item">
+    <a class="purple" href="/keywords/<%=id%>"> <%=word%> </a>
+  </div>
+<% end %>
+</div>
+<h4 id="wordcloud"> Wordcloud </h4>
+<div class="keyword-container">
+<% @keywords.sort_by{|kw| -kw.previews.size}.each do |word| 
+   count=word.previews.size %>
+  <span class="keyword-item" style="font-size: <%= count*3+70 %>%;"> 
+    <a class="purple" href="/keywords/<%=word.id%>"> <%= word.title %> </a>
+  </span>
+<% end %>
+
+<script>
+  document.querySelector(".nav-link.active").classList.remove("active");
+  document.getElementById("browse-link").classList.add("active");
+</script>

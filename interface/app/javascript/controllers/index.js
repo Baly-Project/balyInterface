@@ -4,5 +4,32 @@
 
 import { application } from "./application"
 
+import BackForthController from "./back_forth_controller"
+application.register("back-forth", BackForthController)
+
+import BigmapController from "./bigmap_controller"
+application.register("bigmap", BigmapController)
+
+import FullscreenController from "./fullscreen_controller"
+application.register("fullscreen", FullscreenController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import LinkHelperController from "./link_helper_controller"
+application.register("link-helper", LinkHelperController)
+
+import MapController from "./map_controller"
+application.register("map", MapController)
+
+import OrientController from "./orient_controller"
+application.register("orient", OrientController)
+
+import OverflowController from "./overflow_controller"
+application.register("overflow", OverflowController)
+
+import PopoverController from "./popover_controller"
+application.register("popover", PopoverController)
+
+import WorldmapController from "./worldmap_controller"
+application.register("worldmap", WorldmapController)

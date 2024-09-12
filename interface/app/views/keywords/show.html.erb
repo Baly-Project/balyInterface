@@ -1,0 +1,30 @@
+<h1> <%= @keyword.title %> </h1>
+
+<div class="keyword-about">
+<% if @keyword.super.class == String %>
+  <div class="about-supers">
+  <% superwords=Keyword.where(title:@keyword.super) %>
+  A subset of keyword: 
+  <% superwords.each do |superword| %>
+     <a class="purple" href="/keywords/<%=superword.id%>"> <%= superword.title %></a>.
+  <% end %>
+  </div>
+<% end %>
+  <% subwords=Keyword.where(super:@keyword.title) %>
+  <% if subwords.size > 0 %>
+    Contains keywords: 
+    <% count=1 %>
+    <% subwords.each do |subword| %>
+      <a class="purple" href="/keywords/<%=subword.id%>"> <%= subword.title %> </a>
+      <% unless count==subwords.size %>
+        ,
+      <% end %>
+    <% end %>.
+  <% end %>
+<% if @keyword.alternates.class == String %>
+  Also known as "<%=@keyword.alternates%>"
+<% end %>
+</div>
+
+<%= puts @keyword.previews.count %>
+<%= render partial:"layouts/previewlist", object:@keyword.previews.to_a, locals:{align:"left"} %>

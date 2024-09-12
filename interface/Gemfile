@@ -68,3 +68,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "faraday", "~> 2.9"
+
+gem "mysql2"
+
+gem "fastimage", "~> 2.3"

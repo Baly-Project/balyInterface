@@ -1,0 +1,12 @@
+<h1> Collections </h1>
+
+<div class="row row-cols-2">
+<%  @collections.each do |collection| %>
+  <%= render collection %>
+<%  end %>
+</div>
+
+<script>
+  document.querySelector(".nav-link.active").classList.remove("active");
+  document.getElementById("browse-link").classList.add("active");
+</script>

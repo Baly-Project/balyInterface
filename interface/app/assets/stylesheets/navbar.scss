@@ -1,3 +1,9 @@
+/* Constants */
+
+  $nav-color: rgb(235, 228, 219);
+
+/* Styles */
+
 /*  @font-face {
     font-family: 'Dihjauti';
     src: url('assets/fonts/Dihjauti/Dihjauti-Regular.otf');
@@ -11,6 +17,14 @@
     src: url(assets/fonts/SourceSerif/SourceSerifPro-Regular.otf);
   }
 */
+
+  .hidden {
+    display:none
+  }
+  div.navbox {
+    padding-bottom: 24px;
+    background-color: $nav-color;
+  }
   .nav-link {
     font-family: "Serif";
     font-weight: 500;
@@ -26,7 +40,7 @@
     background-color: rgb(58, 0, 119);
   }
   nav.navbar {
-    background-color: rgb(235, 228, 219);
+    background-color: $nav-color;;
     padding-left: .15in;
   }
   /*.navbar-brand {
@@ -36,7 +50,9 @@
     line-height: 110%;
   }*/
   .brand-image {
-    height: 100px;
+    height:auto;
+    max-height: 100px;
+    max-width: 50vw;
   }
   .navbar-toggler {
     margin-right: .4in;
@@ -62,4 +78,10 @@
   .search-form * {
     font-size: 17pt;
   }
-
+  hr.navline {
+    margin-left: .25in;
+    margin-right: .25in;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  

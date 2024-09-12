@@ -1,0 +1,49 @@
+/* Constants */
+$body-color: rgb(255 249 241);
+
+/* Styles */
+h1 {
+  padding: .35in;
+}
+
+div.container {
+  background-color: $body-color;
+}
+
+.pagination {
+  justify-content: center;
+}
+a.page-link.pager {
+  background-color: $body-color;
+}
+a.page-link.pager.active {
+  color: black;
+  background-color: rgb(235, 228, 219);
+  border-color: black;
+  border-top: hidden;
+}
+a.page-link.pager.bottom.active {
+  color:white;
+  background-color: purple;
+}
+
+.sort-params {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: .25in;
+  padding-right: .25in;
+}
+
+#sortparam-in {
+  width: fit-content;
+}
+#perpage-in, #sortparam-in {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.inline-btn {
+  padding-top:2px;
+  padding-bottom:3px;
+}
