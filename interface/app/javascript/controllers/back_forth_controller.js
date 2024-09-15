@@ -2,19 +2,21 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="back-forth"
 export default class extends Controller {
-  static values={currentlist:Array,currentid:Number}
-  static targets=["backbtn","fwdbtn"]
+  static values={currentlist:Array,currentimages:Array,currentid:Number}
+  static targets=["remove","back","fwd","backimg","fwdimg"]
   connect() {
-    console.log("back-forth enabled");
+    console.log("back-forth enabled")
+    this.backTargets.forEach(target => {target.href=this.getLink(this.getPrev())});
+    this.fwdTargets.forEach(target => {target.href=this.getLink(this.getNext())});
+    this.backimgTargets.forEach(target=>{target.src=this.getImg(this.getPrev())});
+    this.fwdimgTargets.forEach(target=>{target.src=this.getImg(this.getNext())});
   }
   removeArrows(){
-    this.backbtnTarget.style.display="none"
-    this.fwdbtnTarget.style.display="none"
+    this.removeTargets.forEach(target=>{target.style.display="none"});
   }
   addArrows(){
     if(!(sessionStorage["fullscreen"]=="true")){
-      this.backbtnTarget.style.display="flex"
-      this.fwdbtnTarget.style.display="flex"
+      this.removeTargets.forEach(target=>{target.style.display="flex"});
     }
     else{
       console.log("arrows blocked")
@@ -22,12 +24,29 @@ export default class extends Controller {
   }
   setList(){
     let stringArray=JSON.stringify(this.currentlistValue);
+    let imgArray=JSON.stringify(this.currentimagesValue);
     sessionStorage.setItem("current-list",stringArray);
+    sessionStorage.setItem("current-images",imgArray);
   }
   getLink(id){
-    return "/slides/"+String(id)
+    return "/slides/"+String(id);
+  }
+  getImg(id){
+    var place=JSON.parse(sessionStorage["current-list"]).indexOf(id);
+    var imgNumber = JSON.parse(sessionStorage["current-images"])[place];
+    return "https://digital.kenyon.edu/context/baly/article/"+String(imgNumber)+"/type/native/viewcontent";
   }
   next(){
+    var nextvalue=this.getNext();
+    window.location.href=this.getLink(nextvalue);
+    console.log("redirected to ", nextvalue);
+  }
+  prev(){
+    var prevvalue=this.getPrev();
+    window.location.href=this.getLink(prevvalue);
+    console.log("redirected to ", prevvalue);
+  }
+  getNext(){
     const currentlist=JSON.parse(sessionStorage["current-list"])
     var currentPlace = currentlist.indexOf(this.currentidValue);
     var nextvalue;
@@ -37,10 +56,9 @@ export default class extends Controller {
     else{
       nextvalue=currentlist[currentPlace+1]
     }
-    window.location.href=this.getLink(nextvalue);
-    console.log("redirected to ", nextvalue);
+    return nextvalue
   }
-  prev(){
+  getPrev(){
     const currentlist=JSON.parse(sessionStorage["current-list"])
     var currentPlace = currentlist.indexOf(this.currentidValue);
     var prevvalue;
@@ -51,7 +69,6 @@ export default class extends Controller {
     else{
       prevvalue=currentlist[currentPlace-1]
     }
-    window.location.href=this.getLink(prevvalue);
-    console.log("redirected to ", prevvalue);
+    return prevvalue
   }
 }

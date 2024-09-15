@@ -16,14 +16,20 @@
         <div class="carousel-item active">
           <img src="<%= @slide.download_link %>" alt="<%= @slide.title%>" class="main-image">
         </div>
+        <div class="carousel-item">
+          <img alt="Next Preload" class="main-image" data-back-forth-target="fwdimg">
+        </div>
+        <div class="carousel-item">
+          <img alt="Previous Preload" class="main-image" data-back-forth-target="backimg">
+        </div>
       </div>
       <% prevNum=@slide.sortingNumber-1%>
       <% nextNum=@slide.sortingNumber+1%>
-      <a class="carousel-control-prev" type="button" data-bs-target="#imgCarousel" data-back-forth-target="backbtn" data-action="click->back-forth#prev">
+      <a class="carousel-control-prev" type="button" data-bs-target="#imgCarousel" data-back-forth-target="remove back">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </a>
-      <a class="carousel-control-next" type="button" data-bs-target="#imgCarousel" data-back-forth-target="fwdbtn" data-action="click->back-forth#next">
+      <a class="carousel-control-next" type="button" data-bs-target="#imgCarousel" data-back-forth-target="remove fwd">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </a>
@@ -40,7 +46,7 @@
           </a>        
         </div>
         <div class="middlerow">
-      <a class="fs-control prev" type="button" data-bs-target="#imgCarousel" data-action="click->back-forth#prev">
+      <a class="fs-control prev" type="button" data-bs-target="#imgCarousel" data-back-forth-target="back">
         <span class="prev-icon" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
@@ -48,7 +54,7 @@
         </span>
         <span class="visually-hidden">Previous</span>
       </a>
-      <a class="fs-control next" type="button" data-bs-target="#imgCarousel" data-action="click->back-forth#next">
+      <a class="fs-control next" type="button" data-bs-target="#imgCarousel" data-back-forth-target="fwd">
         <span class="next-icon" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
@@ -313,6 +319,7 @@
       <% end %>
       </div>
     </div>
+  </div>
     <script>
       function expandContract() {
         $("#expand-contract").slideToggle(350, function() {

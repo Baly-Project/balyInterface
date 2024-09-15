@@ -11,8 +11,15 @@
        numbers.push prev.sorting_number
      end
    end
+   imageNums=Array.new
+   links=Preview.where(sorting_number:numbers).pluck(:sorting_number,:img_link)
+   links.sort_by{|l| numbers.index(l[0])}.each do |link|
+     imageNums.push(link[1].split("/")[-2].to_i)
+   end  
+   print links,imageNums
 %>
-<div class="row row-cols-xl-4 row-cols-lg-3 row-cols-2 g-2 prev-holder prev-align-<%=align.to_s%>" data-controller="back-forth" data-back-forth-currentlist-value="<%=numbers%>">
+<div class="row row-cols-xl-4 row-cols-lg-3 row-cols-2 g-2 prev-holder prev-align-<%=align.to_s%>" 
+     data-controller="back-forth" data-back-forth-currentlist-value="<%=numbers%>" data-back-forth-currentimages-value="<%= imageNums %>">
 <% array.each do |prev|
    if prev.orientation != "L"
      vertclass="vert"
