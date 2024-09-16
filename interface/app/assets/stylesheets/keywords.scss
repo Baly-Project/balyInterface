@@ -17,6 +17,7 @@
   white-space: nowrap;
   padding: .7em;
   overflow-wrap: break-word;
+  text-wrap:balance;
 }
 
 .row h5 {
@@ -27,9 +28,19 @@
   align-content:flex-start;
 }
 
+#allkeywords {
+  columns:2;
+}
+@media (min-width: 768px) {
+  #allkeywords {
+    columns:3;
+  }
+}
+
 /* show.html.erb */
 
 .keyword-about {
   margin-left:.5in;
   margin-bottom: .3in;
 }
+
