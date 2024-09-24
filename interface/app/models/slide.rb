@@ -234,13 +234,16 @@ class Slide < OpenStruct
     (gencoords,speccoords,objectcoords)=[0,0,0]
     if metadata.locations.to_s.length > 1
         metadata.locations.each do |loc|
-        if loc.type=="general" and loc.title.to_s.length > 1
+        if loc.type == nil
+          puts "WARNING!! Locations for slide #{self.title} do not have types. Fix this asap!!"
+        end
+        if (loc.type=="general" and loc.title.to_s.length > 1) or (loc.type.to_s=="" and loc.title.to_s.length > 1 and loc.precision.to_s == "") 
           lochash["General Location"]=loc.title
           gencoords=formatcoords([loc.coordinates])
           if general
             return [loc.title,loc.coordinates]
           end
-        elsif loc.type=="specific" and loc.title.to_s.length > 1
+        elsif (loc.type=="specific" and loc.title.to_s.length > 1) or (loc.type.to_s =="" and loc.precision.to_s.length > 1 and loc.coordinates.to_s.length > 1)
           lochash["Camera Location"]=loc.title
           speccoords=formatcoords([loc.coordinates])
           if specificCoords
@@ -248,7 +251,7 @@ class Slide < OpenStruct
           end
           rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle,"Degrees"=>stripAngleNum(loc.angle)}
           # print " Additional: #{additional} "
-        elsif loc.type=="object" and loc.latitude.to_s.length > 1
+        elsif (loc.type=="object" and loc.latitude.to_s.length > 1) or (loc.type == "" and loc.latitude.to_s.length > 1)
           lochash["Object Location"]=""
           objectcoords=formatcoords([loc.latitude,loc.longitude])
         end
