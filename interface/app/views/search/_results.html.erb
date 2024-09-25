@@ -1,0 +1,20 @@
+<div class="results-box">
+<% results.each do |slide| %>
+  <% sortNum=slide.sortingNumber %>
+  <a class="result-link" href="/slides/<%= sortNum %>">
+  <div class="row search-result">
+    <% if Preview.find_by(sorting_number:sortNum).orientation == "P"
+         classtoadd="vert"
+       else 
+         classtoadd=""
+       end %> 
+         
+    <img class="<%=classtoadd %>" src="<%= slide.medimg %>">
+    <div class="result-info">
+      <h5> <%= slide.title %></h5>
+      <p> <%= slide.makePreview(char_limit:200) %> </p> 
+    </div>
+  </div>
+  </a>
+<% end %>
+</div>

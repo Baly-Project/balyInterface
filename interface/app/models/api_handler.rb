@@ -1,6 +1,6 @@
 class ApiHandler
-  def getRecord(target:0,fields:'all',parsed:false,maxtries:5,check:[])
-    fieldHash=prepareFields(target,fields)
+  def getRecord(target:0,fields:'all',parsed:false,maxtries:5,check:[],query:"")
+    fieldHash=prepareFields(target,fields,query)
     tries=0
     while tries < maxtries
       json_data=Faraday.get(Faraday.get(
@@ -49,10 +49,13 @@ class ApiHandler
   
   FieldLists={"display"=>"title,abstract,configured_field_t_description,configured_field_t_references,download_link,url,configured_field_t_sorting_number,configured_field_t_identifier,configured_field_t_alternate_identifier,configured_field_t_coverage_spatial,configured_field_t_image_notes,configured_field_t_curator_notes,configured_field_t_object_notation",
               "min" => "title,configured_field_t_identifier,configured_field_t_sorting_number"}
-  def prepareFields(target,fields)
+  def prepareFields(target,fields,query)
     startHash={parent_key: 5047491}
     if target==0
       startHash=startHash.merge({limit: 10000})
+      if query != ""
+        startHash=startHash.merge({q:query})
+      end
     else
       startHash=startHash.merge({configured_field_t_sorting_number: target, limit: 1})
     end
@@ -64,6 +67,7 @@ class ApiHandler
       end
       startHash=startHash.merge({select_fields:"all"})
     end
+    print startHash
     return startHash
   end  
   def checkPresence?(slides,symArray)
