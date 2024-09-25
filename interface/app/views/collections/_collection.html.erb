@@ -1,6 +1,12 @@
 <div class="row card-row">
-  <a class="big card" href="/collections/<%= collection.alph_value %>">
-    <% samplePreview=collection.getRandomImage %>
+    <% samplePreview=collection.getRandomImage
+	print "Sample Preview is #{samplePreview}" 
+       if samplePreview.orientation == "P"
+         classtoadd="vert"
+       else 
+         classtoadd=""
+       end  %>
+  <a class="big card <%= classtoadd %>" href="/collections/<%= collection.alph_value %>">
     <img class="card-img" src="<%= samplePreview.img_link %>" alt="<%= samplePreview.classification %>">
     <div class="card-body">
       <h4 class="card-title">
