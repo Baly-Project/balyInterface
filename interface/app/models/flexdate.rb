@@ -12,7 +12,7 @@ class Flexdate
       unless item.include?("-") or item.length<1
         existing.push item
       end
-    end	
+    end
     numentries=existing.length
     @numattrs=numentries
     if numentries == 3
@@ -42,7 +42,7 @@ class Flexdate
     end
   end
   
-
+  private
   
   def arrayFromStruct(aStruct)
     array=Array.new
