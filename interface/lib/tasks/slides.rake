@@ -20,6 +20,7 @@ namespace :record do
     rescue => e
       deleter.restoreDatabase
       puts "Update unsuccessful with a #{e.class} stating #{e.message}, and the previous database has been restored" 
+      puts e.backtrace
     ensure
       logfile.close
     end

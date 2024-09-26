@@ -28,6 +28,7 @@ class Updater
     end
     manager.assignPreviewData(index,data)    
   end
+
   def getAllRecords()
     api=ApiHandler.new
     objects=api.getRecord(parsed:true,fields:"all",maxtries:20,check:[:configured_field_t_object_notation])
@@ -103,6 +104,7 @@ class Updater
         end
         stamps.increment(stamp,id)
       end
+      print timeperiods
       return OpenStruct.new({
         :ids => ids,
         :placeIds => placetoids,
@@ -136,15 +138,28 @@ class Updater
       end
       genloc=slide.locations(general:true)
       if genloc.class==Array
-        genLocstoids.increment(genloc[0],id)
+	if genloc[0].length < 3
+          genLocstoids.increment("No Location",id)
+        else
+          genLocstoids.increment(genloc[0],id)
+        end
         unless genLocstocoords[genloc[0]]==genloc[1]
           genLocstocoords[genloc[0]]=genloc[1]
         end
       end
     end
     def processDate(timeperiods,slide,id)
-      stringdate=slide.configured_field_t_documented_date[0]
-      puts "DATE=#{stringdate}"
+      begin
+      	stringdate=slide.configured_field_t_documented_date[0]
+      rescue 
+	puts "Slide with sorting number #{id} does not have a documented date. If this is a mistake, fix the record on Digital Kenyon"
+	begin 
+          stringdate=EnhancedDate.parse(slide.publication_date).year.to_s
+	rescue
+          stringdate="3000"
+        end
+      end
+      #puts "DATE=#{stringdate}"
       begin
         date=EnhancedDate.parse(stringdate)
       rescue
@@ -531,7 +546,7 @@ class Updater
       end
       index[:ids].each do |key,value| 
         begin
-          value.save 
+          value.save! 
         rescue => e
           puts "Preview number #{key} failed to save due to a #{e.class} stating #{e.message}"
         end
