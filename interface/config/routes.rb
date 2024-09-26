@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get "stamps/:id" => "stamps#show"
   get "keywords/all" => "keywords#index"
   get "keywords/:id" => "keywords#show"
+  get "search/:query" => "search#query"
   get "home" => "pages#home"
   get "timeline" => "pages#timeline"
   get "about" => "pages#about"
