@@ -1,5 +1,5 @@
 <h5> Search for: "<%= @query %>" </h5>
 <p> Showing all results </p>
 
-<%= render partial:"results", object:@records %>
+<%= render partial:"results", object:@records, locals:{numbers:@numbers} %>
 

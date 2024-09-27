@@ -1,7 +1,15 @@
-<div class="results-box">
+<% 
+   imageNums=Array.new
+   links=Preview.where(sorting_number:numbers).pluck(:sorting_number,:img_link)
+   links.sort_by{|l| numbers.index(l[0])}.each do |link|
+     imageNums.push(link[1].split("/")[-2].to_i)
+   end
+%>
+
+<div class="results-box" data-controller="back-forth" data-back-forth-currentlist-value="<%=numbers%>" data-back-forth-currentimages-value="<%=imageNums%>">
 <% results.each do |slide| %>
   <% sortNum=slide.sortingNumber %>
-  <a class="result-link" href="/slides/<%= sortNum %>">
+  <a class="result-link" href="/slides/<%= sortNum %>" data-action="click->back-forth#setList">
   <div class="row search-result">
     <% if Preview.find_by(sorting_number:sortNum).orientation == "P"
          classtoadd="vert"
@@ -15,6 +23,7 @@
       <p> <%= slide.makePreview(char_limit:200) %> </p> 
     </div>
   </div>
+  <hr class="navline">
   </a>
 <% end %>
 </div>

@@ -31,5 +31,8 @@ application.register("overflow", OverflowController)
 import PopoverController from "./popover_controller"
 application.register("popover", PopoverController)
 
+import SearchController from "./search_controller"
+application.register("search", SearchController)
+
 import WorldmapController from "./worldmap_controller"
 application.register("worldmap", WorldmapController)

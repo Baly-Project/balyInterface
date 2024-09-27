@@ -64,9 +64,9 @@
             </li>
           </ul>
           <div class="search-group">
-            <form class="d-flex search-form" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-secondary" type="submit">Search</button>
+            <form class="d-flex search-form" role="search" data-controller="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" data-search-target="textbox">
+              <button class="btn btn-outline-secondary" data-action="click->search#submit">Search</button>
             </form>
           </div>
         </div>

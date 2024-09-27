@@ -48,6 +48,7 @@ class ApiHandler
   private
   
   FieldLists={"display"=>"title,abstract,configured_field_t_description,configured_field_t_references,download_link,url,configured_field_t_sorting_number,configured_field_t_identifier,configured_field_t_alternate_identifier,configured_field_t_coverage_spatial,configured_field_t_image_notes,configured_field_t_curator_notes,configured_field_t_object_notation",
+              "search"=>"title,abstract,configured_field_t_description,configured_field_t_sorting_number,configured_field_t_subcollection,configured_field_t_documented_date,configured_field_t_publication_date,download_link,configured_field_t_coverage_spatial",
               "min" => "title,configured_field_t_identifier,configured_field_t_sorting_number"}
   def prepareFields(target,fields,query)
     startHash={parent_key: 5047491}
