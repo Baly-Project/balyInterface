@@ -144,7 +144,11 @@ class Slide < OpenStruct
     return self.configured_field_t_country
   end
   def subcollection
-    return self.configured_field_t_subcollection[0]
+    begin
+      return self.configured_field_t_subcollection[0]
+    rescue
+      puts "Slide #{self.id} is not part of a collection!"
+    end
   end
   def batchStamp
     begin
@@ -407,12 +411,25 @@ class Slide < OpenStruct
 
   def generateConciseNotes
     notes=String.new
-    date=self.configured_field_t_documented_date[0]
-    notes+="Created in #{date}. "
+    begin
+      date=self.configured_field_t_documented_date[0]
+    rescue
+      begin
+        date=EnhancedDate.parse(self.publication_date).year
+      rescue
+	date=nil
+      end
+    end
+    if date != nil
+      notes+="Created in #{date}. "
+    end
     collection=subcollection
     notes+="Part of #{collection}. "
     location=self.configured_field_t_coverage_spatial[0]
-    notes+="Located in #{location}"
+    notes+="Located in #{location}. "
+    if date == nil
+      notes+="Creation date unknown."
+    end
     return notes
   end
 end

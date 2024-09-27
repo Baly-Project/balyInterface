@@ -259,6 +259,7 @@
          angle="None"
        end
     %>
+  <% if cords.length > 0 %>
     <div class="col-9 map-container" data-controller="map" data-map-latlong-value="<%= cords %>" data-map-labels-value="<%=labels%>", data-map-angle-value="<%=angle%>">
       <div id="map" data-map-target="container">
       </div>
@@ -319,6 +320,7 @@
       <% end %>
       </div>
     </div>
+  <% end %>
   </div>
     <script>
       function expandContract() {
