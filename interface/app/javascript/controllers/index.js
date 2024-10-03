@@ -28,6 +28,9 @@ application.register("orient", OrientController)
 import OverflowController from "./overflow_controller"
 application.register("overflow", OverflowController)
 
+import PagerController from "./pager_controller"
+application.register("pager", PagerController)
+
 import PopoverController from "./popover_controller"
 application.register("popover", PopoverController)
 

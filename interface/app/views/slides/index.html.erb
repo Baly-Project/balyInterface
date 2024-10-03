@@ -1,6 +1,3 @@
-<% content_for :for_head do%>
-<%=javascript_include_tag "pager" %>
-<% end %>
 
 <%= render partial: "pager", locals:{first:@start,last:@last,count:@count} %>
 
@@ -25,8 +22,6 @@
 <%= render partial: "pager", locals:{first:@start,last:@last,count:@count,bottom:true} %>
 
 <script>
-  //animatePager()
-
   function applySortPrefs() {
     perpage=document.getElementById("perpage-in").value
     sortparam=document.getElementById("sortparam-in").value
