@@ -111,11 +111,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_23_142108) do
     t.index ["country_id"], name: "index_regions_on_country_id"
   end
 
-  create_table "slides", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "stamps", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "title"
     t.bigint "month_id", null: false
