@@ -18,7 +18,7 @@ Thanks to internal configuration files, we don't need to install each and every 
 
 ### 1. Install Ruby
 
-* While the GoRails guide recommended using the **asdf** package manager, this ran into errors. An alternative solution was found using **RVM** (Ruby Version Manager).
+*Install **RVM** (Ruby Version Manager).
 
 This successful sequence is:
 
