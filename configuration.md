@@ -20,67 +20,67 @@ Thanks to internal configuration files, we don't need to install each and every 
 
 * While the GoRails guide recommended using the **asdf** package manager, this ran into errors. An alternative solution was found using **RVM** (Ruby Version Manager).
 
-    This successful sequence is:
+This successful sequence is:
 
-    1. Update apt manager
-        ```sh
-        sudo apt update
-        ```
+1. Update apt manager
+    ```sh
+    sudo apt update
+    ```
     
-    2. Install dependencies
-        ```sh
-        sudo apt install -y autoconf bison build-essential curl g++ gcc git git-core libffi-dev libgdbm-dev libncurses-dev libreadline-dev libsqlite3-dev libssl-dev libxi6 libyaml-dev make sqlite3 xvfb zip zlib1g-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common gnupg2
-        ```
+2. Install dependencies
+    ```sh
+    sudo apt install -y autoconf bison build-essential curl g++ gcc git git-core libffi-dev libgdbm-dev libncurses-dev libreadline-dev libsqlite3-dev libssl-dev libxi6 libyaml-dev make sqlite3 xvfb zip zlib1g-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common gnupg2
+    ```
 
-    3. Prepare for RVM installation
-        ```sh
-        gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB 
+3. Prepare for RVM installation
+    ```sh
+    gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB 
 
-        sudo apt-add-repository -y ppa:rael-gc/rvm
-        ```
+    sudo apt-add-repository -y ppa:rael-gc/rvm
+    ```
 
-    4. Install RVM
-        ```sh
-        sudo apt install rvm
-        ```
+4. Install RVM
+    ```sh
+    sudo apt install rvm
+    ```
 
-    5. Configure RVM
-        ```sh
-        sudo usermod -a -G rvm "$USER"
+5. Configure RVM
+    ```sh
+    sudo usermod -a -G rvm "$USER"
 
-        source /etc/profile.d/rvm.sh
+    source /etc/profile.d/rvm.sh
 
-        mkdir -p ~/.rvm/user/installs
+    mkdir -p ~/.rvm/user/installs
 
-        sudo shutdown -r
-        ```
+    sudo shutdown -r
+    ```
 
-        This last step finishes by scheduling a system reboot one minute after execution. When the reboot occurs it will disconnect you from the server. Wait about a minute after the reboot begins to reconnect and continue
+    This last step finishes by scheduling a system reboot one minute after execution. When the reboot occurs it will disconnect you from the server. Wait about a minute after the reboot begins to reconnect and continue
 
-    6. Install Ruby
+6. Install Ruby
 
-        ```sh
-        rvm install 3.3.0
-        ```
-        Be prepared to wait for this step, it typically takes 15-20 minutes.
+    ```sh
+    rvm install 3.3.0
+    ```
+    Be prepared to wait for this step, it typically takes 15-20 minutes.
 
-    7. Check Installation
-        
-        The ``>>`` symbol shows expected system output. The installation was successful if your output matches this.
-        ```sh
-        ruby -v
+7. Check Installation
+    
+    The ``>>`` symbol shows expected system output. The installation was successful if your output matches this.
+    ```sh
+    ruby -v
 
-        >> ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [x86_64-linux]
+    >> ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [x86_64-linux]
 
 
-        rvm list
+    rvm list
 
-        >> =* ruby-3.3.0 [ x86_64 ]
+    >> =* ruby-3.3.0 [ x86_64 ]
 
-           # => - current
-           # =* - current && default
-           #  * - default
-        ```
+        # => - current
+        # =* - current && default
+        #  * - default
+    ```
 
 ### 2. MariaDB
     
