@@ -18,9 +18,7 @@ Thanks to internal configuration files, we don't need to install each and every 
 
 ### 1. Install Ruby
 
-*Install **RVM** (Ruby Version Manager).
-
-This successful sequence is:
+Ruby has several installers that will all leave you with an identical ruby version. Which installer to use depends on various bugs you might encounter, but one of them should always work. We found **RVM** (Ruby Version Manager) to work well in this environment, and so use that in the following instructions.
 
 1. Update apt manager
     ```sh
