@@ -100,7 +100,7 @@ class Updater
         processDate(timeperiods,slide,id)
         stamp=slide.batchStamp
         if stamp.length < 1
-          stamp="unstamped"
+          stamp= "unstamped"
         end
         stamps.increment(stamp,id)
       end
@@ -166,7 +166,7 @@ class Updater
         if stringdate.to_i.to_s == stringdate
           date=OpenStruct.new({:year=>stringdate.to_i})
         else
-          date=""
+          date= ""
         end
       end
       if date.class == OpenStruct
