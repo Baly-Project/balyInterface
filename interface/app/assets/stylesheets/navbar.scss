@@ -13,6 +13,11 @@
     font-family: "Lato";
     src: font_url("Lato-Medium.ttf");
   }
+
+  @font-face {
+    font-family: "LatoBold";
+    src: url("Latio-Bold.ttf");
+  }
 /*
   @font-face {
     font-family: "Serif";
@@ -20,8 +25,13 @@
   }
 */
   .container * {
-    font-family: 'Lato', Arial, Helvetica, sans-serif;
+    font-family: Lato, Arial, Helvetica, sans-serif;
   }
+
+  .container .bold {
+    font-family: LatoBold, Arial, Helvetica, sans-serif;
+  }
+  
   .hidden {
     display:none
   }
