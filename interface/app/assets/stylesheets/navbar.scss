@@ -12,11 +12,11 @@
     font-family: "Lato";
     src: url("assets/fonts/Lato/Lato-Medium.ttf");
   }
-  @font-face {
-    font-family: "Serif";
-    src: url(assets/fonts/SourceSerif/SourceSerifPro-Regular.otf);
-  }
 */
+  @font-face {
+    font-family: "Source-Serif";
+    src: url("SourceSerifPro-Regular.otf");
+  }
 
   .hidden {
     display:none
@@ -26,7 +26,7 @@
     background-color: $nav-color;
   }
   .nav-link {
-    font-family: "Serif";
+    font-family: 'Source-Serif',serif;
     font-weight: 500;
     font-size: 21pt;
     margin-top: .1in;
