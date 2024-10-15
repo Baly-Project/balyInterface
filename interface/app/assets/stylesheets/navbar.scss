@@ -3,25 +3,21 @@
   $nav-color: rgb(235, 228, 219);
 
 /* Styles */
-/*
-  @font-face {
+
+/*  @font-face {
     font-family: 'Dihjauti';
     src: url('assets/fonts/Dihjauti/Dihjauti-Regular.otf');
   }
-*/
   @font-face {
     font-family: "Lato";
-    src: font_url("Lato-Medium.ttf");
+    src: url("assets/fonts/Lato/Lato-Medium.ttf");
   }
-/*
   @font-face {
     font-family: "Serif";
     src: url(assets/fonts/SourceSerif/SourceSerifPro-Regular.otf);
   }
 */
-  .container * {
-    font-family: 'Lato', Arial, Helvetica, sans-serif;
-  }
+
   .hidden {
     display:none
   }
