@@ -1,0 +1,27 @@
+  @font-face {
+    font-family: "Dihjauti";
+    src: url("DihjautiS-Regular.otf");
+  }
+
+  .carousel.imageholder {
+    margin: 0px -15px;
+  }
+
+  img.pano {
+    width: 100%;
+    height: 5in;
+    object-fit: cover;
+  }
+
+  .intro h1 {
+    font-family: 'Dihjauti';
+  }
+
+  .intro figure{
+    width: 80%;
+    margin: 30px 10%
+  }
+  .balyportrait {
+    width:100%;
+    height: auto;
+  }
