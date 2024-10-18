@@ -1,4 +1,12 @@
 class ApiHandler
+# A class for API interactions such as updates, single-slide pages, and searches
+
+# The FieldLists hash selects which fields to include for each page. 
+# Note that in addition to the groups below, the default setting is to return all the fields 
+  FieldLists={"display"=>"title,abstract,configured_field_t_description,configured_field_t_references,download_link,url,configured_field_t_sorting_number,configured_field_t_identifier,configured_field_t_alternate_identifier,configured_field_t_coverage_spatial,configured_field_t_image_notes,configured_field_t_curator_notes,configured_field_t_object_notation",
+              "search"=>"title,abstract,configured_field_t_description,configured_field_t_sorting_number,configured_field_t_subcollection,configured_field_t_documented_date,configured_field_t_publication_date,download_link,configured_field_t_coverage_spatial",
+              "min" =>  "title,configured_field_t_identifier,configured_field_t_sorting_number"
+              }
   def getRecord(target:0,fields:'all',parsed:false,maxtries:5,check:[],query:"")
     fieldHash=prepareFields(target,fields,query)
     tries=0
@@ -47,9 +55,6 @@ class ApiHandler
   end
   private
   
-  FieldLists={"display"=>"title,abstract,configured_field_t_description,configured_field_t_references,download_link,url,configured_field_t_sorting_number,configured_field_t_identifier,configured_field_t_alternate_identifier,configured_field_t_coverage_spatial,configured_field_t_image_notes,configured_field_t_curator_notes,configured_field_t_object_notation",
-              "search"=>"title,abstract,configured_field_t_description,configured_field_t_sorting_number,configured_field_t_subcollection,configured_field_t_documented_date,configured_field_t_publication_date,download_link,configured_field_t_coverage_spatial",
-              "min" => "title,configured_field_t_identifier,configured_field_t_sorting_number"}
   def prepareFields(target,fields,query)
     startHash={parent_key: 5047491}
     if target==0
