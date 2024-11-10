@@ -16,6 +16,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+nohup.out
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
