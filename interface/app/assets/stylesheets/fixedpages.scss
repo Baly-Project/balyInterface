@@ -1,7 +1,67 @@
+/* Homepage styles */
+
+  @font-face {
+    font-family: "Dihjauti";
+    src: url("DihjautiS-Regular.otf");
+  }
+  .carousel.imageholder {
+    width: 100%
+  }
+  img.pano {
+    width: 100%;
+    height: 5in;
+    object-fit: cover;
+  }
+  .intro h1 {
+    font-family: 'Dihjauti';
+  }
+  .intro figure{
+    width: 80%;
+    margin: 30px 10%
+  }
+  .balyportrait {
+    width:100%;
+    height: auto;
+  }
+  @media (max-width: 575px) {
+    .intro h1 {
+      font-size: x-large;
+    }
+  }
+  @media (max-width: 992px) {
+    .intro .lgscreen {
+      display:none;
+    }
+    .intro .smscreen {
+      display:block;
+    }
+    .intro h1 {
+      padding: 0.15in;
+    }
+  }
+  @media (min-width: 993px) {
+    .intro .lgscreen {
+      display:block;
+    }
+    .intro .smscreen {
+      display:none;
+    }
+  }
+
+/* About styles */
+
+  div.abt-page {
+    margin: 0px calc(min(.5in,7%))
+  }
+  img.tinyimg{
+    width:calc(max(36%,2in));
+  }
+
+/* Timeline styles */
+
 .center {
   text-align: center;
 }
-
 .timeline-header {
   background-color: rgb(0 0 0 / 13%);
   padding-bottom: 25px;
@@ -25,26 +85,22 @@
     text-align: left;
     max-width: 80%;
 }
-
 @media (max-width: 767px) {
     .timeline {
         max-width: 98%;
         padding: 25px;
     }
 }
-
 .timeline h1 {
     font-weight: 300;
     font-size: 1.4em;
 }
-
 .timeline h2,
 .timeline h3 {
     font-weight: 600;
     font-size: 1rem;
     margin-bottom: 10px;
 }
-
 .timeline .event {
     border-bottom: 2px dashed rgb(58, 0, 119);
     padding-bottom: 25px;
@@ -57,26 +113,22 @@
   margin-bottom: 5px;
   margin-top: 0px;
 }
-
 @media (max-width: 767px) {
     .timeline .event {
         padding-top: 30px;
     }
 }
-
 .timeline .event:last-of-type {
     padding-bottom: 0;
     margin-bottom: 0;
     border: none;
 }
-
 .timeline .event:before,
 .timeline .event:after {
     position: absolute;
     display: block;
     top: 0;
 }
-
 .timeline .event:before {
     left: -207px;
     content: attr(data-date);
@@ -86,14 +138,12 @@
     min-width: 120px;
     font-family: math;
 }
-
 @media (max-width: 767px) {
     .timeline .event:before {
         left: 0px;
         text-align: left;
     }
 }
-
 .timeline .event:after {
     -webkit-box-shadow: 0 0 0 3px #000000;
     box-shadow: 0 0 0 3px #000000;
@@ -105,13 +155,11 @@
     content: "";
     top: 6px;
 }
-
 @media (max-width: 767px) {
     .timeline .event:after {
         left: -38.8px;
     }
 }
-
 .rtl .timeline {
     border-left: 0;
     text-align: right;
@@ -121,7 +169,6 @@
     border-top-left-radius: 4px;
     border-right: 3px solid #727cf5;
 }
-
 .rtl .timeline .event::before {
     left: 0;
     right: -170px;

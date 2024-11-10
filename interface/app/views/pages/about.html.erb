@@ -1,6 +1,50 @@
 <h1 class="center"> About the Collection </h1>
-
-
+<div class="abt-page">
+  <h3> Sources 
+    <hr class='itemline'>
+  </h3>
+  <p>
+      Much of the information about the collection is partially or entirely missing.
+    We have external records of a few of Baly's trips, but almost everything 
+    we know is reconstructed off of what he left in the collection.
+      The information we have is almost entirely from two sources: 
+    the physical slides and the slide index pages. 
+  </p>
+  <p>    
+      On each slide, there is typically some amount of information about the 
+    image written on the cardboard slide mount. This most often includes the 
+    'written date' marking the date it was taken, to a varying degree of 
+    precision, and the 'printed date' a stamped code indicating the date the 
+    slide was processed. In addition to this, some slides have titles written
+    on them, old identification numbers crossed out, and some information about
+    the type of slide (ie. Kodachrome or Ektachrome transparency). 
+    <% exSlideLink='https://i0.wp.com/vrc.kenyon.edu/wp-content/uploads/2023/10/slide3.jpg' %>
+    <% begin
+         dims=FastImage.size(exSlideLink)
+         if dims[0] > 0
+    %>
+	The most informative slides look like: 
+	<div class='center'>
+	  <img class='tinyimg' src='<%=exSlideLink%>' >
+        </div>
+    <%   end
+       rescue 
+       end
+    %>
+  </p>
+  <p> 
+      The other main source of data are the index pages. Each of these handwritten  
+    pages contains information about a group of 100 slides, and is our best source 
+    for giving the titles that appear next to each of Baly's collections. The rest 
+    of the information tends to be briefer than whats written on the slide, but can
+    still be very helpful, especially when there is no title at all written on the slide.
+  </p>
+  <p>
+      Although we suspect that edits were made to the slides and index pages since 
+    the collection's arrival at the Visual Resources Center, whatever edits were made
+    were done without documentation or record. For this reason, we assume whatever
+    is on the slide or index to be the work of Baly himself without significant evidence otherwise. 
+</div>
 <script>
   document.querySelector(".nav-link.active").classList.remove("active");
   document.getElementById("about-link").classList.add("active");
