@@ -1,6 +1,9 @@
 <h1> <%= @keyword.title %> </h1>
 
 <div class="keyword-about">
+<div>
+  Contains <%=@keyword.previews.size%> members
+</div>
 <% if @keyword.super.class == String %>
   <div class="about-supers">
   <% superwords=Keyword.where(title:@keyword.super) %>

@@ -3,7 +3,8 @@ class SearchController < ApplicationController
 
   def query
     q=params[:query]
-    rawrecords=API.getRecord(fields:"search",query:q,parsed:true)
+    checkArray=["configured_field_t_identifier","title","configured_field_t_sorting_number"]
+    rawrecords=API.getRecord(fields:"search",check:checkArray,query:q,parsed:true)
     records=Array.new
     numbers=Array.new
     countUnshown=0
@@ -15,13 +16,16 @@ class SearchController < ApplicationController
           records.push raw
           numbers.push number
         rescue
-          puts "Slide #{raw.id} has a sorting number but is not in the gallery. An update should be performed at the next possible opportunity"
+          puts "Slide #{raw} has a sorting number but is not in the gallery. An update should be performed at the next possible opportunity"
           countUnshown+=1
         end
+      else
+       countUnshown+=1
       end
     end
     @query=q
     @records=records
+    @count=records.length
     @numbers=numbers
     @unshown=countUnshown
   end

@@ -1,5 +1,18 @@
-<h5> Search for: "<%= @query %>" </h5>
-<p> Showing all results </p>
-
-<%= render partial:"results", object:@records, locals:{numbers:@numbers} %>
-
+<% if @count > 0 %>
+  <div class="search-about">
+    <h5 class="search-show"> Search for: "<%= @query %>" </h5>
+    <p class="search-info"> 
+    <% if @unseen==0 %>
+      Showing all results (<%= @count %>) 
+    </p>
+    <% else %>
+      <% link = "https://digital.kenyon.edu/do/search/?q=#{@query}&start=0&context=5047491&facet=" %>
+      Showing <%= @count %> / <%=@count+@unshown %> results. 
+      View all the results at <a href=<%=link%> class="purple" target="_blank"> Digital Kenyon </a>
+    </p>
+    <% end %>
+  </div>
+  <%= render partial:"results", object:@records, locals:{numbers:@numbers} %>
+<% else %>
+  <h3 class="search-show"> No results for "<%= @query %>" </h3>
+<% end %>

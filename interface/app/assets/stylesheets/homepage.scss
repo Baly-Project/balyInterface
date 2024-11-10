@@ -1,0 +1,51 @@
+  @font-face {
+    font-family: "Dihjauti";
+    src: url("DihjautiS-Regular.otf");
+  }
+
+  .carousel.imageholder {
+    width: 100%
+  }
+
+  img.pano {
+    width: 100%;
+    height: 5in;
+    object-fit: cover;
+  }
+
+  .intro h1 {
+    font-family: 'Dihjauti';
+  }
+
+  .intro figure{
+    width: 80%;
+    margin: 30px 10%
+  }
+  .balyportrait {
+    width:100%;
+    height: auto;
+  }
+  @media (max-width: 575px) {
+    .intro h1 {
+      font-size: x-large;
+    }
+  }
+  @media (max-width: 992px) {
+    .intro .lgscreen {
+      display:none;
+    }
+    .intro .smscreen {
+      display:block;
+    }
+    .intro h1 {
+      padding: 0.15in;
+    }
+  }
+  @media (min-width: 993px) {
+    .intro .lgscreen {
+      display:block;
+    }
+    .intro .smscreen {
+      display:none;
+    }
+  }
