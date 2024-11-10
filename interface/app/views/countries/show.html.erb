@@ -1,2 +1,6 @@
 <h1> <%= @country.title %> </h1>
-<%= render @country %>
+<div class='country-about'>
+  <%= render @country %>
+</div>
+
+<%= render partial:'layouts/previewlist', object:@country, locals:{align:"left"} %>
