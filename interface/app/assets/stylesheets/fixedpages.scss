@@ -49,7 +49,9 @@
   }
 
 /* About styles */
-
+  div.abt-page h3 {
+    width: fit-content;
+  }
   div.abt-page {
     margin: 0px calc(min(.5in,7%))
   }
