@@ -21,6 +21,7 @@ namespace :record do
       logger.puts e.backtrace
     ensure
       logger.write(Rails.root.join("log","updatelogs","update_on_#{now.getFileAddon}.txt"))
+      UpdateMailer.with(log:logger).update_email.deliver_now
     end
   end
 end

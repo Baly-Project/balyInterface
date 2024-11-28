@@ -1,0 +1,23 @@
+<h1> Update Notification </h1>
+
+<% log=@logger.access %>
+<% if log.include? "Update Successful" %>
+  <p> A scheduled update has just been performed successfully. </p>
+
+  <h3> Summary </h3>
+  <p> <%= log.split("slides passed")[0]+"slides passed" %> </p> 
+    
+
+  <p> The full update log is available on the Baly server in <%= @logger.filepath %>. View the changed records at the <a href="baly.kenyon.edu"> Baly Gallery Homepage </a>. </p>
+<% else %>
+  <p> A scheduled update was just attempted, but an error occurred and the database was restored. </p>
+
+  <h3> Full Log </h3>
+  
+  <p> <%= log %> </p>
+
+  <h3> Digital Kenyon Input </h3>
+  <% api=ApiHandler.new %>
+  <p> <%= JSON.pretty_generate(api.getRecord(parsed:false)) %> </p>
+<% end %>
+

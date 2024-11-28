@@ -5,6 +5,7 @@ class PrintLogger
   # and also for manual updates and debugging, where someone is actively watching the terminal.
   def initialize
     @mainstring = ""
+    @filepath = ""
   end
 
   def puts(output)
@@ -21,12 +22,17 @@ class PrintLogger
   def access
     return @mainstring
   end
+
+  def filepath
+    return @filepath
+  end
   
   def write(filename)
     logfile=File.new(filename,"w")
     logfile.print @mainstring
     logfile.close
     puts "log closed and written to #{filename}"
+    @filepath=filename
   end
 
   private
