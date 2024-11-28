@@ -114,11 +114,11 @@ Ruby has several installers that will all leave you with an identical ruby versi
     ```
     This opens a MariaDB console that will prompt you for the root password set above. Inside the console, enter the commands
     ```sql
-    CREATE USER 'curator'@'%' IDENTIFIED BY 'denisbaly';
+    CREATE USER 'curator'@'%' IDENTIFIED BY 'FILL_PASSWORD';
 
     GRANT SELECT, INSERT, CREATE, ALTER, DROP, LOCK TABLES, CREATE TEMPORARY TABLES, DELETE, UPDATE, INDEX, EXECUTE ON *.* TO 'curator'@'%';
     ```
-    which create a non-root user account that corresponds to the login info found in interface/config/database.yml, and is the account that the Rails app will use when interacting with the database.
+    (substituting FILL_PASSWORD) with the login info contained in the documentation file in the drive. These commands create a non-root user account that corresponds to the login info found in interface/config/database.yml, and is the account that the Rails app will use when interacting with the database.
 
 ### 3. Apache2 and PhpMyAdmin
 1. Install Apache2
