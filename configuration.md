@@ -214,28 +214,33 @@ replacing \*Pasted SSH Link\* with the one you just copied.
     bundle install
     ```
 
-3. Create and load database tables
+3. Open master.key file and paste from Website Credentials in Drive
+   ```rb
+   nano config/master.key
+   ```
+   
+4. Create and load database tables
     ```rb
     rails db:create
     rails db:migrate
     ```
 
-4. Compile assets
+5. Compile assets
     ```rb
     rails assets:precompile
     ```
 
-5. Create updatelogs folder and update tables from Digital Kenyon
+6. Create updatelogs folder and update tables from Digital Kenyon
     ```rb
     mkdir log/updatelogs
     rake record:update 
     ```
 
-6. Test in browser
+7. Test in browser
     ```sh
     rails s -b 0.0.0.0
     ```
-    And navigate to `http://SERVERIPADDRESS:3000`. You should land on the Baly Gallery homepage, and if everything looks right, then the installation is complete!
+    And navigate to `http://SERVERIPADDRESS:3000`. You should land on the Baly Gallery homepage, and if everything looks right, then the installation  is complete!
 
 ### 4. Firewall Configuration
 Now that everything is working properly, we want to establish a firewall to block any unwanted connections to the server. We will use the built in firewall **ufw**. Enter 
