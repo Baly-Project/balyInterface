@@ -3,26 +3,22 @@ namespace :record do
   task update: :environment do
     now=EnhancedTime.now
     updater=Updater.new
+    logger=PrintLogger.new
     deleter=SafeDeleter.new
-    deleter.clearDatabase
-    logfile=File.new(Rails.root.join("log","updatelogs","update_on_#{now.getFileAddon}.txt"),"w")
     begin
-      data=updater.update
-      logfile.puts "Updated without errors, producing the following records:"
-      logdata=String.new
+      data=updater.update(log:logger)
+      logger.puts "Updated without errors, producing the following records:"
       data.each do |key,value|
-	#if value.class.ancestors.include? OpenStruct
-	  logfile.puts JSON.pretty_generate(value.attributes)
-        #end
+	logger.puts JSON.pretty_generate(value.attributes)
       end
-      logfile.puts logdata
-      puts "Update Successful"
+      logger.puts "Update Successful"
     rescue => e
       deleter.restoreDatabase
-      puts "Update unsuccessful with a #{e.class} stating #{e.message}, and the previous database has been restored" 
-      puts e.backtrace
+      logger.puts "Update unsuccessful with a #{e.class} stating #{e.message}, and the previous database has been restored" 
+      logger.puts e.backtrace
     ensure
-      logfile.close
+      logger.write(Rails.root.join("log","updatelogs","update_on_#{now.getFileAddon}.txt"))
+      UpdateMailer.with(log:logger).update_email.deliver_now
     end
   end
 end

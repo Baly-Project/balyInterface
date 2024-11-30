@@ -114,11 +114,11 @@ Ruby has several installers that will all leave you with an identical ruby versi
     ```
     This opens a MariaDB console that will prompt you for the root password set above. Inside the console, enter the commands
     ```sql
-    CREATE USER 'curator'@'%' IDENTIFIED BY 'denisbaly';
+    CREATE USER 'curator'@'%' IDENTIFIED BY 'FILL_PASSWORD';
 
     GRANT SELECT, INSERT, CREATE, ALTER, DROP, LOCK TABLES, CREATE TEMPORARY TABLES, DELETE, UPDATE, INDEX, EXECUTE ON *.* TO 'curator'@'%';
     ```
-    which create a non-root user account that corresponds to the login info found in interface/config/database.yml, and is the account that the Rails app will use when interacting with the database.
+    (substituting FILL_PASSWORD) with the login info contained in the documentation file in the drive. These commands create a non-root user account that corresponds to the login info found in interface/config/database.yml, and is the account that the Rails app will use when interacting with the database.
 
 ### 3. Apache2 and PhpMyAdmin
 1. Install Apache2
@@ -214,28 +214,33 @@ replacing \*Pasted SSH Link\* with the one you just copied.
     bundle install
     ```
 
-3. Create and load database tables
+3. Open master.key file and paste from Website Credentials in Drive
+   ```rb
+   nano config/master.key
+   ```
+   
+4. Create and load database tables
     ```rb
     rails db:create
     rails db:migrate
     ```
 
-4. Compile assets
+5. Compile assets
     ```rb
     rails assets:precompile
     ```
 
-5. Create updatelogs folder and update tables from Digital Kenyon
+6. Create updatelogs folder and update tables from Digital Kenyon
     ```rb
     mkdir log/updatelogs
     rake record:update 
     ```
 
-6. Test in browser
+7. Test in browser
     ```sh
     rails s -b 0.0.0.0
     ```
-    And navigate to `http://SERVERIPADDRESS:3000`. You should land on the Baly Gallery homepage, and if everything looks right, then the installation is complete!
+    And navigate to `http://SERVERIPADDRESS:3000`. You should land on the Baly Gallery homepage, and if everything looks right, then the installation  is complete!
 
 ### 4. Firewall Configuration
 Now that everything is working properly, we want to establish a firewall to block any unwanted connections to the server. We will use the built in firewall **ufw**. Enter 
