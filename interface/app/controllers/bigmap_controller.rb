@@ -1,2 +1,0 @@
-class BigmapController < ApplicationController
-end
