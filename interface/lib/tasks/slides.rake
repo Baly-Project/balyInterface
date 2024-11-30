@@ -5,14 +5,11 @@ namespace :record do
     updater=Updater.new
     logger=PrintLogger.new
     deleter=SafeDeleter.new
-    deleter.clearDatabase
     begin
       data=updater.update(log:logger)
       logger.puts "Updated without errors, producing the following records:"
       data.each do |key,value|
-	#if value.class.ancestors.include? OpenStruct
-	  logger.puts JSON.pretty_generate(value.attributes)
-        #end
+	logger.puts JSON.pretty_generate(value.attributes)
       end
       logger.puts "Update Successful"
     rescue => e

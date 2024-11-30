@@ -12,13 +12,13 @@ class Updater
     @log.puts "#{count} slides read"
     #@log.puts json,objects
     (passed,unpassed,errors)=reportErrorCheck(objects)
-    processor=DataProcessor.new(log)
+    processor=DataProcessor.new(@log)
     data=processor.processSlides(passed)
     analyzer=PatternAnalyzer.new
     synthpatterns=analyzer.gatherLocationPatterns(data)
     inputreader=CustomPattern.new
     patterns=synthpatterns.merge inputreader.returnAll
-    manager=ModelManager.new(log)
+    manager=ModelManager.new(@log)
     index = manager.prepareindices(data,patterns)
     index[:ids] = manager.preparePrevIndex(passed)
     if index[:ids].keys.sort != data.ids
@@ -38,7 +38,6 @@ class Updater
   end
   def errorCheck(slides)
     (passed,unpassed,errors)=[Array.new,Array.new,Hash.new]
-    @log.puts "CLASS=#{errors.class}"
     slides.each do |obj|
       begin
         if obj.configured_field_t_object_notation.class == NilClass
@@ -88,6 +87,8 @@ class Updater
       years=Hash.new
       timeperiods=Hash.new
       stamps=Hash.new
+      orientations=Hash.new
+      @log.print "\nProcessing Slides"
       slides.sort_by{|slide| slide.sortingNumber}.each do |slide|
         id=slide.sortingNumber
         ids.push id
@@ -107,8 +108,10 @@ class Updater
           stamp= "unstamped"
         end
         stamps.increment(stamp,id)
+        orientations[id]=getImgDims(slide.medimg)
+        @log.print "."
       end
-      @log.print "\n"+timeperiods.to_s+"\n"
+      #@log.print "\n"+timeperiods.to_s+"\n"
       return OpenStruct.new({
         :ids => ids,
         :placeIds => placetoids,
@@ -120,7 +123,8 @@ class Updater
         :collections=>collections,
         :years => years,
         :timeperiods => timeperiods,
-        :stamps => stamps
+        :stamps => stamps,
+        :orientations => orientations
       })
     end
     def processPlaces(placetoids,placeinfo,genLocstoids,genLocstocoords,slide,id)
@@ -191,6 +195,17 @@ class Updater
         end
       end
     end
+    def getImgDims(link)
+      dims=FastImage.size(link)
+      ratio=dims[0].to_f/dims[1].to_f
+      if ratio > 1.2
+        return "L"
+      elsif ratio < 0.83
+        return "P"
+      else
+        return "S"
+      end
+    end    
     def uncover(attribute)
       if attribute.class == Array
         return attribute[0]
@@ -295,6 +310,8 @@ class Updater
     :ids,
     ]
     def prepareindices(data,patterns)
+      deleter=SafeDeleter.new
+      deleter.clearDatabase
       emptyYear=Year.new(id:1,number:3000)
       emptyYear.save
       emptyMonth=Month.new(id:1,title:"No Month",number:13,year:emptyYear)
@@ -481,34 +498,20 @@ class Updater
     def preparePrevIndex(passed)
       idindex=Hash.new
       thispreview=1
-      @log.print "\nPreparing Slides"
       passed.sort_by{|slide| slide.sortingNumber}.each do |slide|
         title=slide.title
         sortNum=slide.sortingNumber
         descpreview=slide.makePreview(char_limit:50)
         coordinates=slide.locations(specificCoords:true)
         img_link=slide.medimg
-        orientation=getImgDims(img_link)
         prev=Preview.new(id:thispreview,title:title,sorting_number:sortNum,description:descpreview,
-                         coordinates:coordinates,img_link:img_link,orientation:orientation)
+                         coordinates:coordinates,img_link:img_link)
         thispreview+=1
         idindex[sortNum]=prev
-        @log.print "."
       end
       @log.puts " "
       return idindex.sort.to_h
     end
-    def getImgDims(link)
-      dims=FastImage.size(link)
-      ratio=dims[0].to_f/dims[1].to_f
-      if ratio > 1.2
-        return "L"
-      elsif ratio < 0.83
-        return "P"
-      else
-        return "S"
-      end
-    end    
     def assignPreviewData(index,data)
       data.years.each do |stringyear,idList|
         yearToUse=index[:years][stringyear]
@@ -550,6 +553,10 @@ class Updater
           end
           assignToIdList(index[:ids],idList,sym,modelToUse)
         end
+      end
+      puts data.orientations
+      data.orientations.each do |number,orientation|
+	index[:ids][number].orientation=orientation
       end
       index[:ids].each do |key,value| 
         begin
