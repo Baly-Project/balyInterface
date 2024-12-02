@@ -1,34 +1,35 @@
 class Updater
-  def update(file="none") # The main update function, that is called in the rails app by "rake record:update"
+  def update(file:"none",log:PrintLogger.new) # The main update function, that is called in the rails app by "rake record:update"
+    @log=log
     if file[-4..-1]=="json" #The file must be a json (.json) file
       json=IO.read(file)  
       parsed=JSON.parse(json, object_class: Slide)
       objects=parsed.results
       count=objects.length
-      puts "#{count} slides read"
-      #puts json,objects
-      (passed,unpassed,errors)=reportErrorCheck(objects)
     else
       (objects,count)=getAllRecords()
-      puts "#{count} slides read"
-      (passed,unpassed,errors)=reportErrorCheck(objects)
     end
-    processor=DataProcessor.new
+    @log.puts "#{count} slides read"
+    #@log.puts json,objects
+    (passed,unpassed,errors)=reportErrorCheck(objects)
+    processor=DataProcessor.new(@log)
     data=processor.processSlides(passed)
     analyzer=PatternAnalyzer.new
     synthpatterns=analyzer.gatherLocationPatterns(data)
     inputreader=CustomPattern.new
     patterns=synthpatterns.merge inputreader.returnAll
-    manager=ModelManager.new
+    manager=ModelManager.new(@log)
     index = manager.prepareindices(data,patterns)
     index[:ids] = manager.preparePrevIndex(passed)
     if index[:ids].keys.sort != data.ids
-      puts "WARNING: IDs read on input do not match the models"
+      @log.puts "WARNING: IDs read on input do not match the models"
       return index[:ids].keys.sort, data.ids
     end
     manager.assignPreviewData(index,data)    
   end
-
+  
+  private
+	
   def getAllRecords()
     api=ApiHandler.new
     objects=api.getRecord(parsed:true,fields:"all",maxtries:20,check:[:configured_field_t_object_notation])
@@ -37,14 +38,13 @@ class Updater
   end
   def errorCheck(slides)
     (passed,unpassed,errors)=[Array.new,Array.new,Hash.new]
-    puts "CLASS=#{errors.class}"
     slides.each do |obj|
       begin
         if obj.configured_field_t_object_notation.class == NilClass
           unpassed.push obj
           id=obj.id
           errors[id]="Slide #{id} failed check because it has a blank object_notation field"
-          puts errors[id]
+          @log.puts errors[id]
         else
           obj.detectErrors
           passed.push obj
@@ -52,11 +52,11 @@ class Updater
       rescue => e
         begin
           id=obj.id
-          puts "Slide #{id} did not pass error checking, due to a #{e.class} stating #{e.message}. Update the record on Digital Kenyon"
+          @log.puts "Slide #{id} did not pass error checking, due to a #{e.class} stating #{e.message}. Update the record on Digital Kenyon"
           errors[id]=e
         rescue
           title=obj.title
-          puts "Slide titled '#{title}' did not pass error checking, due to a #{e.class} stating #{e.message}. Update the record on Digital Kenyon"
+          @log.puts "Slide titled '#{title}' did not pass error checking, due to a #{e.class} stating #{e.message}. Update the record on Digital Kenyon"
           errors[title]=e
         end
         unpassed.push obj
@@ -68,10 +68,13 @@ class Updater
     (passed,unpassed,errors)=errorCheck(slides)
     passedids=Array.new
     passed.each do |slide| passedids.push slide.id end
-    puts "#{passed.length} slides passed, #{passedids}"
+    @log.puts "#{passed.length} slides passed, #{passedids}"
     return [passed,unpassed,errors]
   end
   class DataProcessor #This subclass collects the attributes from the passed slides
+    def initialize(logger=PrintLogger.new)
+      @log=logger
+    end
     def processSlides(slides)
       ids=Array.new
       placetoids={:countries=>{},:regions=>{},:cities=>{}}
@@ -84,6 +87,8 @@ class Updater
       years=Hash.new
       timeperiods=Hash.new
       stamps=Hash.new
+      orientations=Hash.new
+      @log.print "\nProcessing Slides"
       slides.sort_by{|slide| slide.sortingNumber}.each do |slide|
         id=slide.sortingNumber
         ids.push id
@@ -100,11 +105,13 @@ class Updater
         processDate(timeperiods,slide,id)
         stamp=slide.batchStamp
         if stamp.length < 1
-          stamp="unstamped"
+          stamp= "unstamped"
         end
         stamps.increment(stamp,id)
+        orientations[id]=getImgDims(slide.medimg)
+        @log.print "."
       end
-      print timeperiods
+      #@log.print "\n"+timeperiods.to_s+"\n"
       return OpenStruct.new({
         :ids => ids,
         :placeIds => placetoids,
@@ -116,7 +123,8 @@ class Updater
         :collections=>collections,
         :years => years,
         :timeperiods => timeperiods,
-        :stamps => stamps
+        :stamps => stamps,
+        :orientations => orientations
       })
     end
     def processPlaces(placetoids,placeinfo,genLocstoids,genLocstocoords,slide,id)
@@ -152,21 +160,21 @@ class Updater
       begin
       	stringdate=slide.configured_field_t_documented_date[0]
       rescue 
-	puts "Slide with sorting number #{id} does not have a documented date. If this is a mistake, fix the record on Digital Kenyon"
+	@log.puts "Slide with sorting number #{id} does not have a documented date. If this is a mistake, fix the record on Digital Kenyon"
 	begin 
           stringdate=EnhancedDate.parse(slide.publication_date).year.to_s
 	rescue
           stringdate="3000"
         end
       end
-      #puts "DATE=#{stringdate}"
+      #@log.puts "DATE=#{stringdate}"
       begin
         date=EnhancedDate.parse(stringdate)
       rescue
         if stringdate.to_i.to_s == stringdate
           date=OpenStruct.new({:year=>stringdate.to_i})
         else
-          date=""
+          date= ""
         end
       end
       if date.class == OpenStruct
@@ -187,6 +195,17 @@ class Updater
         end
       end
     end
+    def getImgDims(link)
+      dims=FastImage.size(link)
+      ratio=dims[0].to_f/dims[1].to_f
+      if ratio > 1.2
+        return "L"
+      elsif ratio < 0.83
+        return "P"
+      else
+        return "S"
+      end
+    end    
     def uncover(attribute)
       if attribute.class == Array
         return attribute[0]
@@ -273,6 +292,9 @@ class Updater
     end
   end
   class ModelManager # This subclass creates models for each attribute, finally assigning them to the various preview objects
+    def initialize(logger=PrintLogger.new)
+      @log=logger
+    end
     ModelOrder=[
     :years,
     :months,
@@ -288,6 +310,8 @@ class Updater
     :ids,
     ]
     def prepareindices(data,patterns)
+      deleter=SafeDeleter.new
+      deleter.clearDatabase
       emptyYear=Year.new(id:1,number:3000)
       emptyYear.save
       emptyMonth=Month.new(id:1,title:"No Month",number:13,year:emptyYear)
@@ -338,7 +362,7 @@ class Updater
         elsif title.include? "-"
           alph=title.split("-")[0].fullstrip
         else
-          puts "Collection #{title} does not include a ':' or '-'. Update the record on digital kenyon."
+          @log.puts "Collection #{title} does not include a ':' or '-'. Update the record on digital kenyon."
         end
         unless alph.to_s.is_alphanumeric?
           raise StandardError.new "Collection #{title} does not begin with an alphanumeric"
@@ -474,34 +498,20 @@ class Updater
     def preparePrevIndex(passed)
       idindex=Hash.new
       thispreview=1
-      print "Preparing Slides"
       passed.sort_by{|slide| slide.sortingNumber}.each do |slide|
         title=slide.title
         sortNum=slide.sortingNumber
         descpreview=slide.makePreview(char_limit:50)
         coordinates=slide.locations(specificCoords:true)
         img_link=slide.medimg
-        orientation=getImgDims(img_link)
         prev=Preview.new(id:thispreview,title:title,sorting_number:sortNum,description:descpreview,
-                         coordinates:coordinates,img_link:img_link,orientation:orientation)
+                         coordinates:coordinates,img_link:img_link)
         thispreview+=1
         idindex[sortNum]=prev
-        print "."
       end
-      puts " "
+      @log.puts " "
       return idindex.sort.to_h
     end
-    def getImgDims(link)
-      dims=FastImage.size(link)
-      ratio=dims[0].to_f/dims[1].to_f
-      if ratio > 1.2
-        return "L"
-      elsif ratio < 0.83
-        return "P"
-      else
-        return "S"
-      end
-    end    
     def assignPreviewData(index,data)
       data.years.each do |stringyear,idList|
         yearToUse=index[:years][stringyear]
@@ -512,7 +522,7 @@ class Updater
             assignToIdList(index[:ids],idList2,:month,monthToUse)
           end
         rescue
-          puts "year #{stringyear} was not found in the timeperiods hash"
+          @log.puts "year #{stringyear} was not found in the timeperiods hash"
         end
       end
       data.stamps.each do |stamp,idList|
@@ -538,17 +548,21 @@ class Updater
             if sym == :location
               modelToUse=index[plsym]["No Location"]
             else
-              puts "Subcollection #{name} is missing from the collections index"
+              @log.puts "Subcollection #{name} is missing from the collections index"
             end
           end
           assignToIdList(index[:ids],idList,sym,modelToUse)
         end
       end
+      puts data.orientations
+      data.orientations.each do |number,orientation|
+	index[:ids][number].orientation=orientation
+      end
       index[:ids].each do |key,value| 
         begin
           value.save! 
         rescue => e
-          puts "Preview number #{key} failed to save due to a #{e.class} stating #{e.message}"
+          @log.puts "Preview number #{key} failed to save due to a #{e.class} stating #{e.message}"
         end
       end
     end

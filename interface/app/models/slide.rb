@@ -1,10 +1,18 @@
+# The Slide class is a ruby implementation and adapter for the JSON we receive out of the Digital Kenyon API. 
+# We use this in two places. It is first used to build the structure during updates by allowing the update classes 
+# to access the information in the correct format, and it is also used in the app/views/slides/show.html.erb view, 
+# where it adapts the JSON into a format ready to be placed on the page. It inherits the Openstruct class to allow 
+# building directly from JSON data. This double use makes it rather complicated for a rails model, but in basic terms,
+# the object only stores the initial JSON data that is passed to it, and every method accesses some information that
+# we need to know on the viewing/updating end. Also note that the JSON passed is typically only as much as is needed
+# for a specific application. Which fields are needed for each case are defined in api_helper.rb
 class Slide < OpenStruct
-#Accessor Methods ####################
-  def sortingNumber
+#Accessor Methods ##################################################################################################
+  def sortingNumber # one of the most essential accessor methods, sorting numbers allow a fixed index to lookup slides.
     return self.configured_field_t_sorting_number[0].to_i
   end
-  def cleanTitle
-    cleantitle=""
+  def cleanTitle # When showing a single slide we filter out the classification since it is shown on the right.
+    cleantitle= ""
     brokentitle=self.title.split " "
     if brokentitle[0][-1].to_i.to_s == brokentitle[0][-1]
       brokentitle[1..].each do |frag|
@@ -14,7 +22,7 @@ class Slide < OpenStruct
     return cleantitle.rstrip
   end
 
-  def cleanAbstract
+  def cleanAbstract  
     return cleantext(self.abstract)
   end
   
@@ -73,8 +81,8 @@ class Slide < OpenStruct
             
 
   def parseRange(range)
-    rp=RangeParser.new
-    (classifications,first,last)=rp.parseSlideRange(range)
+    rp = RangeParser.new
+    (first,last) = rp.parseSlideRange(range)[1..2]
     return "#{generateSortingNumber(first)}-#{generateSortingNumber(last)}"
   end
 
@@ -104,9 +112,9 @@ class Slide < OpenStruct
   end
   def medimg
     begin
-      medlink=self.getImgLinks(self.download_link)[0]
+      medlink = self.getImgLinks(self.download_link)[0]
     rescue
-      medlink="UNFOUND"
+      medlink = "UNFOUND"
     ensure 
       return medlink
     end
@@ -114,9 +122,9 @@ class Slide < OpenStruct
 
   def thumbnail
     begin
-      thmlink=self.getImgLinks(self.download_link)[1]
+      thmlink = self.getImgLinks(self.download_link)[1]
     rescue
-      medlink="UNFOUND"
+      thmlink = "UNFOUND"
     ensure
       return thmlink
     end
@@ -291,36 +299,7 @@ class Slide < OpenStruct
       return ""
     end
   end
-  def stripAngleNum(stringAngle)
-    words=stringAngle.split " "
-    if words[0].to_i.to_s == words[0]
-      return words[0].to_i
-    else
-      index=0
-      degPlace=-1
-      words.each do |word|
-        if word.downcase == "degrees"
-          degPlace=index
-        end
-        index+=1
-      end
-      unless degPlace<0
-        if words[degPlace-1].to_i.to_s == words[degPlace-1]
-          return words[degPlace-1].to_i
-        end
-      else
-        return -1
-      end
-    end
-  end
-  def formatcoords(arr)
-    if arr.length == 1
-      each=arr[0][1...-1].split(",")
-    elsif arr.length == 2
-      each=arr
-    end
-    return [each[0].to_f,each[1].to_f]
-  end
+
   def prepJSON
     unless self.hasJSONinfo?
       json=self.configured_field_t_object_notation[0]
@@ -393,7 +372,7 @@ class Slide < OpenStruct
     return [newMedLink,newThmLink]
   end
 
-  def cleantext(text)
+  def cleantext(text) # This extracts the raw text from JSON, which can include html <p> elements.
     if text.include?(">") and text.include?("<")
       start=text.index(">")+1
       last=text.rindex("<")
@@ -431,5 +410,36 @@ class Slide < OpenStruct
       notes+="Creation date unknown."
     end
     return notes
+  end
+
+  def stripAngleNum(stringAngle)
+    words=stringAngle.split " "
+    if words[0].to_i.to_s == words[0]
+      return words[0].to_i
+    else
+      index=0
+      degPlace=-1
+      words.each do |word|
+        if word.downcase == "degrees"
+          degPlace=index
+        end
+        index+=1
+      end
+      unless degPlace<0
+        if words[degPlace-1].to_i.to_s == words[degPlace-1]
+          return words[degPlace-1].to_i
+        end
+      else
+        return -1
+      end
+    end
+  end
+  def formatcoords(arr)
+    if arr.length == 1
+      each=arr[0][1...-1].split(",")
+    elsif arr.length == 2
+      each=arr
+    end
+    return [each[0].to_f,each[1].to_f]
   end
 end

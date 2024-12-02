@@ -2,3 +2,53 @@
   document.querySelector(".nav-link.active").classList.remove("active");
   document.getElementById("home-link").classList.add("active");
 </script>
+
+    <div id="carouselExample" class="carousel slide imageholder">
+        <div class="carousel-inner">
+          <% featured={1001=>"",112054=>""}
+             prevs=Preview.where(sorting_number:featured.keys) 
+
+          prevs.each do |prev| %>
+            <div class="carousel-item <% if prev==prevs[0] %> active <% end %>">
+                <img class="pano" src="<%=prev.fullImgLink%>">
+            </div>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" style="display:block" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" style="display:block" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="intro" >
+      <div class="row">
+        <div class="col-7" style="align-content: center;">
+          <h1>
+            Welcome to the Baly Digital Gallery, a brand new home for the Denis Baly Slide Collection.
+          </h1> 
+          <p class="lgscreen">
+            The over 17,000 slides of the collection are Baly's personal photographs taken from his world travels 
+            between the late 1950s and early 1980s while he was a professor of Political Science and Religion at Kenyon. 
+            It is currently in the process of being researched and digitized by students in the 
+            <a class='purple' href='https://vrc.kenyon.edu' target='_blank'>Visual Resorces Center</a> of the Kenyon Art History Department. 
+	  </p>
+        </div>
+        <div class="col-5">
+          <figure class="figure">
+            <%= image_tag('BalyPortrait', class:"balyportrait figure-img img-fluid") %>
+            <figcaption class="figure-caption text center">
+              Professor Baly in 1959, courtesy of the Kenyon Reveille
+            </figcaption>
+          </figure>
+        </div>
+	<p class="smscreen">
+	  The over 17,000 slides of the collection are Baly's personal photographs taken from his world travels 
+	  between the late 1950s and early 1980s while he was a professor of Political Science and Religion at Kenyon. 
+	  It is currently in the process of being researched and digitized by students in the 
+	  <a class='purple' href='https://vrc.kenyon.edu' target='_blank'>Visual Resorces Center</a> of the Kenyon Art History Department. 
+        </p>
+      </div>
+    </div>

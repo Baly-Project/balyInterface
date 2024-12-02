@@ -1,6 +1,69 @@
 <h1 class="center"> About the Collection </h1>
-
-
+<div class="abt-page">
+  <h3> History </h3>
+  <hr>
+  <p> 
+      After Baly's death in 1987, his widow Louise gifted the collection to the college 
+    along with the written materials about it. At Kenyon, it likely was first taken in
+    by the Political Science Department. After this, we have next to no records. 
+    We presume that it was handed off to several different departments, before it found
+    a permanent home in the Visual Resources Center, which at that time was functioning
+    as a slide library for all of Kenyon, and had the facilities and expertise to care for it.
+  </p>
+  <p> 
+       The collection functioned like this for some time. When a professor wanted to show
+     an image in class, they contacted the VRC and someone there would locate the slides 
+     for them to borrow. In the academic year 2014-15, Shariq Khan '15 (identified by -SK
+     in descriptions), Jenna Nolt, the Digital Initiatives Librarian at Kenyon, and Eugene
+     Dwyer, Professor of Art History, worked together to digitize the collection on the 
+     Digital Kenyon platform. This work, contemporaneous with Shariq's Independent Study 
+     with Dwyer on Islamic Architecture, focused heavily on the mosques and holy sites 
+     Baly captured in Turkey, Iran, and Palestine, and is the reason for the Islamic skew
+     the researched subset of the collection currently exhibits.  
+  <h3> Sources </h3>
+  <hr>
+  <p>
+      Much of the information about the collection is partially or entirely missing.
+    We have external records of a few of Baly's trips, but almost everything 
+    we know is reconstructed off of what he left in the collection.
+      The information we have is almost entirely from two sources: 
+    the physical slides and the slide index pages. 
+  </p>
+  <p>    
+      On each slide, there is typically some amount of information about the 
+    image written on the cardboard slide mount. This most often includes the 
+    'written date' marking the date it was taken, to a varying degree of 
+    precision, and the 'printed date' a stamped code indicating the date the 
+    slide was processed. In addition to this, some slides have titles written
+    on them, old identification numbers crossed out, and some information about
+    the type of slide (ie. Kodachrome or Ektachrome transparency). 
+    <% exSlideLink='https://i0.wp.com/vrc.kenyon.edu/wp-content/uploads/2023/10/slide3.jpg' %>
+    <% begin
+         dims=FastImage.size(exSlideLink)
+         if dims[0] > 0
+    %>
+	The most informative slides look like: 
+	<div class='center'>
+	  <img class='tinyimg' src='<%=exSlideLink%>' >
+        </div>
+    <%   end
+       rescue 
+       end
+    %>
+  </p>
+  <p> 
+      The other main source of data are the index pages. Each of these handwritten  
+    pages contains information about a group of 100 slides, and is our best source 
+    for giving the titles that appear next to each of Baly's collections. The rest 
+    of the information tends to be briefer than whats written on the slide, but can
+    still be very helpful, especially when there is no title at all written on the slide.
+  </p>
+  <p>
+      Although we suspect that edits were made to the slides and index pages since 
+    the collection's arrival at the Visual Resources Center, whatever edits were made
+    were done without documentation or record. For this reason, we assume whatever
+    is on the slide or index to be the work of Baly himself without significant evidence otherwise. 
+</div>
 <script>
   document.querySelector(".nav-link.active").classList.remove("active");
   document.getElementById("about-link").classList.add("active");

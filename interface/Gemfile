@@ -78,3 +78,5 @@ gem "fastimage", "~> 2.3"
 gem "ostruct"
 
 gem "logger"
+
+gem "whenever", "~> 1.0"
