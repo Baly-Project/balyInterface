@@ -1,9 +1,9 @@
 <div class="hidden" style="display:none;">
-  <%=image_tag("marker-icon-green", id:"green-icon") %>
-  <%=image_tag("marker-icon-blue", id:"blue-icon") %>
-  <%=image_tag("marker-icon-orange", id:"orange-icon") %>
-  <%=image_tag("marker-shadow", id:"shadow-icon") %>
-  <%=image_tag("fov",id:"fov-icon") %>
+  <%=image_tag("marker-icon-green.png", id:"green-icon") %>
+  <%=image_tag("marker-icon-blue.png", id:"blue-icon") %>
+  <%=image_tag("marker-icon-orange.png", id:"orange-icon") %>
+  <%=image_tag("marker-shadow.png", id:"shadow-icon") %>
+  <%=image_tag("fov.png",id:"fov-icon") %>
 </div>
 
 <div class="world-map" data-controller="worldmap" data-worldmap-latlong-value="<%=@mapHash[:coordinates]%>" data-worldmap-labels-value="<%= @mapHash[:labels] %>" data-worldmap-scales-value="<%= @mapHash[:scales] %>" >
