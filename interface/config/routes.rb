@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#home"
+  get "index" => redirect("index/title/1/100")
   get "index/:sortparam/:start/:last" => "slides#index"
   get "slides/range/:range" => "slides#range"
   get "slides/:id" => "slides#show"
