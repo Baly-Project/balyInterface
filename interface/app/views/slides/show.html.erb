@@ -338,4 +338,15 @@
           });
         });
       };
+
+      document.addEventListener("keypress", (event) => {
+        var key=event.code;
+        console.log(key);
+        if(event.code == "ArrowLeft"){
+	  document.querySelector("a.fs-control.prev").click();
+        }
+        else if(key == "ArrowRight"){
+          document.querySelector("a.fs-control.next").click();
+        };
+      });
     </script>
