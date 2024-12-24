@@ -339,14 +339,20 @@
         });
       };
 
-      document.addEventListener("keypress", (event) => {
-        var key=event.code;
-        console.log(key);
-        if(event.code == "ArrowLeft"){
-	  document.querySelector("a.fs-control.prev").click();
-        }
-        else if(key == "ArrowRight"){
-          document.querySelector("a.fs-control.next").click();
+      // Switch pages on arrow click. This is left out of a controller so that it always works.
+      var active=true;
+      document.addEventListener("keydown", (event) => {
+        if(active){
+          var key=event.keyCode;
+	  // detect Left Arrow
+          if(key == 37){
+	    document.querySelector("a.fs-control.prev").click();
+          }
+	  // detect Right Arrow
+          else if(key == 39){
+            document.querySelector("a.fs-control.next").click();
+          };
+          active = false;
         };
       });
     </script>
