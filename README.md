@@ -45,5 +45,5 @@ Rules to follow when updating and developing.
     5. Check that the server is running at [baly.kenyon.edu](https://baly.kenyon.edu), and test the new feature immediately. If anything does not work as expected, revert your changes by typing `git log` and picking the last commit before the merge, then typing `git checkout COMMIT HASH` where COMMIT HASH is the first 7 characters in the string of numbers and letters at the top of that commit's log entry. This will revert to the version before the merge, and repeating step iv (previous) should start the server back the way it was. When the changes have been fixed, follow this entire list from the top.
 
 2. #### Preserve Documentation State
-   Before a change is added by a commit, make sure to update the documentation as much as possible to reflect the changes. This helps prevent obsolete instructions from entering the main branch and ensures that commits can be reverted cleanly.
+   Before a change is added by a commit, make sure to update the documentation and testing as much as possible to reflect the changes. This helps prevent obsolete information from entering the main branch and ensures that commits can be reverted cleanly.
 
