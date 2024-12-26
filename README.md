@@ -21,7 +21,7 @@ Some of the most important workflows used in developing and updating the rails a
 ### General Workflow
 Rules to follow when updating and developing.
 
-1. Protect the production server
+1. #### Protect the production server
   - All changes should be made on a separate server, configured using the steps in [configuration.md](configuration.md).
   - All changes should be made in a new github branch, **not main**.
   - Thoroughly test all large modifications, and always complete features before merging with the main branch.
@@ -44,6 +44,6 @@ Rules to follow when updating and developing.
        ```
     5. Check that the server is running at [baly.kenyon.edu](https://baly.kenyon.edu), and test the new feature immediately. If anything does not work as expected, revert your changes by typing `git log` and picking the last commit before the merge, then typing `git checkout COMMIT HASH` where COMMIT HASH is the first 7 characters in the string of numbers and letters at the top of that commit's log entry. This will revert to the version before the merge, and repeating step iv (previous) should start the server back the way it was. When the changes have been fixed, follow this entire list from the top.
 
-2. Preserve Documentation State
+2. #### Preserve Documentation State
    Before a change is added by a commit, make sure to update the documentation as much as possible to reflect the changes. This helps prevent obsolete instructions from entering the main branch and ensures that commits can be reverted cleanly.
 
