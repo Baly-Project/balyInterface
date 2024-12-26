@@ -50,6 +50,4 @@ test:
 #
 production:
   <<: *default
-  database: baly_production
-  username: Bubballoo
-  password: <%= ENV["BLOG_DATABASE_PASSWORD"] %>
+  database: balyProject

@@ -6,7 +6,7 @@
       Showing all results (<%= @count %>) 
     </p>
     <% else %>
-      <% link = "https://digital.kenyon.edu/do/search/?q=#{@query}&start=0&context=5047491&facet=" %>
+      <% link = "https://digital.kenyon.edu/do/search/?q=#{ERB::Util.url_encode(@query)}&start=0&context=5047491&facet=" %>
       Showing <%= @count %> / <%=@count+@unshown %> results. 
       View all the results at <a href=<%=link%> class="purple" target="_blank"> Digital Kenyon </a>
     </p>

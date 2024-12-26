@@ -238,11 +238,11 @@
     </div>
   </div>  
   <div class="hidden" style="display:none;">
-    <%=image_tag("marker-icon-green", id:"green-icon") %>
-    <%=image_tag("marker-icon-blue", id:"blue-icon") %>
-    <%=image_tag("marker-icon-orange", id:"orange-icon") %>
-    <%=image_tag("marker-shadow", id:"shadow-icon") %>
-    <%=image_tag("fov",id:"fov-icon") %>
+    <%=image_tag("marker-icon-green.png", id:"green-icon") %>
+    <%=image_tag("marker-icon-blue.png", id:"blue-icon") %>
+    <%=image_tag("marker-icon-orange.png", id:"orange-icon") %>
+    <%=image_tag("marker-shadow.png", id:"shadow-icon") %>
+    <%=image_tag("fov.png",id:"fov-icon") %>
   </div>
   <div class="row">
     <% locs=@slide.locations
@@ -338,4 +338,21 @@
           });
         });
       };
+
+      // Switch pages on arrow click. This is left out of a controller so that it always works.
+      var active=true;
+      document.addEventListener("keydown", (event) => {
+        if(active){
+          var key=event.keyCode;
+	  // detect Left Arrow
+          if(key == 37){
+	    document.querySelector("a.fs-control.prev").click();
+          }
+	  // detect Right Arrow
+          else if(key == 39){
+            document.querySelector("a.fs-control.next").click();
+          };
+          active = false;
+        };
+      });
     </script>

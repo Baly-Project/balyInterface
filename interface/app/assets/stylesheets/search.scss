@@ -21,3 +21,38 @@ div.row.search-result {
 .result-info {
   width: 70%
 }
+
+@media screen and (max-width:992px){
+  .search-result img {
+     max-width: 50%;
+  } 
+  .search-result img.vert {
+     max-width: 34%;
+     margin: 0px 8%;
+  }
+  .search-result .result-info {
+     width: 50%;
+  }
+} 
+
+@media screen and (max-width:769px){
+  .row.search-result{
+    flex-direction:column;
+  }
+
+  .search-result img {
+    width: 80%;
+    max-width: 80%;
+    padding-bottom: 10px;
+  }
+
+  .search-result img.vert {
+    max-width: 50%;
+    max-height: 50vh;
+    margin:0px;
+  }
+
+  .search-result .result-info {
+    width: 100%;
+  }
+}
