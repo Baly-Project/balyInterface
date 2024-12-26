@@ -39,9 +39,10 @@ Rules to follow when updating and developing.
     4. Execute the following commands **together** to end the running server and restart it with the new changes. This will put the server down for a moment, and if you are running on a multi-processor system then you should explore options for zero-downtime deploys such as [this tutorial from Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-zero-downtime-rails-deploys-using-puma-and-foreman). 
 
        ```sh
+       pkill -9 ruby
        nohup rails s -e production -b 0.0.0.0 &
        ```
-    5. Check that the server is running at [baly.kenyon.edu](https://baly.kenyon.edu), and test the new feature immediately. If anything does not work as expected, revert your changes by typing `git log` and picking the last commit before the merge, then typing `git checkout COMMIT HASH` where COMMIT HASH is the first 7 characters in the string of numbers and letters at the top of that commit's log entry. This will revert to the version before the merge, and repeating step 4 should start the server back the way it was. When the changes have been fixed, follow this entire list from the top.
+    5. Check that the server is running at [baly.kenyon.edu](https://baly.kenyon.edu), and test the new feature immediately. If anything does not work as expected, revert your changes by typing `git log` and picking the last commit before the merge, then typing `git checkout COMMIT HASH` where COMMIT HASH is the first 7 characters in the string of numbers and letters at the top of that commit's log entry. This will revert to the version before the merge, and repeating step iv (previous) should start the server back the way it was. When the changes have been fixed, follow this entire list from the top.
 
 2. Preserve Documentation State
    Before a change is added by a commit, make sure to update the documentation as much as possible to reflect the changes. This helps prevent obsolete instructions from entering the main branch and ensures that commits can be reverted cleanly.
