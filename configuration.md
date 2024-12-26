@@ -8,7 +8,7 @@ Note that this document and workflow was assembled in October 2024. If there is 
 ## Basic Requirements
 Thanks to internal configuration files, we don't need to install each and every program that the app relies on. Instead, we download certain core components, such as the database, and a few package managers, like Yarn. These basic end components are:
 
-* Ruby 3.3.0
+* Ruby 3.3.5
 * MariaDB
 * PhpMyAdmin
 * Yarn 1.22.22
@@ -58,7 +58,7 @@ Ruby has several installers that will all leave you with an identical ruby versi
 6. Install Ruby
 
     ```sh
-    rvm install 3.3.0
+    rvm install 3.3.5
     ```
     Be prepared to wait for this step, it typically takes 15-20 minutes.
 
@@ -68,12 +68,12 @@ Ruby has several installers that will all leave you with an identical ruby versi
     ```sh
     ruby -v
 
-    >> ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [x86_64-linux]
+    >> ruby 3.3.5 (2023-12-25 revision 5124f9ac75) [x86_64-linux]
 
 
     rvm list
 
-    >> =* ruby-3.3.0 [ x86_64 ]
+    >> =* ruby-3.3.5 [ x86_64 ]
 
         # => - current
         # =* - current && default
