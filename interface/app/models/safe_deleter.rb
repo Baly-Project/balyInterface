@@ -41,6 +41,10 @@ class SafeDeleter
     puts "Database Restored"
   end
 
+  def self.allModels
+    return Models
+  end
+
   private
 
   def capturePrevJoin(model,joinedsym)
