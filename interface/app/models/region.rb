@@ -5,4 +5,10 @@ class Region < ApplicationRecord
   has_many :previews
 
   validates :title, presence:true
+
+  def generateSearchEntry
+    link = "places/regions/#{self.id}"
+    title = self.title
+    return [title,link]
+  end
 end

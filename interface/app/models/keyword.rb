@@ -5,4 +5,10 @@ class Keyword < ApplicationRecord
     a=CustomPattern.new
     return a.returnPeriodHash
   end
+
+  def generateSearchEntry
+    link = "keywords/#{self.id}"
+    title = self.title
+    return [title,link]
+  end
 end
