@@ -56,3 +56,32 @@ div.row.search-result {
     width: 100%;
   }
 }
+
+// autofill box
+.search-dropdown-menu {
+  background-color: white;
+  margin-left: 1.6vw;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-bottom: .75rem;
+  position: relative;
+  margin-right: .2in;
+  border-radius: 6px;
+  width: -webkit-fill-available;
+  z-index: 3;
+  margin-top: 10px;
+}
+
+.autofill.dropdown-item {
+  border-radius: 6px;
+}
+
+@media (min-width:1200px) {
+  .search-dropdown-menu {
+    position: absolute;
+  }
+}
+
+hr.thinline {
+  margin: 2px 2px;
+}

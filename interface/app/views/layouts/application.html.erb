@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
      crossorigin=""/>
+    <script type='text/javascript' src="searchdata.js"></script>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-
     <% if content_for :for_head %>
       <%= yield :for_head %>
     <% end %>
@@ -63,11 +63,13 @@
               <a id="about-link" class="nav-link" href="/about"> About </a>
             </li>
           </ul>
-          <div class="search-group">
+          <div class="search-group" data-controller='autofill' data-autofill-maxresults-value="10">
             <form class="d-flex search-form" role="search" data-controller="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" data-search-target="textbox">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" data-search-target="textbox" data-autofill-target="searchbox">
               <button class="btn btn-outline-secondary" data-action="click->search#submit">Search</button>
             </form>
+	    <div class="search-dropdown-menu" id="autofill-box" data-autofill-target="fillbox"> 
+            </div>
           </div>
         </div>
       </nav>

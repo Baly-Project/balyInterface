@@ -1,4 +1,4 @@
-var searchobj = {
+var searchdata = {
     "A: Jerusalem": "collection/1",
     "J: Isfahan": "collection/2",
     "W - Attika, Crete, Santorini": "collection/3",
