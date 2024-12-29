@@ -61,8 +61,6 @@ div.row.search-result {
 .search-dropdown-menu {
   background-color: white;
   margin-left: 1.6vw;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
   padding-bottom: .75rem;
   position: relative;
   margin-right: .2in;
@@ -74,6 +72,11 @@ div.row.search-result {
 
 .autofill.dropdown-item {
   border-radius: 6px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.autofill.dropdown-item:hover {
+  background-color: #00000021;
 }
 
 @media (min-width:1200px) {
