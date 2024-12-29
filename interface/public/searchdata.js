@@ -313,8 +313,7 @@ var searchdata = {
   ],
   "Jerusalem": [
     "/keywords/95",
-    "/places/locations/2",
-    null
+    "/places/locations/2"
   ],
   "Bifora": [
     "/keywords/96"
@@ -584,8 +583,7 @@ var searchdata = {
     "/keywords/184"
   ],
   "Ankara": [
-    "/keywords/185",
-    null
+    "/keywords/185"
   ],
   "Citadel": [
     "/keywords/186"
@@ -1230,8 +1228,7 @@ var searchdata = {
     "/places/locations/19"
   ],
   "Athens": [
-    "/places/locations/20",
-    null
+    "/places/locations/20"
   ],
   "Selçuklu Parkı (Selçuk Park)": [
     "/places/locations/21"
@@ -1246,8 +1243,7 @@ var searchdata = {
     "/places/locations/24"
   ],
   "Çerikli": [
-    "/places/locations/25",
-    null
+    "/places/locations/25"
   ],
   "Gölbaşı": [
     "/places/locations/26"
@@ -1297,78 +1293,100 @@ var searchdata = {
   "Delphi Archaeological Museum": [
     "/places/locations/44"
   ],
-  "No City": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+  "No City, No Country": [
+    "places/cities/1"
   ],
-  "Isfahan": [
-    null
+  "No City, Israel/Palestine": [
+    "places/cities/2",
+    "places/cities/3"
   ],
-  "Nain": [
-    null
+  "Jerusalem, Israel/Palestine": [
+    "places/cities/4"
   ],
-  "Zanjan": [
-    null
+  "No City, Iran": [
+    "places/cities/5",
+    "places/cities/6",
+    "places/cities/9",
+    "places/cities/11",
+    "places/cities/14",
+    "places/cities/16",
+    "places/cities/18",
+    "places/cities/20"
   ],
-  "Tabriz": [
-    null
+  "Isfahan, Iran": [
+    "places/cities/7"
   ],
-  "Maragheh": [
-    null
+  "Nain, Iran": [
+    "places/cities/8"
   ],
-  "Saveh": [
-    null
+  "Zanjan, Iran": [
+    "places/cities/10"
   ],
-  "Yazd": [
-    null
+  "Tabriz, Iran": [
+    "places/cities/12"
   ],
-  "Kerman": [
-    null
+  "Maragheh, Iran": [
+    "places/cities/13"
   ],
-  "Kermanshah": [
-    null
+  "Saveh, Iran": [
+    "places/cities/15"
   ],
-  "Delfoi": [
-    null
+  "Yazd, Iran": [
+    "places/cities/17"
   ],
-  "Sivas": [
-    null
+  "Kerman, Iran": [
+    "places/cities/19"
   ],
-  "Tuz Gölü": [
-    null
+  "Kermanshah, Iran": [
+    "places/cities/21"
   ],
-  "Aksaray": [
-    null
+  "No City, Greece": [
+    "places/cities/22",
+    "places/cities/23",
+    "places/cities/25"
   ],
-  "Niğde": [
-    null
+  "Athens, Greece": [
+    "places/cities/24"
   ],
-  "Seville": [
-    null
+  "Delfoi, Greece": [
+    "places/cities/26"
   ],
-  "Córdoba": [
-    null
+  "No City, Turkey": [
+    "places/cities/27",
+    "places/cities/28"
   ],
-  "Toledo": [
-    null
+  "Sivas, Turkey": [
+    "places/cities/29"
+  ],
+  "Ankara, Turkey": [
+    "places/cities/30"
+  ],
+  "Çerikli, Turkey": [
+    "places/cities/31"
+  ],
+  "Tuz Gölü, Turkey": [
+    "places/cities/32"
+  ],
+  "Aksaray, Turkey": [
+    "places/cities/33"
+  ],
+  "Niğde, Turkey": [
+    "places/cities/34"
+  ],
+  "No City, Spain": [
+    "places/cities/35",
+    "places/cities/36",
+    "places/cities/38",
+    "places/cities/40"
+  ],
+  "Seville, Spain": [
+    "places/cities/37"
+  ],
+  "Córdoba, Spain": [
+    "places/cities/39"
+  ],
+  "Toledo, Spain": [
+    "places/cities/41"
   ],
   "No Region, No Country": [
     "/places/regions/1"
