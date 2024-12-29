@@ -1,497 +1,1529 @@
 var searchdata = {
-    "A: Jerusalem": "collection/1",
-    "J: Isfahan": "collection/2",
-    "W - Attika, Crete, Santorini": "collection/3",
-    "AP: Central Turkey": "collection/4",
-    "BC: Around Isfahan and Tabrik Area": "collection/5",
-    "BE: Tehran, Qazvin, Saveh, Nein, Yazd": "collection/6",
-    "BF: Around Kerman, Iran": "collection/7",
-    "BG: Kermanshah and Bisutun": "collection/8",
-    "CR: Southeast Spain": "collection/9",
-    "DH: Delphi": "collection/10",
-    "Full View": "keyword/1",
-    "Afar": "keyword/2",
-    "City": "keyword/3",
-    "Skyline": "keyword/4",
-    "Walls": "keyword/5",
-    "Walls of Jerusalem": "keyword/6",
-    "Dome of the Rock": "keyword/7",
-    "Temple Mount": "keyword/8",
-    "Old City of Jerusalem": "keyword/9",
-    "Mt. Olivet": "keyword/10",
-    "Mosque of Omar": "keyword/11",
-    "Dome of the Prophet": "keyword/12",
-    "Seventh Century AD": "keyword/13",
-    "Muslim": "keyword/14",
-    "Shrine": "keyword/15",
-    "Trees": "keyword/16",
-    "Arches": "keyword/17",
-    "Arcade": "keyword/18",
-    "Southeast Arcade of Temple Mount": "keyword/19",
-    "Northern Arcade of Temple Mount": "keyword/20",
-    "Steps": "keyword/21",
-    "Columns": "keyword/22",
-    "Corinthian Capitals": "keyword/23",
-    "Western Arcade of Temple Mount": "keyword/24",
-    "Colonnade": "keyword/25",
-    "Corinthian Columns": "keyword/26",
-    "Tiles": "keyword/27",
-    "Soffit": "keyword/28",
-    "Inscription": "keyword/29",
-    "Quranic Inscription": "keyword/30",
-    "Arabic Inscription": "keyword/31",
-    "Marble": "keyword/32",
-    "Portico": "keyword/33",
-    "People": "keyword/34",
-    "Western Arches": "keyword/35",
-    "Lattice Windows": "keyword/36",
-    "Dome": "keyword/37",
-    "Dome of the Ascension": "keyword/38",
-    "Gate of the Chain Minaret": "keyword/39",
-    "Northwest Arcade of Temple Mount": "keyword/40",
-    "Minaret": "keyword/41",
-    "Ghawanima Minaret": "keyword/42",
-    "Northeast Arcade of Temple Mount": "keyword/43",
-    "Dome of the Spirits": "keyword/44",
-    "Well": "keyword/45",
-    "Eastern Arcade of Temple Mount": "keyword/46",
-    "Church of Mary Magdalene": "keyword/47",
-    "Mount of Olives": "keyword/48",
-    "Chain Gate Minaret": "keyword/49",
-    "Gate of the Chain": "keyword/50",
-    "Dome of Al-Khidr": "keyword/51",
-    "Minbar": "keyword/52",
-    "Minbar al-Sayf": "keyword/53",
-    "Staircase": "keyword/54",
-    "Qubba al-Nahw": "keyword/55",
-    "Waqf": "keyword/56",
-    "Engaged Columns": "keyword/57",
-    "Thirteenth Century": "keyword/58",
-    "Nineteenth Century": "keyword/59",
-    "Ayyubid": "keyword/60",
-    "Ottoman": "keyword/61",
-    "Stone": "keyword/62",
-    "Carving": "keyword/63",
-    "Al-Aqsa Mosque": "keyword/64",
-    "Mosque": "keyword/65",
-    "Hexagonal": "keyword/66",
-    "Six Pointed Star": "keyword/67",
-    "Southwest Arcade of Temple Mount": "keyword/68",
-    "Courtyard": "keyword/69",
-    "Golden Gate": "keyword/70",
-    "Gates of the Temple Mount": "keyword/71",
-    "Ashlar": "keyword/72",
-    "Masonry": "keyword/73",
-    "Gate": "keyword/74",
-    "Qait Bay": "keyword/75",
-    "Fountain": "keyword/76",
-    "Fifteenth Century": "keyword/77",
-    "Mamluk": "keyword/78",
-    "Stone Carving": "keyword/79",
-    "Sebil Ala ad Din el Basir": "keyword/80",
-    "Ala ad Din el Basir": "keyword/81",
-    "Dome of the Chain": "keyword/82",
-    "Mihrab": "keyword/83",
-    "Bab al-Qattanin": "keyword/84",
-    "Fourteenth Century": "keyword/85",
-    "Little Western Wall": "keyword/86",
-    "Ecce Homo Basilica": "keyword/87",
-    "Ecce Homo Arch": "keyword/88",
-    "Christian": "keyword/89",
-    "Basilica": "keyword/90",
-    "Madrasa Is’ardiyya": "keyword/91",
-    "Madrasa": "keyword/92",
-    "Facade": "keyword/93",
-    "Muslim Quarter": "keyword/94",
-    "Jerusalem": "city/4",
-    "Bifora": "keyword/96",
-    "Muqarnas": "keyword/97",
-    "Bulbous Dome": "keyword/98",
-    "Madrasa al-Manjakiyya": "keyword/99",
-    "Oculus": "keyword/100",
-    "Madrasa al-Basitiyya": "keyword/101",
-    "Dome of the Prophet's Lovers": "keyword/102",
-    "Dome of Solomon": "keyword/103",
-    "King Faisal's Gate": "keyword/104",
-    "Gate of the Bani Ghanim": "keyword/105",
-    "Sebil of Suleiman": "keyword/106",
-    "Sixteenth Century": "keyword/107",
-    "Dome of Moses": "keyword/108",
-    "Sebil Qait Bay": "keyword/109",
-    "Sebil Qasim Pasha": "keyword/110",
-    "Ruins": "keyword/111",
-    "Cotton Merchant's Gate": "keyword/112",
-    "Semi-dome": "keyword/113",
-    "Ablaq": "keyword/114",
-    "Madrasa Al-Tankiziyya": "keyword/115",
-    "Madrasa al-Ashrafiyya": "keyword/116",
-    "Chain Gate Fountain": "keyword/117",
-    "Market": "keyword/118",
-    "Street": "keyword/119",
-    "Tomb": "keyword/120",
-    "Sitt Tunshuq": "keyword/121",
-    "Aqabat al-Takiyya Street": "keyword/122",
-    "Tomb of Turkan Khatun": "keyword/123",
-    "Al-Wad Fountain": "keyword/124",
-    "Al-Wad Street": "keyword/125",
-    "Seljuk": "keyword/126",
-    "Twelfth Century": "keyword/127",
-    "Pointed Arches": "keyword/128",
-    "Safavid": "keyword/129",
-    "Brick": "keyword/130",
-    "Kufic Script": "keyword/131",
-    "Balcony": "keyword/132",
-    "Cornices": "keyword/133",
-    "Thuluth Script": "keyword/134",
-    "Tower": "keyword/135",
-    "Ilkhanid": "keyword/136",
-    "Mausoleum": "keyword/137",
-    "Tent Dome": "keyword/138",
-    "Portal": "keyword/139",
-    "Eleventh Century": "keyword/140",
-    "Buyid": "keyword/141",
-    "Relief Patterns": "keyword/142",
-    "Semi-Dome": "keyword/143",
-    "Bridge": "keyword/144",
-    "River": "keyword/145",
-    "Piers": "keyword/146",
-    "Pavilion": "keyword/147",
-    "Archway": "keyword/148",
-    "Stairs": "keyword/149",
-    "Dam": "keyword/150",
-    "Seventeenth Century": "keyword/151",
-    "Animal Figure": "keyword/152",
-    "Statue": "keyword/153",
-    "Lion": "keyword/154",
-    "Fishing": "keyword/155",
-    "Frieze": "keyword/156",
-    "Theater of Dionysus": "keyword/157",
-    "Acropolis": "keyword/158",
-    "Athenian Acropolis": "keyword/159",
-    "Sculpture": "keyword/160",
-    "Stone Sculpture": "keyword/161",
-    "Marble Sculpture": "keyword/162",
-    "Relief Sculpture": "keyword/163",
-    "Red Slides": "keyword/164",
-    "Banna'i": "keyword/165",
-    "Şemsettin Güveyni": "keyword/166",
-    "Façade": "keyword/167",
-    "Buttress": "keyword/168",
-    "Signage": "keyword/169",
-    "Pyramidal Tower": "keyword/170",
-    "Conical Roof": "keyword/171",
-    "Star": "keyword/172",
-    "Palmette": "keyword/173",
-    "Domestic Animals": "keyword/174",
-    "Nature": "keyword/175",
-    "Basalt": "keyword/176",
-    "Mountains": "keyword/177",
-    "Kızılırmak River": "keyword/178",
-    "Red River": "keyword/179",
-    "Rural Settlement": "keyword/180",
-    "Countryside": "keyword/181",
-    "Buildings": "keyword/182",
-    "Children": "keyword/183",
-    "Tunnel": "keyword/184",
-    "Ankara": "city/30",
-    "Citadel": "keyword/186",
-    "Ninth Century": "keyword/187",
-    "Byzantine Period": "keyword/188",
-    "Sheep": "keyword/189",
-    "Marketplace": "keyword/190",
-    "Waterbody": "keyword/191",
-    "Lake": "keyword/192",
-    "Rocks": "keyword/193",
-    "Hasan Dağı": "keyword/194",
-    "Mount Hasan": "keyword/195",
-    "Horses": "keyword/196",
-    "Agriculture": "keyword/197",
-    "Caravanserai": "keyword/198",
-    "Han": "keyword/199",
-    "Alaettin Mosque": "keyword/200",
-    "Sungur Bey Mosque": "keyword/201",
-    "Frankish": "keyword/202",
-    "Window": "keyword/203",
-    "Door": "keyword/204",
-    "Glazed Brick": "keyword/205",
-    "Stucco": "keyword/206",
-    "Turkman": "keyword/207",
-    "Mosaic": "keyword/208",
-    "Dome Chamber": "keyword/209",
-    "Geometric": "keyword/210",
-    "Girih": "keyword/211",
-    "Iwan": "keyword/212",
-    "Vaulting": "keyword/213",
-    "Tenth Century": "keyword/214",
-    "Transverse Vaults": "keyword/215",
-    "Prayer Hall": "keyword/216",
-    "Muzaffarid": "keyword/217",
-    "Timurid": "keyword/218",
-    "Faience Mosaic": "keyword/219",
-    "Arabesque": "keyword/220",
-    "Floral": "keyword/221",
-    "Mosaic Arches": "keyword/222",
-    "Pool": "keyword/223",
-    "Desert": "keyword/224",
-    "Sassanian": "keyword/225",
-    "Fourth Century AD": "keyword/226",
-    "Fifth Century AD": "keyword/227",
-    "Capital": "keyword/228",
-    "Foliate Capital": "keyword/229",
-    "Pilaster": "keyword/230",
-    "Floral Capital": "keyword/231",
-    "High Relief": "keyword/232",
-    "Almohad": "keyword/233",
-    "Gothic": "keyword/234",
-    "Reconstructed": "keyword/235",
-    "Cathedral": "keyword/236",
-    "Bell Tower": "keyword/237",
-    "Sebka": "keyword/238",
-    "Horseshoe Arches": "keyword/239",
-    "Bells": "keyword/240",
-    "Mudejar": "keyword/241",
-    "Palace": "keyword/242",
-    "House": "keyword/243",
-    "Wood Carving": "keyword/244",
-    "Wood": "keyword/245",
-    "Ektachrome": "keyword/246",
-    "Roman": "keyword/247",
-    "First Century BC": "keyword/248",
-    "Umayyad": "keyword/249",
-    "Eighth Century AD": "keyword/250",
-    "Double-tiered Arches": "keyword/251",
-    "Column Capital": "keyword/252",
-    "Nave": "keyword/253",
-    "Poly-lobed Arches": "keyword/254",
-    "Ceiling": "keyword/255",
-    "Latin Inscription": "keyword/256",
-    "Sand": "keyword/257",
-    "Zellij": "keyword/258",
-    "Dog": "keyword/259",
-    "Colmuns": "keyword/260",
-    "Cars": "keyword/261",
-    "Hotel": "keyword/262",
-    "Bronze": "keyword/263",
-    "Cast Bronze": "keyword/264",
-    "Synagogue": "keyword/265",
-    "Hebrew Inscription": "keyword/266",
-    "Sunrise": "keyword/267",
-    "Mt. Kirfis": "keyword/268",
-    "Valley": "keyword/269",
-    "River Valley": "keyword/270",
-    "Pleistos River Valley": "keyword/271",
-    "Itea": "keyword/272",
-    "Port": "keyword/273",
-    "Harbor": "keyword/274",
-    "Gymnasium": "keyword/275",
-    "Retaining Wall": "keyword/276",
-    "Fourth Century BC": "keyword/277",
-    "Classical Period": "keyword/278",
-    "Polygonal": "keyword/279",
-    "Hestiatorion": "keyword/280",
-    "Olive Trees": "keyword/281",
-    "Repurposed": "keyword/282",
-    "Birdbath": "keyword/283",
-    "Unidentified": "keyword/284",
-    "Massalian": "keyword/285",
-    "Treasury": "keyword/286",
-    "Tholos": "keyword/287",
-    "Metope": "keyword/288",
-    "Triglyph": "keyword/289",
-    "Temple": "keyword/290",
-    "Old Temple of Athena at Delphi": "keyword/291",
-    "Athena": "keyword/292",
-    "Fifth Century BC": "keyword/293",
-    "Sanctuary of Athena at Delphi": "location/35",
-    "Old Temple of Athena": "keyword/295",
-    "Bead and Reel": "keyword/296",
-    "Sixth Century BC": "keyword/297",
-    "Archaic Period": "keyword/298",
-    "Reconstruction": "keyword/299",
-    "Phaedriades": "keyword/300",
-    "Spring": "keyword/301",
-    "Rock": "keyword/302",
-    "Reservoir": "keyword/303",
-    "Stoa": "keyword/304",
-    "Agora": "keyword/305",
-    "Roman Period": "keyword/306",
-    "Cross": "keyword/307",
-    "Votive Offering": "keyword/308",
-    "Exedra": "keyword/309",
-    "Drains": "keyword/310",
-    "Statue Bases": "keyword/311",
-    "Argive": "keyword/312",
-    "Isodomic": "keyword/313",
-    "Greek Inscription": "keyword/314",
-    "Text": "keyword/315",
-    "Athenian Treasury": "keyword/316",
-    "Theseus": "keyword/317",
-    "Human Figure": "keyword/318",
-    "Natural Monument": "keyword/319",
-    "Athenian Stoa": "keyword/320",
-    "Tripod": "keyword/321",
-    "Chian": "keyword/322",
-    "Altar": "keyword/323",
-    "Second Century BC": "keyword/324",
-    "Hellenistic Period": "keyword/325",
-    "Sanctuary of Apollo at Delphi": "location/39",
-    "Monument of Krateros": "keyword/327",
-    "Family Dedication": "keyword/328",
-    "Rusticated": "keyword/329",
-    "Stoa of Attalus": "keyword/330",
-    "Reservior": "keyword/331",
-    "Drain": "keyword/332",
-    "Covered Drain": "keyword/333",
-    "Theater": "keyword/334",
-    "Theater of Delphi": "keyword/335",
-    "Temple of Apollo at Delphi": "location/40",
-    "Apollo": "keyword/337",
-    "Seats": "keyword/338",
-    "Kerna II": "keyword/339",
-    "Stadium": "keyword/340",
-    "Herodus Atticus": "keyword/341",
-    "Second Century AD": "keyword/342",
-    "Stadium of Herodus Atticus": "keyword/343",
-    "Triumphal Arches": "keyword/344",
-    "Sphendone": "keyword/345",
-    "Proedria": "keyword/346",
-    "Rough Picked": "keyword/347",
-    "Pseudo-Isodomic": "keyword/348",
-    "Sphinx": "keyword/349",
-    "Greek Sphinx": "keyword/350",
-    "Naxos": "keyword/351",
-    "Gods": "keyword/352",
-    "Ares": "keyword/353",
-    "Artemis": "keyword/354",
-    "Human Figures": "keyword/355",
-    "Siphnian Treasury": "keyword/356",
-    "Pediment": "keyword/357",
-    "Zeus": "keyword/358",
-    "Hercules": "keyword/359",
-    "Giants": "keyword/360",
-    "Themis": "keyword/361",
-    "Chariot": "keyword/362",
-    "Argos": "keyword/363",
-    "Kouros": "keyword/364",
-    "Herodotus": "keyword/365",
-    "Polymedes of Argos": "keyword/366",
-    "Statue Group": "keyword/367",
-    "Sima": "keyword/368",
-    "Amazomachy": "keyword/369",
-    "Charioteer": "keyword/370",
-    "Third Century BC": "keyword/371",
-    "Antinoös": "keyword/372",
-    "Antinous": "keyword/373",
-    "Archaic Sculpture": "keyword/374",
-    "Alcmaeonid": "keyword/375",
-    "Alcmaeonid Temple of Apollo": "keyword/376",
-    "Kore": "keyword/377",
-    "Girl": "keyword/378",
-    "Early Hellenistic Period": "keyword/379",
-    "First Century AD": "keyword/380",
-    "No Location": "location/1",
-    "Dome of the Rock/Qubbat as-Sakhrah": "location/3",
-    "Temple Mount/Haram al-Sharif": "location/4",
-    "Al-Aqsa Mosque on Temple Mount": "location/5",
-    "Chain Gate Street": "location/6",
-    "Lady Tunshuq's Palace": "location/7",
-    "Turba Turkan Khatun, Chain Gate Street": "location/8",
-    "Haja'y Street": "location/9",
-    "Omar": "location/10",
-    "Imam Ali Mosque": "location/11",
-    "Chehel Dokhtaran": "location/12",
-    "Sarban Minaret": "location/13",
-    "Imamzedeh Jafar": "location/14",
-    "Tomb of Baba Qasim": "location/15",
-    "Jurjir Mosque": "location/16",
-    "Shahrestan Bridge": "location/17",
-    "Khajoo Bridge": "location/18",
-    "Bridge of 33 Arches": "location/19",
-    "Athens": "city/24",
-    "Selçuklu Parkı (Selçuk Park)": "location/21",
-    "Gök Medrese": "location/22",
-    "Kızılırmak (Halys) River": "location/23",
-    "Ankara Citadel": "location/24",
-    "Çerikli": "city/31",
-    "Gölbaşı": "location/26",
-    "Lake Tuz": "location/27",
-    "Hasandağı": "location/28",
-    "Kizil Minare": "location/29",
-    "Ağzıkarahan": "location/30",
-    "Alaettin Camii": "location/31",
-    "Sungurbey Mosque of Niğde": "location/32",
-    "Delphi": "location/33",
-    "Ancient Gymnasium at Delphi": "location/34",
-    "Old Temple of Athena Pronoia, Sanctuary of Athena at Delphi": "location/36",
-    "Castalian Spring at Delphi": "location/37",
-    "Roman Marketplace at Delphi": "location/38",
-    "Delphi Archaeological Site": "location/41",
-    "Kerna Spring at Delphi": "location/42",
-    "Stadium of Herodus Atticus at Delphi": "location/43",
-    "Delphi Archaeological Museum": "location/44",
-    "No City": "city/40",
-    "Isfahan": "city/7",
-    "Nain": "city/8",
-    "Zanjan": "city/10",
-    "Tabriz": "city/12",
-    "Maragheh": "city/13",
-    "Saveh": "city/15",
-    "Yazd": "city/17",
-    "Kerman": "city/19",
-    "Kermanshah": "city/21",
-    "Delfoi": "city/26",
-    "Sivas": "city/29",
-    "Tuz Gölü": "city/32",
-    "Aksaray": "city/33",
-    "Niğde": "city/34",
-    "Seville": "city/37",
-    "Córdoba": "city/39",
-    "Toledo": "city/41",
-    "No Region": "region/17",
-    "Jerusalem District": "region/3",
-    "Isfahan Province": "region/5",
-    "Zanjan Province": "region/6",
-    "East Azerbaijan Province": "region/7",
-    "Markazi Province": "region/8",
-    "Yazd Province": "region/9",
-    "Kerman Province": "region/10",
-    "Kermanshah Province": "region/11",
-    "Attica": "region/13",
-    "Central Greece": "region/14",
-    "Central Anatolia": "region/16",
-    "Seville Province": "region/18",
-    "Córdoba Province": "region/19",
-    "Toledo Province": "region/20",
-    "No Country": "country/1",
-    "Israel/Palestine": "country/2",
-    "Iran": "country/3",
-    "Greece": "country/4",
-    "Turkey": "country/5",
-    "Spain": "country/6",
-    "APR 67": "stamp/1",
-    "APR 77F7": "stamp/2",
-    "unstamped": "stamp/3",
-    "MAR 72F3": "stamp/4",
-    "AUG 60N": "stamp/5",
-    "SEP 63": "stamp/6",
-    "JAN 70": "stamp/7",
-    "SEP 67F10": "stamp/8",
-    "SEP 67F8": "stamp/9",
-    "SEP 67F9": "stamp/10",
-    "SEP 67F6": "stamp/11",
-    "DEC 66": "stamp/12",
-    "OCT 67R": "stamp/13",
-    "JUN 74": "stamp/14",
-    "JUL 78": "stamp/15",
-    "No Month": "month/1",
-    "January": "month/2",
-    "April": "month/9",
-    "February": "month/4",
-    "September": "month/21",
-    "May": "month/23",
-    "nomonth": "month/17",
-    "March": "month/22",
-    "December": "month/20",
-    "August": "month/19",
-    "June": "month/24"
-  }
+  "A: Jerusalem": [
+    "/collections/1"
+  ],
+  "J: Isfahan": [
+    "/collections/10"
+  ],
+  "W - Attika, Crete, Santorini": [
+    "/collections/23"
+  ],
+  "AP: Central Turkey": [
+    "/collections/42"
+  ],
+  "BC: Around Isfahan and Tabrik Area": [
+    "/collections/55"
+  ],
+  "BE: Tehran, Qazvin, Saveh, Nein, Yazd": [
+    "/collections/57"
+  ],
+  "BF: Around Kerman, Iran": [
+    "/collections/58"
+  ],
+  "BG: Kermanshah and Bisutun": [
+    "/collections/59"
+  ],
+  "CR: Southeast Spain": [
+    "/collections/96"
+  ],
+  "DH: Delphi": [
+    "/collections/112"
+  ],
+  "Full View": [
+    "/keywords/1"
+  ],
+  "Afar": [
+    "/keywords/2"
+  ],
+  "City": [
+    "/keywords/3"
+  ],
+  "Skyline": [
+    "/keywords/4"
+  ],
+  "Walls": [
+    "/keywords/5"
+  ],
+  "Walls of Jerusalem": [
+    "/keywords/6"
+  ],
+  "Dome of the Rock": [
+    "/keywords/7"
+  ],
+  "Temple Mount": [
+    "/keywords/8"
+  ],
+  "Old City of Jerusalem": [
+    "/keywords/9"
+  ],
+  "Mt. Olivet": [
+    "/keywords/10"
+  ],
+  "Mosque of Omar": [
+    "/keywords/11"
+  ],
+  "Dome of the Prophet": [
+    "/keywords/12"
+  ],
+  "Seventh Century AD": [
+    "/keywords/13"
+  ],
+  "Muslim": [
+    "/keywords/14"
+  ],
+  "Shrine": [
+    "/keywords/15"
+  ],
+  "Trees": [
+    "/keywords/16"
+  ],
+  "Arches": [
+    "/keywords/17"
+  ],
+  "Arcade": [
+    "/keywords/18"
+  ],
+  "Southeast Arcade of Temple Mount": [
+    "/keywords/19"
+  ],
+  "Northern Arcade of Temple Mount": [
+    "/keywords/20"
+  ],
+  "Steps": [
+    "/keywords/21"
+  ],
+  "Columns": [
+    "/keywords/22"
+  ],
+  "Corinthian Capitals": [
+    "/keywords/23"
+  ],
+  "Western Arcade of Temple Mount": [
+    "/keywords/24"
+  ],
+  "Colonnade": [
+    "/keywords/25"
+  ],
+  "Corinthian Columns": [
+    "/keywords/26"
+  ],
+  "Tiles": [
+    "/keywords/27"
+  ],
+  "Soffit": [
+    "/keywords/28"
+  ],
+  "Inscription": [
+    "/keywords/29"
+  ],
+  "Quranic Inscription": [
+    "/keywords/30"
+  ],
+  "Arabic Inscription": [
+    "/keywords/31"
+  ],
+  "Marble": [
+    "/keywords/32"
+  ],
+  "Portico": [
+    "/keywords/33"
+  ],
+  "People": [
+    "/keywords/34"
+  ],
+  "Western Arches": [
+    "/keywords/35"
+  ],
+  "Lattice Windows": [
+    "/keywords/36"
+  ],
+  "Dome": [
+    "/keywords/37"
+  ],
+  "Dome of the Ascension": [
+    "/keywords/38"
+  ],
+  "Gate of the Chain Minaret": [
+    "/keywords/39"
+  ],
+  "Northwest Arcade of Temple Mount": [
+    "/keywords/40"
+  ],
+  "Minaret": [
+    "/keywords/41"
+  ],
+  "Ghawanima Minaret": [
+    "/keywords/42"
+  ],
+  "Northeast Arcade of Temple Mount": [
+    "/keywords/43"
+  ],
+  "Dome of the Spirits": [
+    "/keywords/44"
+  ],
+  "Well": [
+    "/keywords/45"
+  ],
+  "Eastern Arcade of Temple Mount": [
+    "/keywords/46"
+  ],
+  "Church of Mary Magdalene": [
+    "/keywords/47"
+  ],
+  "Mount of Olives": [
+    "/keywords/48"
+  ],
+  "Chain Gate Minaret": [
+    "/keywords/49"
+  ],
+  "Gate of the Chain": [
+    "/keywords/50"
+  ],
+  "Dome of Al-Khidr": [
+    "/keywords/51"
+  ],
+  "Minbar": [
+    "/keywords/52"
+  ],
+  "Minbar al-Sayf": [
+    "/keywords/53"
+  ],
+  "Staircase": [
+    "/keywords/54"
+  ],
+  "Qubba al-Nahw": [
+    "/keywords/55"
+  ],
+  "Waqf": [
+    "/keywords/56"
+  ],
+  "Engaged Columns": [
+    "/keywords/57"
+  ],
+  "Thirteenth Century": [
+    "/keywords/58"
+  ],
+  "Nineteenth Century": [
+    "/keywords/59"
+  ],
+  "Ayyubid": [
+    "/keywords/60"
+  ],
+  "Ottoman": [
+    "/keywords/61"
+  ],
+  "Stone": [
+    "/keywords/62"
+  ],
+  "Carving": [
+    "/keywords/63"
+  ],
+  "Al-Aqsa Mosque": [
+    "/keywords/64"
+  ],
+  "Mosque": [
+    "/keywords/65"
+  ],
+  "Hexagonal": [
+    "/keywords/66"
+  ],
+  "Six Pointed Star": [
+    "/keywords/67"
+  ],
+  "Southwest Arcade of Temple Mount": [
+    "/keywords/68"
+  ],
+  "Courtyard": [
+    "/keywords/69"
+  ],
+  "Golden Gate": [
+    "/keywords/70"
+  ],
+  "Gates of the Temple Mount": [
+    "/keywords/71"
+  ],
+  "Ashlar": [
+    "/keywords/72"
+  ],
+  "Masonry": [
+    "/keywords/73"
+  ],
+  "Gate": [
+    "/keywords/74"
+  ],
+  "Qait Bay": [
+    "/keywords/75"
+  ],
+  "Fountain": [
+    "/keywords/76"
+  ],
+  "Fifteenth Century": [
+    "/keywords/77"
+  ],
+  "Mamluk": [
+    "/keywords/78"
+  ],
+  "Stone Carving": [
+    "/keywords/79"
+  ],
+  "Sebil Ala ad Din el Basir": [
+    "/keywords/80"
+  ],
+  "Ala ad Din el Basir": [
+    "/keywords/81"
+  ],
+  "Dome of the Chain": [
+    "/keywords/82"
+  ],
+  "Mihrab": [
+    "/keywords/83"
+  ],
+  "Bab al-Qattanin": [
+    "/keywords/84"
+  ],
+  "Fourteenth Century": [
+    "/keywords/85"
+  ],
+  "Little Western Wall": [
+    "/keywords/86"
+  ],
+  "Ecce Homo Basilica": [
+    "/keywords/87"
+  ],
+  "Ecce Homo Arch": [
+    "/keywords/88"
+  ],
+  "Christian": [
+    "/keywords/89"
+  ],
+  "Basilica": [
+    "/keywords/90"
+  ],
+  "Madrasa Is’ardiyya": [
+    "/keywords/91"
+  ],
+  "Madrasa": [
+    "/keywords/92"
+  ],
+  "Facade": [
+    "/keywords/93"
+  ],
+  "Muslim Quarter": [
+    "/keywords/94"
+  ],
+  "Jerusalem": [
+    "/keywords/95",
+    "/places/locations/2",
+    null
+  ],
+  "Bifora": [
+    "/keywords/96"
+  ],
+  "Muqarnas": [
+    "/keywords/97"
+  ],
+  "Bulbous Dome": [
+    "/keywords/98"
+  ],
+  "Madrasa al-Manjakiyya": [
+    "/keywords/99"
+  ],
+  "Oculus": [
+    "/keywords/100"
+  ],
+  "Madrasa al-Basitiyya": [
+    "/keywords/101"
+  ],
+  "Dome of the Prophet's Lovers": [
+    "/keywords/102"
+  ],
+  "Dome of Solomon": [
+    "/keywords/103"
+  ],
+  "King Faisal's Gate": [
+    "/keywords/104"
+  ],
+  "Gate of the Bani Ghanim": [
+    "/keywords/105"
+  ],
+  "Sebil of Suleiman": [
+    "/keywords/106"
+  ],
+  "Sixteenth Century": [
+    "/keywords/107"
+  ],
+  "Dome of Moses": [
+    "/keywords/108"
+  ],
+  "Sebil Qait Bay": [
+    "/keywords/109"
+  ],
+  "Sebil Qasim Pasha": [
+    "/keywords/110"
+  ],
+  "Ruins": [
+    "/keywords/111"
+  ],
+  "Cotton Merchant's Gate": [
+    "/keywords/112"
+  ],
+  "Semi-dome": [
+    "/keywords/113"
+  ],
+  "Ablaq": [
+    "/keywords/114"
+  ],
+  "Madrasa Al-Tankiziyya": [
+    "/keywords/115"
+  ],
+  "Madrasa al-Ashrafiyya": [
+    "/keywords/116"
+  ],
+  "Chain Gate Fountain": [
+    "/keywords/117"
+  ],
+  "Market": [
+    "/keywords/118"
+  ],
+  "Street": [
+    "/keywords/119"
+  ],
+  "Tomb": [
+    "/keywords/120"
+  ],
+  "Sitt Tunshuq": [
+    "/keywords/121"
+  ],
+  "Aqabat al-Takiyya Street": [
+    "/keywords/122"
+  ],
+  "Tomb of Turkan Khatun": [
+    "/keywords/123"
+  ],
+  "Al-Wad Fountain": [
+    "/keywords/124"
+  ],
+  "Al-Wad Street": [
+    "/keywords/125"
+  ],
+  "Seljuk": [
+    "/keywords/126"
+  ],
+  "Twelfth Century": [
+    "/keywords/127"
+  ],
+  "Pointed Arches": [
+    "/keywords/128"
+  ],
+  "Safavid": [
+    "/keywords/129"
+  ],
+  "Brick": [
+    "/keywords/130"
+  ],
+  "Kufic Script": [
+    "/keywords/131"
+  ],
+  "Balcony": [
+    "/keywords/132"
+  ],
+  "Cornices": [
+    "/keywords/133"
+  ],
+  "Thuluth Script": [
+    "/keywords/134"
+  ],
+  "Tower": [
+    "/keywords/135"
+  ],
+  "Ilkhanid": [
+    "/keywords/136"
+  ],
+  "Mausoleum": [
+    "/keywords/137"
+  ],
+  "Tent Dome": [
+    "/keywords/138"
+  ],
+  "Portal": [
+    "/keywords/139"
+  ],
+  "Eleventh Century": [
+    "/keywords/140"
+  ],
+  "Buyid": [
+    "/keywords/141"
+  ],
+  "Relief Patterns": [
+    "/keywords/142"
+  ],
+  "Semi-Dome": [
+    "/keywords/143"
+  ],
+  "Bridge": [
+    "/keywords/144"
+  ],
+  "River": [
+    "/keywords/145"
+  ],
+  "Piers": [
+    "/keywords/146"
+  ],
+  "Pavilion": [
+    "/keywords/147"
+  ],
+  "Archway": [
+    "/keywords/148"
+  ],
+  "Stairs": [
+    "/keywords/149"
+  ],
+  "Dam": [
+    "/keywords/150"
+  ],
+  "Seventeenth Century": [
+    "/keywords/151"
+  ],
+  "Animal Figure": [
+    "/keywords/152"
+  ],
+  "Statue": [
+    "/keywords/153"
+  ],
+  "Lion": [
+    "/keywords/154"
+  ],
+  "Fishing": [
+    "/keywords/155"
+  ],
+  "Frieze": [
+    "/keywords/156"
+  ],
+  "Theater of Dionysus": [
+    "/keywords/157"
+  ],
+  "Acropolis": [
+    "/keywords/158"
+  ],
+  "Athenian Acropolis": [
+    "/keywords/159"
+  ],
+  "Sculpture": [
+    "/keywords/160"
+  ],
+  "Stone Sculpture": [
+    "/keywords/161"
+  ],
+  "Marble Sculpture": [
+    "/keywords/162"
+  ],
+  "Relief Sculpture": [
+    "/keywords/163"
+  ],
+  "Red Slides": [
+    "/keywords/164"
+  ],
+  "Banna'i": [
+    "/keywords/165"
+  ],
+  "Şemsettin Güveyni": [
+    "/keywords/166"
+  ],
+  "Façade": [
+    "/keywords/167"
+  ],
+  "Buttress": [
+    "/keywords/168"
+  ],
+  "Signage": [
+    "/keywords/169"
+  ],
+  "Pyramidal Tower": [
+    "/keywords/170"
+  ],
+  "Conical Roof": [
+    "/keywords/171"
+  ],
+  "Star": [
+    "/keywords/172"
+  ],
+  "Palmette": [
+    "/keywords/173"
+  ],
+  "Domestic Animals": [
+    "/keywords/174"
+  ],
+  "Nature": [
+    "/keywords/175"
+  ],
+  "Basalt": [
+    "/keywords/176"
+  ],
+  "Mountains": [
+    "/keywords/177"
+  ],
+  "Kızılırmak River": [
+    "/keywords/178"
+  ],
+  "Red River": [
+    "/keywords/179"
+  ],
+  "Rural Settlement": [
+    "/keywords/180"
+  ],
+  "Countryside": [
+    "/keywords/181"
+  ],
+  "Buildings": [
+    "/keywords/182"
+  ],
+  "Children": [
+    "/keywords/183"
+  ],
+  "Tunnel": [
+    "/keywords/184"
+  ],
+  "Ankara": [
+    "/keywords/185",
+    null
+  ],
+  "Citadel": [
+    "/keywords/186"
+  ],
+  "Ninth Century": [
+    "/keywords/187"
+  ],
+  "Byzantine Period": [
+    "/keywords/188"
+  ],
+  "Sheep": [
+    "/keywords/189"
+  ],
+  "Marketplace": [
+    "/keywords/190"
+  ],
+  "Waterbody": [
+    "/keywords/191"
+  ],
+  "Lake": [
+    "/keywords/192"
+  ],
+  "Rocks": [
+    "/keywords/193"
+  ],
+  "Hasan Dağı": [
+    "/keywords/194"
+  ],
+  "Mount Hasan": [
+    "/keywords/195"
+  ],
+  "Horses": [
+    "/keywords/196"
+  ],
+  "Agriculture": [
+    "/keywords/197"
+  ],
+  "Caravanserai": [
+    "/keywords/198"
+  ],
+  "Han": [
+    "/keywords/199"
+  ],
+  "Alaettin Mosque": [
+    "/keywords/200"
+  ],
+  "Sungur Bey Mosque": [
+    "/keywords/201"
+  ],
+  "Frankish": [
+    "/keywords/202"
+  ],
+  "Window": [
+    "/keywords/203"
+  ],
+  "Door": [
+    "/keywords/204"
+  ],
+  "Glazed Brick": [
+    "/keywords/205"
+  ],
+  "Stucco": [
+    "/keywords/206"
+  ],
+  "Turkman": [
+    "/keywords/207"
+  ],
+  "Mosaic": [
+    "/keywords/208"
+  ],
+  "Dome Chamber": [
+    "/keywords/209"
+  ],
+  "Geometric": [
+    "/keywords/210"
+  ],
+  "Girih": [
+    "/keywords/211"
+  ],
+  "Iwan": [
+    "/keywords/212"
+  ],
+  "Vaulting": [
+    "/keywords/213"
+  ],
+  "Tenth Century": [
+    "/keywords/214"
+  ],
+  "Transverse Vaults": [
+    "/keywords/215"
+  ],
+  "Prayer Hall": [
+    "/keywords/216"
+  ],
+  "Muzaffarid": [
+    "/keywords/217"
+  ],
+  "Timurid": [
+    "/keywords/218"
+  ],
+  "Faience Mosaic": [
+    "/keywords/219"
+  ],
+  "Arabesque": [
+    "/keywords/220"
+  ],
+  "Floral": [
+    "/keywords/221"
+  ],
+  "Mosaic Arches": [
+    "/keywords/222"
+  ],
+  "Pool": [
+    "/keywords/223"
+  ],
+  "Desert": [
+    "/keywords/224"
+  ],
+  "Sassanian": [
+    "/keywords/225"
+  ],
+  "Fourth Century AD": [
+    "/keywords/226"
+  ],
+  "Fifth Century AD": [
+    "/keywords/227"
+  ],
+  "Capital": [
+    "/keywords/228"
+  ],
+  "Foliate Capital": [
+    "/keywords/229"
+  ],
+  "Pilaster": [
+    "/keywords/230"
+  ],
+  "Floral Capital": [
+    "/keywords/231"
+  ],
+  "High Relief": [
+    "/keywords/232"
+  ],
+  "Almohad": [
+    "/keywords/233"
+  ],
+  "Gothic": [
+    "/keywords/234"
+  ],
+  "Reconstructed": [
+    "/keywords/235"
+  ],
+  "Cathedral": [
+    "/keywords/236"
+  ],
+  "Bell Tower": [
+    "/keywords/237"
+  ],
+  "Sebka": [
+    "/keywords/238"
+  ],
+  "Horseshoe Arches": [
+    "/keywords/239"
+  ],
+  "Bells": [
+    "/keywords/240"
+  ],
+  "Mudejar": [
+    "/keywords/241"
+  ],
+  "Palace": [
+    "/keywords/242"
+  ],
+  "House": [
+    "/keywords/243"
+  ],
+  "Wood Carving": [
+    "/keywords/244"
+  ],
+  "Wood": [
+    "/keywords/245"
+  ],
+  "Ektachrome": [
+    "/keywords/246"
+  ],
+  "Roman": [
+    "/keywords/247"
+  ],
+  "First Century BC": [
+    "/keywords/248"
+  ],
+  "Umayyad": [
+    "/keywords/249"
+  ],
+  "Eighth Century AD": [
+    "/keywords/250"
+  ],
+  "Double-tiered Arches": [
+    "/keywords/251"
+  ],
+  "Column Capital": [
+    "/keywords/252"
+  ],
+  "Nave": [
+    "/keywords/253"
+  ],
+  "Poly-lobed Arches": [
+    "/keywords/254"
+  ],
+  "Ceiling": [
+    "/keywords/255"
+  ],
+  "Latin Inscription": [
+    "/keywords/256"
+  ],
+  "Sand": [
+    "/keywords/257"
+  ],
+  "Zellij": [
+    "/keywords/258"
+  ],
+  "Dog": [
+    "/keywords/259"
+  ],
+  "Colmuns": [
+    "/keywords/260"
+  ],
+  "Cars": [
+    "/keywords/261"
+  ],
+  "Hotel": [
+    "/keywords/262"
+  ],
+  "Bronze": [
+    "/keywords/263"
+  ],
+  "Cast Bronze": [
+    "/keywords/264"
+  ],
+  "Synagogue": [
+    "/keywords/265"
+  ],
+  "Hebrew Inscription": [
+    "/keywords/266"
+  ],
+  "Sunrise": [
+    "/keywords/267"
+  ],
+  "Mt. Kirfis": [
+    "/keywords/268"
+  ],
+  "Valley": [
+    "/keywords/269"
+  ],
+  "River Valley": [
+    "/keywords/270"
+  ],
+  "Pleistos River Valley": [
+    "/keywords/271"
+  ],
+  "Itea": [
+    "/keywords/272"
+  ],
+  "Port": [
+    "/keywords/273"
+  ],
+  "Harbor": [
+    "/keywords/274"
+  ],
+  "Gymnasium": [
+    "/keywords/275"
+  ],
+  "Retaining Wall": [
+    "/keywords/276"
+  ],
+  "Fourth Century BC": [
+    "/keywords/277"
+  ],
+  "Classical Period": [
+    "/keywords/278"
+  ],
+  "Polygonal": [
+    "/keywords/279"
+  ],
+  "Hestiatorion": [
+    "/keywords/280"
+  ],
+  "Olive Trees": [
+    "/keywords/281"
+  ],
+  "Repurposed": [
+    "/keywords/282"
+  ],
+  "Birdbath": [
+    "/keywords/283"
+  ],
+  "Unidentified": [
+    "/keywords/284"
+  ],
+  "Massalian": [
+    "/keywords/285"
+  ],
+  "Treasury": [
+    "/keywords/286"
+  ],
+  "Tholos": [
+    "/keywords/287"
+  ],
+  "Metope": [
+    "/keywords/288"
+  ],
+  "Triglyph": [
+    "/keywords/289"
+  ],
+  "Temple": [
+    "/keywords/290"
+  ],
+  "Old Temple of Athena at Delphi": [
+    "/keywords/291"
+  ],
+  "Athena": [
+    "/keywords/292"
+  ],
+  "Fifth Century BC": [
+    "/keywords/293"
+  ],
+  "Sanctuary of Athena at Delphi": [
+    "/keywords/294",
+    "/places/locations/35"
+  ],
+  "Old Temple of Athena": [
+    "/keywords/295"
+  ],
+  "Bead and Reel": [
+    "/keywords/296"
+  ],
+  "Sixth Century BC": [
+    "/keywords/297"
+  ],
+  "Archaic Period": [
+    "/keywords/298"
+  ],
+  "Reconstruction": [
+    "/keywords/299"
+  ],
+  "Phaedriades": [
+    "/keywords/300"
+  ],
+  "Spring": [
+    "/keywords/301"
+  ],
+  "Rock": [
+    "/keywords/302"
+  ],
+  "Reservoir": [
+    "/keywords/303"
+  ],
+  "Stoa": [
+    "/keywords/304"
+  ],
+  "Agora": [
+    "/keywords/305"
+  ],
+  "Roman Period": [
+    "/keywords/306"
+  ],
+  "Cross": [
+    "/keywords/307"
+  ],
+  "Votive Offering": [
+    "/keywords/308"
+  ],
+  "Exedra": [
+    "/keywords/309"
+  ],
+  "Drains": [
+    "/keywords/310"
+  ],
+  "Statue Bases": [
+    "/keywords/311"
+  ],
+  "Argive": [
+    "/keywords/312"
+  ],
+  "Isodomic": [
+    "/keywords/313"
+  ],
+  "Greek Inscription": [
+    "/keywords/314"
+  ],
+  "Text": [
+    "/keywords/315"
+  ],
+  "Athenian Treasury": [
+    "/keywords/316"
+  ],
+  "Theseus": [
+    "/keywords/317"
+  ],
+  "Human Figure": [
+    "/keywords/318"
+  ],
+  "Natural Monument": [
+    "/keywords/319"
+  ],
+  "Athenian Stoa": [
+    "/keywords/320"
+  ],
+  "Tripod": [
+    "/keywords/321"
+  ],
+  "Chian": [
+    "/keywords/322"
+  ],
+  "Altar": [
+    "/keywords/323"
+  ],
+  "Second Century BC": [
+    "/keywords/324"
+  ],
+  "Hellenistic Period": [
+    "/keywords/325"
+  ],
+  "Sanctuary of Apollo at Delphi": [
+    "/keywords/326",
+    "/places/locations/39"
+  ],
+  "Monument of Krateros": [
+    "/keywords/327"
+  ],
+  "Family Dedication": [
+    "/keywords/328"
+  ],
+  "Rusticated": [
+    "/keywords/329"
+  ],
+  "Stoa of Attalus": [
+    "/keywords/330"
+  ],
+  "Reservior": [
+    "/keywords/331"
+  ],
+  "Drain": [
+    "/keywords/332"
+  ],
+  "Covered Drain": [
+    "/keywords/333"
+  ],
+  "Theater": [
+    "/keywords/334"
+  ],
+  "Theater of Delphi": [
+    "/keywords/335"
+  ],
+  "Temple of Apollo at Delphi": [
+    "/keywords/336",
+    "/places/locations/40"
+  ],
+  "Apollo": [
+    "/keywords/337"
+  ],
+  "Seats": [
+    "/keywords/338"
+  ],
+  "Kerna II": [
+    "/keywords/339"
+  ],
+  "Stadium": [
+    "/keywords/340"
+  ],
+  "Herodus Atticus": [
+    "/keywords/341"
+  ],
+  "Second Century AD": [
+    "/keywords/342"
+  ],
+  "Stadium of Herodus Atticus": [
+    "/keywords/343"
+  ],
+  "Triumphal Arches": [
+    "/keywords/344"
+  ],
+  "Sphendone": [
+    "/keywords/345"
+  ],
+  "Proedria": [
+    "/keywords/346"
+  ],
+  "Rough Picked": [
+    "/keywords/347"
+  ],
+  "Pseudo-Isodomic": [
+    "/keywords/348"
+  ],
+  "Sphinx": [
+    "/keywords/349"
+  ],
+  "Greek Sphinx": [
+    "/keywords/350"
+  ],
+  "Naxos": [
+    "/keywords/351"
+  ],
+  "Gods": [
+    "/keywords/352"
+  ],
+  "Ares": [
+    "/keywords/353"
+  ],
+  "Artemis": [
+    "/keywords/354"
+  ],
+  "Human Figures": [
+    "/keywords/355"
+  ],
+  "Siphnian Treasury": [
+    "/keywords/356"
+  ],
+  "Pediment": [
+    "/keywords/357"
+  ],
+  "Zeus": [
+    "/keywords/358"
+  ],
+  "Hercules": [
+    "/keywords/359"
+  ],
+  "Giants": [
+    "/keywords/360"
+  ],
+  "Themis": [
+    "/keywords/361"
+  ],
+  "Chariot": [
+    "/keywords/362"
+  ],
+  "Argos": [
+    "/keywords/363"
+  ],
+  "Kouros": [
+    "/keywords/364"
+  ],
+  "Herodotus": [
+    "/keywords/365"
+  ],
+  "Polymedes of Argos": [
+    "/keywords/366"
+  ],
+  "Statue Group": [
+    "/keywords/367"
+  ],
+  "Sima": [
+    "/keywords/368"
+  ],
+  "Amazomachy": [
+    "/keywords/369"
+  ],
+  "Charioteer": [
+    "/keywords/370"
+  ],
+  "Third Century BC": [
+    "/keywords/371"
+  ],
+  "Antinoös": [
+    "/keywords/372"
+  ],
+  "Antinous": [
+    "/keywords/373"
+  ],
+  "Archaic Sculpture": [
+    "/keywords/374"
+  ],
+  "Alcmaeonid": [
+    "/keywords/375"
+  ],
+  "Alcmaeonid Temple of Apollo": [
+    "/keywords/376"
+  ],
+  "Kore": [
+    "/keywords/377"
+  ],
+  "Girl": [
+    "/keywords/378"
+  ],
+  "Early Hellenistic Period": [
+    "/keywords/379"
+  ],
+  "First Century AD": [
+    "/keywords/380"
+  ],
+  "No Location": [
+    "/places/locations/1"
+  ],
+  "Dome of the Rock/Qubbat as-Sakhrah": [
+    "/places/locations/3"
+  ],
+  "Temple Mount/Haram al-Sharif": [
+    "/places/locations/4"
+  ],
+  "Al-Aqsa Mosque on Temple Mount": [
+    "/places/locations/5"
+  ],
+  "Chain Gate Street": [
+    "/places/locations/6"
+  ],
+  "Lady Tunshuq's Palace": [
+    "/places/locations/7"
+  ],
+  "Turba Turkan Khatun, Chain Gate Street": [
+    "/places/locations/8"
+  ],
+  "Haja'y Street": [
+    "/places/locations/9"
+  ],
+  "Omar": [
+    "/places/locations/10"
+  ],
+  "Imam Ali Mosque": [
+    "/places/locations/11"
+  ],
+  "Chehel Dokhtaran": [
+    "/places/locations/12"
+  ],
+  "Sarban Minaret": [
+    "/places/locations/13"
+  ],
+  "Imamzedeh Jafar": [
+    "/places/locations/14"
+  ],
+  "Tomb of Baba Qasim": [
+    "/places/locations/15"
+  ],
+  "Jurjir Mosque": [
+    "/places/locations/16"
+  ],
+  "Shahrestan Bridge": [
+    "/places/locations/17"
+  ],
+  "Khajoo Bridge": [
+    "/places/locations/18"
+  ],
+  "Bridge of 33 Arches": [
+    "/places/locations/19"
+  ],
+  "Athens": [
+    "/places/locations/20",
+    null
+  ],
+  "Selçuklu Parkı (Selçuk Park)": [
+    "/places/locations/21"
+  ],
+  "Gök Medrese": [
+    "/places/locations/22"
+  ],
+  "Kızılırmak (Halys) River": [
+    "/places/locations/23"
+  ],
+  "Ankara Citadel": [
+    "/places/locations/24"
+  ],
+  "Çerikli": [
+    "/places/locations/25",
+    null
+  ],
+  "Gölbaşı": [
+    "/places/locations/26"
+  ],
+  "Lake Tuz": [
+    "/places/locations/27"
+  ],
+  "Hasandağı": [
+    "/places/locations/28"
+  ],
+  "Kizil Minare": [
+    "/places/locations/29"
+  ],
+  "Ağzıkarahan": [
+    "/places/locations/30"
+  ],
+  "Alaettin Camii": [
+    "/places/locations/31"
+  ],
+  "Sungurbey Mosque of Niğde": [
+    "/places/locations/32"
+  ],
+  "Delphi": [
+    "/places/locations/33"
+  ],
+  "Ancient Gymnasium at Delphi": [
+    "/places/locations/34"
+  ],
+  "Old Temple of Athena Pronoia, Sanctuary of Athena at Delphi": [
+    "/places/locations/36"
+  ],
+  "Castalian Spring at Delphi": [
+    "/places/locations/37"
+  ],
+  "Roman Marketplace at Delphi": [
+    "/places/locations/38"
+  ],
+  "Delphi Archaeological Site": [
+    "/places/locations/41"
+  ],
+  "Kerna Spring at Delphi": [
+    "/places/locations/42"
+  ],
+  "Stadium of Herodus Atticus at Delphi": [
+    "/places/locations/43"
+  ],
+  "Delphi Archaeological Museum": [
+    "/places/locations/44"
+  ],
+  "No City": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "Isfahan": [
+    null
+  ],
+  "Nain": [
+    null
+  ],
+  "Zanjan": [
+    null
+  ],
+  "Tabriz": [
+    null
+  ],
+  "Maragheh": [
+    null
+  ],
+  "Saveh": [
+    null
+  ],
+  "Yazd": [
+    null
+  ],
+  "Kerman": [
+    null
+  ],
+  "Kermanshah": [
+    null
+  ],
+  "Delfoi": [
+    null
+  ],
+  "Sivas": [
+    null
+  ],
+  "Tuz Gölü": [
+    null
+  ],
+  "Aksaray": [
+    null
+  ],
+  "Niğde": [
+    null
+  ],
+  "Seville": [
+    null
+  ],
+  "Córdoba": [
+    null
+  ],
+  "Toledo": [
+    null
+  ],
+  "No Region, No Country": [
+    "/places/regions/1"
+  ],
+  "No Region, Israel/Palestine": [
+    "/places/regions/2"
+  ],
+  "Jerusalem District, Israel/Palestine": [
+    "/places/regions/3"
+  ],
+  "No Region, Iran": [
+    "/places/regions/4"
+  ],
+  "Isfahan Province, Iran": [
+    "/places/regions/5"
+  ],
+  "Zanjan Province, Iran": [
+    "/places/regions/6"
+  ],
+  "East Azerbaijan Province, Iran": [
+    "/places/regions/7"
+  ],
+  "Markazi Province, Iran": [
+    "/places/regions/8"
+  ],
+  "Yazd Province, Iran": [
+    "/places/regions/9"
+  ],
+  "Kerman Province, Iran": [
+    "/places/regions/10"
+  ],
+  "Kermanshah Province, Iran": [
+    "/places/regions/11"
+  ],
+  "No Region, Greece": [
+    "/places/regions/12"
+  ],
+  "Attica, Greece": [
+    "/places/regions/13"
+  ],
+  "Central Greece, Greece": [
+    "/places/regions/14"
+  ],
+  "No Region, Turkey": [
+    "/places/regions/15"
+  ],
+  "Central Anatolia, Turkey": [
+    "/places/regions/16"
+  ],
+  "No Region, Spain": [
+    "/places/regions/17"
+  ],
+  "Seville Province, Spain": [
+    "/places/regions/18"
+  ],
+  "Córdoba Province, Spain": [
+    "/places/regions/19"
+  ],
+  "Toledo Province, Spain": [
+    "/places/regions/20"
+  ],
+  "No Country": [
+    "/places/countries/1"
+  ],
+  "Israel/Palestine": [
+    "/places/countries/2"
+  ],
+  "Iran": [
+    "/places/countries/3"
+  ],
+  "Greece": [
+    "/places/countries/4"
+  ],
+  "Turkey": [
+    "/places/countries/5"
+  ],
+  "Spain": [
+    "/places/countries/6"
+  ],
+  "APR 67": [
+    "/stamps/1"
+  ],
+  "APR 77F7": [
+    "/stamps/2"
+  ],
+  "unstamped": [
+    "/stamps/3"
+  ],
+  "MAR 72F3": [
+    "/stamps/4"
+  ],
+  "AUG 60N": [
+    "/stamps/5"
+  ],
+  "SEP 63": [
+    "/stamps/6"
+  ],
+  "JAN 70": [
+    "/stamps/7"
+  ],
+  "SEP 67F10": [
+    "/stamps/8"
+  ],
+  "SEP 67F8": [
+    "/stamps/9"
+  ],
+  "SEP 67F9": [
+    "/stamps/10"
+  ],
+  "SEP 67F6": [
+    "/stamps/11"
+  ],
+  "DEC 66": [
+    "/stamps/12"
+  ],
+  "OCT 67R": [
+    "/stamps/13"
+  ],
+  "JUN 74": [
+    "/stamps/14"
+  ],
+  "JUL 78": [
+    "/stamps/15"
+  ],
+  "3000": [
+    "/years/3000"
+  ],
+  "1967": [
+    "/years/1967"
+  ],
+  "1977": [
+    "/years/1977"
+  ],
+  "1969": [
+    "/years/1969"
+  ],
+  "1972": [
+    "/years/1972"
+  ],
+  "1960": [
+    "/years/1960"
+  ],
+  "1963": [
+    "/years/1963"
+  ],
+  "1958": [
+    "/years/1958"
+  ],
+  "1966": [
+    "/years/1966"
+  ],
+  "1974": [
+    "/years/1974"
+  ],
+  "1978": [
+    "/years/1978"
+  ]
+}
