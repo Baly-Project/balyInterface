@@ -13,10 +13,11 @@ export default class extends Controller {
   }
   // Setup methods
   assignListeners(){
+    var searchbar = this.searchboxTarget
     document.addEventListener("keyup",(e)=>{
-      if(document.activeElement.id == this.searchboxTarget.id){
+      if(document.activeElement.id == searchbar.id){
         this.resizePanel();
-        var contents = this.searchboxTarget.value;
+        var contents = searchbar.value;
         if(contents.length > 0){
           this.autofill(contents);
         } else {
@@ -25,11 +26,21 @@ export default class extends Controller {
       }
     });
     window.addEventListener('resize', (e)=>{
-      if (this.searchboxTarget.value.length > 0){
+      if (searchbar.value.length > 0){
         this.resizePanel();
       }
     });
-  };
+
+    searchbar.addEventListener("click", (e)=>{
+      setTimeout(()=>this.clearIfEmpty(), 100);
+    });
+  }
+
+  clearIfEmpty(){
+    if(this.searchboxTarget.value.length == 0){
+      this.clearBox();
+    }
+  }
 
   setKeys(){
     this.keys = Object.keys(searchdata);
