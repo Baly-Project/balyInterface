@@ -25,7 +25,8 @@ class Updater
       @log.puts "WARNING: IDs read on input do not match the models"
       return index[:ids].keys.sort, data.ids
     end
-    manager.assignPreviewData(index,data)    
+    data = manager.assignPreviewData(index,data)
+    return data    
   end
   
   private
@@ -565,6 +566,8 @@ class Updater
           @log.puts "Preview number #{key} failed to save due to a #{e.class} stating #{e.message}"
         end
       end
+      writeAutofillObject()
+      return index[:ids]
     end
 
     def assignPlaces(placeIds,index)
@@ -598,6 +601,27 @@ class Updater
       list.each do |id|
         idindex[id].set(attr,value)
       end
+    end
+    def writeAutofillObject()
+      entries = Hash.new
+      SafeDeleter.allModels.each do |model|
+        if model.method_defined? :generateSearchEntry
+          model.all.each do |item|
+            (title,link) = item.generateSearchEntry
+            if entries.include? title
+              entries[title].push link
+            else 
+              entries[title] = [link]
+            end
+          end
+        end
+      end        
+      filetouse = Rails.root.join("public","searchdata.js")
+      File.delete(filetouse) if File.exist? filetouse
+      outfile = File.new(filetouse, 'w')
+      outfile.print "var searchdata = "
+      outfile.print JSON.pretty_generate(entries)
+      outfile.close
     end
   end
 end
