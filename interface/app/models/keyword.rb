@@ -7,7 +7,7 @@ class Keyword < ApplicationRecord
   end
 
   def generateSearchEntry
-    link = "keywords/#{self.id}"
+    link = "/keywords/#{self.id}"
     title = self.title
     return [title,link]
   end

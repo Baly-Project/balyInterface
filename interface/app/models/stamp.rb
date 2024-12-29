@@ -6,7 +6,7 @@ class Stamp < ApplicationRecord
   validates :title, presence:true
 
   def generateSearchEntry
-    link = "stamps/#{self.id}"
+    link = "/stamps/#{self.id}"
     title = self.title
     return [title,link]
   end

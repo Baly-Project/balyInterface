@@ -19,7 +19,7 @@ class Collection < ApplicationRecord
   end
 
   def generateSearchEntry
-    link = "collections/#{self.alph_value}"
+    link = "/collections/#{self.alph_value}"
     title = self.title
     return [title,link]
   end

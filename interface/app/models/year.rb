@@ -5,7 +5,7 @@ class Year < ApplicationRecord
   validates :number, presence: true
 
   def generateSearchEntry
-    link = "years/#{self.number}"
+    link = "/years/#{self.number}"
     title = self.number.to_s
     return [title,link]
   end

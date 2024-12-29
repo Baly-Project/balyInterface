@@ -7,8 +7,8 @@ class Region < ApplicationRecord
   validates :title, presence:true
 
   def generateSearchEntry
-    link = "places/regions/#{self.id}"
-    title = self.title
+    link = "/places/regions/#{self.id}"
+    title = "#{self.title}, #{self.country.title}"
     return [title,link]
   end
 end

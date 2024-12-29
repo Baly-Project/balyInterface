@@ -32,7 +32,7 @@ class Location < ApplicationRecord
   end
 
   def generateSearchEntry
-    link = "places/locations/#{self.id}"
+    link = "/places/locations/#{self.id}"
     title = self.title
     return [title,link]
   end
