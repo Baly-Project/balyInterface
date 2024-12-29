@@ -8,6 +8,7 @@ class City < ApplicationRecord
 
   def generateSearchEntry
     link = "places/cities/#{self.id}"
-    title = self.title
+    title = "#{self.title}, #{self.country.title}"
+    return [title,link]
   end
 end
