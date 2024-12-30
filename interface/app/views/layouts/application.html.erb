@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <title>Baly Gallery</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1" charset="utf-8">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="icon", type="image/x-icon",height="16px",width="16px" class="fav-icon"> 
@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
      crossorigin=""/>
+    <script type='text/javascript' src="/searchdata.js"></script>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-
     <% if content_for :for_head %>
       <%= yield :for_head %>
     <% end %>
@@ -47,7 +47,7 @@
               <a id="home-link" class="nav-link" href="/home">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a id="browse-link" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown"> Browse </a>
+              <a id="browse-link" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#"> Browse </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/collections/all">by Collection</a></li>
                 <li><a class="dropdown-item" href="/years/all">by Year</a></li>
@@ -63,11 +63,13 @@
               <a id="about-link" class="nav-link" href="/about"> About </a>
             </li>
           </ul>
-          <div class="search-group">
+          <div class="search-group" data-controller='autofill' data-autofill-maxresults-value="10">
             <form class="d-flex search-form" role="search" data-controller="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" data-search-target="textbox">
+              <input id="main-search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" data-search-target="textbox" data-autofill-target="searchbox">
               <button class="btn btn-outline-secondary" data-action="click->search#submit">Search</button>
             </form>
+	    <ul class="search-dropdown-menu" id="autofill-box" data-autofill-target="fillbox"> 
+            </ul>
           </div>
         </div>
       </nav>

@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AutofillController from "./autofill_controller"
+application.register("autofill", AutofillController)
+
 import BackForthController from "./back_forth_controller"
 application.register("back-forth", BackForthController)
 

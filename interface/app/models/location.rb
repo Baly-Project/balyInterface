@@ -30,4 +30,10 @@ class Location < ApplicationRecord
     arr=[cord1,cord2]
     return arr
   end
+
+  def generateSearchEntry
+    link = "/places/locations/#{self.id}"
+    title = self.title
+    return [title,link]
+  end
 end

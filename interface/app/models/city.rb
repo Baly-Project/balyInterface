@@ -5,4 +5,10 @@ class City < ApplicationRecord
   has_many :previews
 
   validates :title, presence: true
+
+  def generateSearchEntry
+    link = "/places/cities/#{self.id}"
+    title = "#{self.title}, #{self.country.title}"
+    return [title,link]
+  end
 end

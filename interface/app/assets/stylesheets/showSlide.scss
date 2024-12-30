@@ -174,12 +174,13 @@
     justify-content: space-between;
     align-items: center;
   }
-  div.expand-button {
+  a.expand-button {
     font-size: 30pt;
     display: flex;
     align-items: center;
+    color: black;
   }
-  div.expand-button svg {
+  a.expand-button svg {
     height:40px
   }
   .map-container {
