@@ -608,10 +608,12 @@ class Updater
         if model.method_defined? :generateSearchEntry
           model.all.each do |item|
             (title,link) = item.generateSearchEntry
-            if entries.include? title
-              entries[title].push link
-            else 
-              entries[title] = [link]
+            if !title.include? "No "
+              if entries.include? title
+                entries[title].push link
+              else
+                entries[title] = [link]
+              end
             end
           end
         end

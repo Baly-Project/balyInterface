@@ -1173,9 +1173,6 @@ var searchdata = {
   "First Century AD": [
     "/keywords/380"
   ],
-  "No Location": [
-    "/places/locations/1"
-  ],
   "Dome of the Rock/Qubbat as-Sakhrah": [
     "/places/locations/3"
   ],
@@ -1293,112 +1290,71 @@ var searchdata = {
   "Delphi Archaeological Museum": [
     "/places/locations/44"
   ],
-  "No City, No Country": [
-    "places/cities/1"
-  ],
-  "No City, Israel/Palestine": [
-    "places/cities/2",
-    "places/cities/3"
-  ],
   "Jerusalem, Israel/Palestine": [
-    "places/cities/4"
-  ],
-  "No City, Iran": [
-    "places/cities/5",
-    "places/cities/6",
-    "places/cities/9",
-    "places/cities/11",
-    "places/cities/14",
-    "places/cities/16",
-    "places/cities/18",
-    "places/cities/20"
+    "/places/cities/4"
   ],
   "Isfahan, Iran": [
-    "places/cities/7"
+    "/places/cities/7"
   ],
   "Nain, Iran": [
-    "places/cities/8"
+    "/places/cities/8"
   ],
   "Zanjan, Iran": [
-    "places/cities/10"
+    "/places/cities/10"
   ],
   "Tabriz, Iran": [
-    "places/cities/12"
+    "/places/cities/12"
   ],
   "Maragheh, Iran": [
-    "places/cities/13"
+    "/places/cities/13"
   ],
   "Saveh, Iran": [
-    "places/cities/15"
+    "/places/cities/15"
   ],
   "Yazd, Iran": [
-    "places/cities/17"
+    "/places/cities/17"
   ],
   "Kerman, Iran": [
-    "places/cities/19"
+    "/places/cities/19"
   ],
   "Kermanshah, Iran": [
-    "places/cities/21"
-  ],
-  "No City, Greece": [
-    "places/cities/22",
-    "places/cities/23",
-    "places/cities/25"
+    "/places/cities/21"
   ],
   "Athens, Greece": [
-    "places/cities/24"
+    "/places/cities/24"
   ],
   "Delfoi, Greece": [
-    "places/cities/26"
-  ],
-  "No City, Turkey": [
-    "places/cities/27",
-    "places/cities/28"
+    "/places/cities/26"
   ],
   "Sivas, Turkey": [
-    "places/cities/29"
+    "/places/cities/29"
   ],
   "Ankara, Turkey": [
-    "places/cities/30"
+    "/places/cities/30"
   ],
   "Çerikli, Turkey": [
-    "places/cities/31"
+    "/places/cities/31"
   ],
   "Tuz Gölü, Turkey": [
-    "places/cities/32"
+    "/places/cities/32"
   ],
   "Aksaray, Turkey": [
-    "places/cities/33"
+    "/places/cities/33"
   ],
   "Niğde, Turkey": [
-    "places/cities/34"
-  ],
-  "No City, Spain": [
-    "places/cities/35",
-    "places/cities/36",
-    "places/cities/38",
-    "places/cities/40"
+    "/places/cities/34"
   ],
   "Seville, Spain": [
-    "places/cities/37"
+    "/places/cities/37"
   ],
   "Córdoba, Spain": [
-    "places/cities/39"
+    "/places/cities/39"
   ],
   "Toledo, Spain": [
-    "places/cities/41"
-  ],
-  "No Region, No Country": [
-    "/places/regions/1"
-  ],
-  "No Region, Israel/Palestine": [
-    "/places/regions/2"
+    "/places/cities/41"
   ],
   "Jerusalem District, Israel/Palestine": [
     "/places/regions/3"
-  ],
-  "No Region, Iran": [
-    "/places/regions/4"
   ],
   "Isfahan Province, Iran": [
     "/places/regions/5"
@@ -1421,23 +1377,14 @@ var searchdata = {
   "Kermanshah Province, Iran": [
     "/places/regions/11"
   ],
-  "No Region, Greece": [
-    "/places/regions/12"
-  ],
   "Attica, Greece": [
     "/places/regions/13"
   ],
   "Central Greece, Greece": [
     "/places/regions/14"
   ],
-  "No Region, Turkey": [
-    "/places/regions/15"
-  ],
   "Central Anatolia, Turkey": [
     "/places/regions/16"
-  ],
-  "No Region, Spain": [
-    "/places/regions/17"
   ],
   "Seville Province, Spain": [
     "/places/regions/18"
@@ -1447,9 +1394,6 @@ var searchdata = {
   ],
   "Toledo Province, Spain": [
     "/places/regions/20"
-  ],
-  "No Country": [
-    "/places/countries/1"
   ],
   "Israel/Palestine": [
     "/places/countries/2"
