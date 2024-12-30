@@ -96,11 +96,14 @@ export default class extends Controller {
   }
 
   resizePanel(){
-    console.log("resized");
-    var targetwidth = this.searchboxTarget.offsetWidth;
-    this.fillboxTarget.style.visibility = 'visible';
-    this.fillboxTarget.style.width = " "+targetwidth+"px";
-    console.log(targetwidth);
+    var fillbox = this.fillboxTarget;
+    fillbox.style.visibility = 'visible';
+    if(window.innerWidth < 1200) {
+      var targetwidth = this.searchboxTarget.offsetWidth;
+      fillbox.style.width = " "+targetwidth+"px";
+    } else {
+      fillbox.style.width = "";
+    }
   }
 
   getType(link) {
