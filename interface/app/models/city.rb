@@ -7,7 +7,7 @@ class City < ApplicationRecord
   validates :title, presence: true
 
   def generateSearchEntry
-    link = "places/cities/#{self.id}"
+    link = "/places/cities/#{self.id}"
     title = "#{self.title}, #{self.country.title}"
     return [title,link]
   end

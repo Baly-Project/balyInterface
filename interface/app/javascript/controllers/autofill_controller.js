@@ -37,8 +37,11 @@ export default class extends Controller {
   }
 
   clearIfEmpty(){
-    if(this.searchboxTarget.value.length == 0){
+    var contents = this.searchboxTarget.value;
+    if(contents.length == 0){
       this.clearBox();
+    } else {
+      this.resizePanel();
     }
   }
 
@@ -80,7 +83,7 @@ export default class extends Controller {
     topN.forEach(result => {
       searchdata[result].forEach(link => {
         var type = this.getType(link)
-        var itemstring = "<a class='autofill dropdown-item' href='"+link+"'> "+result+" <span class='item-type'> "+type+"</span> </a> <hr class='thinline'>";
+        var itemstring = "<li><a class='autofill dropdown-item' href='"+link+"'> "+result+" <span class='item-type'> "+type+"</span> </a></li> <hr class='thinline'>";
         elements+=itemstring;
       })
     })
