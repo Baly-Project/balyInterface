@@ -1,11 +1,10 @@
 <%= turbo_frame_tag :search_get_response, src:"response/#{ERB::Util.url_encode(@query)}", loading: :lazy do %>
-<% end %>
 
   <div class="search-about">
     <h5 class="search-show"> Search for: "<%= @query %>" </h5>
     <p class="search-info">
       <% link = "https://digital.kenyon.edu/do/search/?q=&start=0&context=5047491&facet=" %>
-      Showing  <span id='spin-slash'>/</span>  results. 
+      Showing  <span id='spinner'>/</span>  results. 
       View all the results at <a href=<%=link%> class="purple" target="_blank"> Digital Kenyon </a>
     </p>
   </div>
@@ -13,14 +12,16 @@
   <div class="results-box">
     <% (1..10).each do %>
     <div class="row search-result">
-      <div class="fake-img-h"></div>
+      <div class="result-image">
+        <div class="fake-img-h"></div>
+      </div>
       <div class="result-info">
         <h5> 
            <div class="fake-text title"></div>
         </h5>
         <p> 
           <% (1..3).each do %>
-            <div class="fake-text desc"></div>
+            <span class="fake-text desc"></span><br>
           <% end %>
         </p> 
       </div>
@@ -28,3 +29,5 @@
     <hr class="navline">
     <% end %>
   </div>
+
+<% end %>
