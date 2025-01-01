@@ -83,6 +83,20 @@ $fill-color : #8080802e;
   width: 80%;
   height: .5em;
 }
+.shimmer {
+  animation: shimmer 1.8s infinite linear;
+  background: linear-gradient(to right, rgb(128 128 128 / 10%) 10%, rgb(128 128 128 / 20%) 25%, rgb(128 128 128 / 10%) 36%);
+  background-size: 1000px 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
 // autofill box
 
 .search-dropdown-menu {
