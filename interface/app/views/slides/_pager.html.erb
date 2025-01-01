@@ -15,7 +15,7 @@
   <div data-controller="pager">
     <ul class="pagination" data-pager-target="pager">
       <li class="page-item">
-        <a class="page-link pager" href="#" aria-label="Previous">
+        <a class="page-link pager" href="javascript:void(0)" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
@@ -28,7 +28,7 @@
       <li class="page-item" style="display:none"><a class="page-link pager <%= classToAdd %> <% if i*perpage == first %> active <% if classToAdd.length == 0 %> rounded-bottom <% end end%>" href="../<%=i*perpage+1%>/<%=(i+1)*perpage%>"><%=i+1%></a></li>
     <% end %>
       <li class="page-item">
-        <a class="page-link pager" href="#" aria-label="Next">
+        <a class="page-link pager" href="javascript:void(0)" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
