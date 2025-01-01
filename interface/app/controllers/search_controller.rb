@@ -2,6 +2,10 @@ class SearchController < ApplicationController
   API=ApiHandler.new
 
   def query
+    @query=params[:query]
+  end
+
+  def get_response
     q=params[:query]
     checkArray=["configured_field_t_identifier","title","configured_field_t_sorting_number"]
     rawrecords=API.getRecord(fields:"search",check:checkArray,query:q,parsed:true)

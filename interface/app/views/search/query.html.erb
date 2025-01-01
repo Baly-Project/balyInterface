@@ -1,18 +1,33 @@
-<% if @count > 0 %>
+<%= turbo_frame_tag :search_get_response, src:"response/#{ERB::Util.url_encode(@query)}", loading: :lazy do %>
+
   <div class="search-about">
     <h5 class="search-show"> Search for: "<%= @query %>" </h5>
-    <p class="search-info"> 
-    <% if @unseen==0 %>
-      Showing all results (<%= @count %>) 
-    </p>
-    <% else %>
-      <% link = "https://digital.kenyon.edu/do/search/?q=#{ERB::Util.url_encode(@query)}&start=0&context=5047491&facet=" %>
-      Showing <%= @count %> / <%=@count+@unshown %> results. 
+    <p class="search-info">
+      <% link = "https://digital.kenyon.edu/do/search/?q=&start=0&context=5047491&facet=" %>
+      Showing  <span id='spinner'>/</span>  results. 
       View all the results at <a href=<%=link%> class="purple" target="_blank"> Digital Kenyon </a>
     </p>
+  </div>
+
+  <div class="results-box">
+    <% (1..10).each do %>
+    <div class="row search-result">
+      <div class="result-image">
+        <div class="fake-img-h shimmer"></div>
+      </div>
+      <div class="result-info">
+        <h5> 
+           <div class="fake-text title shimmer"></div>
+        </h5>
+        <p> 
+          <% (1..3).each do %>
+            <span class="fake-text desc shimmer"></span><br>
+          <% end %>
+        </p> 
+      </div>
+    </div>
+    <hr class="navline">
     <% end %>
   </div>
-  <%= render partial:"results", object:@records, locals:{numbers:@numbers} %>
-<% else %>
-  <h3 class="search-show"> No results for "<%= @query %>" </h3>
+
 <% end %>
