@@ -1,6 +1,11 @@
-<h1> <%= @keyword.title %> </h1>
+<div class="pano-image">
+  <% candidate=@keyword.getRandomImage %>
+  <img class="candidate-image" src="<%=candidate.fullImgLink %>" alt="candidate.classification">
+</div>	
 
-<div class="keyword-about">
+<h1 class="large-title"> <%= @keyword.title %> <span class="item-type"> Keyword </span></h1>
+
+<div class="attribute-about space-below">
 <div>
   Contains <%=@keyword.previews.size%> members
 </div>

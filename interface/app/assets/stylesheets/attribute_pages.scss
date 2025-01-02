@@ -1,11 +1,22 @@
-/* Universal */
+// Universal
+.large-title {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+}
 
-
-/* Collections */
+.item-type {
+  font-size: 80%;
+  font-style: italic;
+  color: grey;
+  padding-left: 5px;
+  margin-left: auto;
+}
 
 .pano-image {
   height:4in;
 }
+
 .pano-image img {
    object-position: center;
    width: 100%;
@@ -13,7 +24,14 @@
    height: 4in;
 }
 
-/* Years */
+.prespace {
+  margin-left: .2em;
+}
+
+.attribute-about {
+  padding-left:30px;
+}
+// Years
 
 h1.yearitem {
   margin-left:20px;
@@ -32,7 +50,7 @@ div.med-indent{
    overflow-y:scroll;
 }
 
-/* Locations */
+// Locations
 
 .location-map {
   width: 100%;
@@ -45,13 +63,10 @@ div.med-indent{
   width:100%;
   height: 70svh;
 }
-.country-about {
-  padding-left:30px;
-}
 
-/* Keywords */
+// Keywords
 
-/* index.html.erb */
+// index.html.erb
 
 .period-list {
   margin-left: 1in;
@@ -90,10 +105,9 @@ div.med-indent{
   }
 }
 
-/* show.html.erb */
+// show.html.erb
 
-.keyword-about {
-  margin-left:.5in;
+.space-below {
   margin-bottom: .3in;
 }
 

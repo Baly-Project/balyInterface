@@ -1,5 +1,10 @@
-<h1> <%= @country.title %> </h1>
-<div class='country-about'>
+<div class="pano-image">
+  <% candidate=@country.getRandomImage %>
+  <img class="candidate-image" src="<%=candidate.fullImgLink %>" alt="candidate.classification">
+</div>
+
+<h1 class="large-title"> <%= @country.title %> <span class="item-type"> Country </span></h1>
+<div class='attribute-about'>
   <%= render @country %>
 </div>
 

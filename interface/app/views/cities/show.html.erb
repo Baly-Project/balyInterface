@@ -1,3 +1,11 @@
-<h1> <%= @city.title %>, <a class="purple" href="/places/countries/<%=@city.country.id %>"> <%=@city.country.title %> </a> </h1>
+<div class="pano-image">
+  <% candidate=@city.getRandomImage %>
+  <img class="candidate-image" src="<%=candidate.fullImgLink %>" alt="candidate.classification">
+</div>
+
+<h1 class="large-title"> 
+  <%= @city.title %>, <a class="purple prespace" href="/places/countries/<%=@city.country.id %>"> <%=@city.country.title %> </a> 
+  <span class="item-type"> City </span>
+</h1>
 <hr class=place-line">
 <%= render partial: "layouts/previewlist", object: @city, locals:{align:"left"} %>
