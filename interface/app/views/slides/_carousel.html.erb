@@ -1,0 +1,96 @@
+
+  <div class="above" data-controller="back-forth" data-back-forth-currentid-value="<%=@preview.sorting_number%>">
+    <div id="blackbox" data-fullscreen-target="blackbox"></div>
+    <div class="img-holder carousel slide" id="imgCarousel" data-fullscreen-target="image" data-action="mouseenter->back-forth#addArrows mouseleave->back-forth#removeArrows">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="<%= carousel.download_link %>" alt="<%= carousel.title%>" class="main-image">
+        </div>
+        <div class="carousel-item">
+          <img alt="Next Preload" class="main-image" data-back-forth-target="fwdimg">
+        </div>
+        <div class="carousel-item">
+          <img alt="Previous Preload" class="main-image" data-back-forth-target="backimg">
+        </div>
+      </div>
+      <% prevNum = carousel.sortingNumber-1%>
+      <% nextNum = carousel.sortingNumber+1%>
+      <a class="carousel-control-prev" type="button" data-bs-target="#imgCarousel" data-back-forth-target="remove back">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" type="button" data-bs-target="#imgCarousel" data-back-forth-target="remove fwd" href="javascript:void(0)">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+    </div>
+    <div id="buttons-pane" style="display:none" data-fullscreen-target="buttons">
+      <div class="bottomrow bottom-content">
+      </div>
+      <div class="tophalf">
+        <div class="toprow">
+          <a class="delete-button btn" id="exit-fullscreen" data-action="click->fullscreen#fsDeactivate" href="javascript:void(0)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+          </a>
+        </div>
+        <div class="middlerow">
+      <a class="fs-control prev" type="button" data-bs-target="#imgCarousel" data-back-forth-target="back">
+        <span class="prev-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+          </svg>
+        </span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="fs-control next" type="button" data-bs-target="#imgCarousel" data-back-forth-target="fwd">
+        <span class="next-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+        </span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+    </div>
+    <script>
+      // Switch pages on arrow click. This is left out of a controller so that it always works.
+      var active=true;
+      document.addEventListener("keydown", (event) => {
+        if(active){
+          var key=event.keyCode;
+          // detect Left Arrow
+          if(key == 37){
+            document.querySelector("a.fs-control.prev").click();
+          }
+          // detect Right Arrow
+          else if(key == 39){
+            document.querySelector("a.fs-control.next").click();
+          };
+          active = false;
+        };
+      });
+      document.addEventListener("keyup", (event)=>{active = true;});
+    </script>
+  </div>
+  <div class="bottomtext bottom-content">
+    <h5>
+      <%= carousel.title %>
+    </h5>
+    <p>
+      <% if carousel.hasAbstract? %>
+        <%= carousel.cleanAbstract%>
+      <% elsif carousel.hasDescription? %>
+        <%= carousel.cleanDescription %>
+      <% end %>
+      <% if carousel.hasImageNotes? %>
+        <% notes = carousel.cleanImageNotes
+           dates = notes.split(". ")[0..1]
+           datesum = dates[0]+". "+dates[1]+". " %>
+           <%= datesum %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+

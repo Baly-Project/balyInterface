@@ -1,0 +1,158 @@
+  <div class="row" data-controller="popover">
+    <% slide = descriptions #get object from default var %>
+    <% preview = Preview.find_by(sorting_number:slide.sortingNumber) %>
+    <div class="img-info col-9" data-controller="link-helper" data-link-helper-helpwith-value="<%=JSON.generate(slide.prepIntLinks) %>">
+      <h3 class="title"> <%= slide.cleanTitle %></h3>
+    <% if slide.hasAbstract? %>
+      <h5 class="subtitle"> Abstract <hr class="itemline"> </h5>
+      <p class="sdesc" data-link-helper-target="linkbox">
+        <%= slide.cleanAbstract%>
+      </p>
+    <% end %>
+    <% if slide.hasDescription? %>
+      <h5 class="subtitle"> Description <hr class="itemline"> </h5>
+      <p class="sdesc" data-link-helper-target="linkbox">
+        <%= slide.cleanDescription%>
+      </p>
+    <% end %>
+    <% if slide.hasReferences? %>
+      <h5 class="subtitle"> References <hr class="itemline"> </h5>
+      <div class="referencebox">
+        <%= slide.references%>
+      </div>
+    <% end %>
+    <% if slide.hasImageNotes? %>
+      <h5 class="subtitle"> Image Notes <hr class="itemline"> </h5>
+      <p class="sdesc">
+        <%= slide.cleanImageNotes%>
+      </p>
+    <% end %>
+    <% if slide.hasCuratorNotes? %>
+      <h5 class="subtitle"> Curator Notes <hr class="itemline"> </h5>
+      <p class="sdesc" data-link-helper-target="linkbox">
+        <%= slide.cleanCuratorNotes%>
+      </p>
+    <% end %>
+    </div>
+    <div class="img-data col-3">
+      <div class="ext-links">
+        <a title="Download Image" role="button" href="<%= slide.download_link%>">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-box-arrow-in-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
+            <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+          </svg>
+        </a>
+        <a title="View on Digital Kenyon" role="button" href="<%= slide.url %>" target="_blank" rel="noreferrer noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
+            <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708z"/>
+          </svg>
+        </a>
+        <a title="Enter Fullscreen" role="button" id="fullscreen-button" data-action="click->fullscreen#fsActivate" href="javascript:void(0)">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrows-move" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10M.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8"/>
+          </svg>
+        </a>
+      </div>
+      <div class="additional-data" data-controller="overflow">
+        <div class="data-item">
+          <span class="data-bold"> Identifier </span>
+          <span class="data"> <%= slide.configured_field_t_identifier[0] %></span>
+        </div>
+        <div class="data-item">
+          <span class="data-bold">Collection</span>
+          <a class="data" role="button" href="/collections/<%= preview.collection.alph_value%>"> <%= preview.collection.title %></a>
+        </div>
+        <% placeLinksHash = preview.makePlaceLinks %>
+        <div class="data-item" data-controller="link-helper" data-link-helper-helpwith-value='<%= JSON.generate(placeLinksHash) %>'>
+          <span class="data-bold"> Location </span>
+          <span class="data" role="button" data-link-helper-target="linkbox"> <%= slide.configured_field_t_coverage_spatial[0] %></span>
+        </div>
+        <div class="data-item">
+          <span class="data-bold"> Year </span>
+          <% thisyear = preview.year.number %>
+          <a class="data" role="button" href="/years/<%=thisyear %>"> <%= preview.year.number %> </a>
+        </div>
+        <% unless preview.stamp.title == "unstamped" %>
+          <% stamp = preview.stamp %>
+        <div class="data-item">
+          <span class="data-bold"> Batch Stamp </span>
+          <a class="data" role="button" href="/stamps/<%=stamp.id%>"> <%=stamp.title%> </a>
+        </div>
+        <% end %>
+
+        <div class="data-item" data-overflow-target="wrapcontainer">
+          <span class="data-bold"> Keywords </span>
+          <span class="data">
+          <% preview.keywords.each do |word| %>
+            <a class="nowrap" role="button" href="/keywords/<%=word.id%>"> <%= word.title %></a>,
+            <hr class="keyword-sep">
+          <% end %>
+          </span>
+        </div>
+
+        <div id="expand-container">
+          <div class="expanded" id="expand-contract" >
+            <% slide.dates.each do |key,value|%>
+            <% if value.displayable? %>
+            <div class="data-item">
+              <span class="data-bold"> <%= key %></span>
+              <span class="data" role="button"> <%= value %></a>
+            </div>
+            <% end %>
+          <% end %>
+          <% stamp = slide.configured_field_t_batch_stamp.to_s.lstrip.rstrip %>
+          <% if stamp.length > 1 %>
+            <div class="data-item">
+              <span class="data-bold"> Batch Stamp </span>
+              <span class="data" role="button" href="../stamps/<%= stamp %>"> <%=stamp%></a>
+            </div>
+          <% end %>
+          <% slide.notes.each do |key,value| %>
+            <% if value.to_s.length > 1 %>
+            <div class="data-item">
+              <span class="data-bold"> <%= key %></span>
+              <span class="data" role="button"> <%= value %></a>
+            </div>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+        <div class="expander-container">
+          <a type="button" class="data" class="help-button" href="javascript:void(0)" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left"
+              data-bs-content="Use the arrow keys and buttons on either side of the image to go
+              back/forth within the collection, or use the links on
+              the right to see other slides with that property.">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+            </svg>
+          </a>
+          <a id="expander" class="expand-button" role="button" onclick="expandContract()" href="javascript:void(0)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+          </a>
+        </div>
+        <div id="hiddenplus" style="display:none">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+          </svg>
+        </div>
+        <div id="hiddendash" style="display:none">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+          </svg>
+        </div>
+        <script>
+          function expandContract() {
+            $("#expand-contract").slideToggle(350, function() {
+              $("#expander").html(function() {
+                return $("#expand-contract").is(":visible") ? $('#hiddendash').html() : $('#hiddenplus').html();
+              });
+            });
+          };
+        </script>
+      </div>
+    </div>
+  </div>

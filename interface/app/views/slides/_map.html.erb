@@ -1,0 +1,88 @@
+ 
+  <div class="row">
+    <% locs = map.locations
+       cords = locs["Array"][1]
+       labels = locs["Array"][0]
+       if locs["Extra"].class == Hash
+         prospect=locs["Extra"]["Degrees"]
+         if prospect < 0
+           angle = "None"
+         else
+           angle = prospect
+         end
+       else
+         angle = "None"
+       end
+    %>
+  <% if cords.length > 0 %>
+    <div class="col-9 map-container" data-controller="map" data-map-latlong-value="<%= cords %>" data-map-labels-value="<%=labels%>", data-map-angle-value="<%=angle%>">
+      <div id="map" data-map-target="container">
+      </div>
+    </div>
+    <div class="img-data col-3">
+      <div class="location-info">
+      <% locs["Hash"].each do |key,value| %>
+      <%   if key.include? "Object"
+             color="green"
+           elsif key.include? "General"
+             color="blue"
+           elsif key.include? "Camera"
+             color="orange"
+           else
+             color=""
+           end
+      %>
+        <div class="data-item" data-controller="link-helper" data-link-helper-helpwith-value="<%=JSON.generate({@preview.location.title => "/places/locations/#{@preview.location.id}"})%>">
+          <span class="data-bold iconholder">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-geo-alt-fill placemark <%= color %>" viewBox="0 0 16 16">
+              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+            </svg>
+            <%= key %>
+          </span>
+          <span class="data" data-link-helper-target="linkbox"> <%= value %></span>
+        </div>
+      <% end %>
+      <% puts locs %>
+      <% unless locs["Extra"] == nil %>
+        <div id="expand-container-loc">
+          <div class="expanded" id="expand-contract-loc">
+          <% locs["Extra"].each do |key,value| %>
+            <% if key != "Degrees" %>
+            <div class="data-item">
+              <span class="data-bold loc-attr"> <%= key %></span>
+              <span class="data" role="button"> <%= value %></a>
+            </div>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+        <div class="expander-container">
+          <a href="javascript:void(0)" type="button" class="data" class="help-button" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left"
+              data-bs-content="Precision and Angle attributes refer to the
+              Camera Location. To see an index of Precision values and their meanings,
+              go to about/locations.">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+            </svg>
+          </a>
+          <a id="expander-loc" class="expand-button" role="button" onclick="expandLocData()" href="javascript:void(0)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+          </a>
+        </div>
+        <script>
+          function expandLocData() {
+            $("#expand-contract-loc").slideToggle(350, function() {
+              $("#expander-loc").html(function() {
+                return $("#expand-contract-loc").is(":visible") ? $('#hiddendash').html() : $('#hiddenplus').html();
+              });
+            });
+          };
+        </script>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+  </div>
