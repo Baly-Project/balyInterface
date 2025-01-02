@@ -1,0 +1,101 @@
+/* Universal */
+
+
+/* Collections */
+
+.pano-image {
+  height:4in;
+}
+.pano-image img {
+   object-position: center;
+   width: 100%;
+   object-fit: cover;
+   height: 4in;
+}
+
+/* Years */
+
+h1.yearitem {
+  margin-left:20px;
+  padding-left:0px;
+  font-family: math;
+}
+.monthitem {
+  margin-left:40px;
+}
+div.med-indent{
+  margin-left: 32px;
+}
+
+.slide-group {
+   height:400px;
+   overflow-y:scroll;
+}
+
+/* Locations */
+
+.location-map {
+  width: 100%;
+  height: 50svh;
+}
+.leaflet-container a.purple {
+  color: rgb(43, 9, 79);
+}
+.world-map {
+  width:100%;
+  height: 70svh;
+}
+.country-about {
+  padding-left:30px;
+}
+
+/* Keywords */
+
+/* index.html.erb */
+
+.period-list {
+  margin-left: 1in;
+}
+.century-list {
+  margin-left:auto;
+  margin-right:auto;
+  padding-bottom: .5in;
+}
+
+.keyword-container {
+  text-align: center;
+}
+
+.keyword-item {
+  white-space: nowrap;
+  padding: .7em;
+  overflow-wrap: break-word;
+  text-wrap:balance;
+}
+
+.row h5 {
+  height: min-content;
+}
+
+.timeperiod.row {
+  align-content:flex-start;
+}
+
+#allkeywords {
+  columns:2;
+}
+@media (min-width: 768px) {
+  #allkeywords {
+    columns:3;
+  }
+}
+
+/* show.html.erb */
+
+.keyword-about {
+  margin-left:.5in;
+  margin-bottom: .3in;
+}
+
+
+
