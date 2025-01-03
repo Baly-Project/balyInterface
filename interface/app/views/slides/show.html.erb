@@ -25,14 +25,26 @@
       </div>
       <% prevNum=@slide.sortingNumber-1%>
       <% nextNum=@slide.sortingNumber+1%>
-      <a class="carousel-control-prev" type="button" data-bs-target="#imgCarousel" data-back-forth-target="remove back">
+      <a class="carousel-control-prev prefetch" type="button" data-bs-target="#imgCarousel" data-back-forth-target="remove back">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </a>
-      <a class="carousel-control-next" type="button" data-bs-target="#imgCarousel" data-back-forth-target="remove fwd">
+      <a class="carousel-control-next prefetch" type="button" data-bs-target="#imgCarousel" data-back-forth-target="remove fwd">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </a>
+      <script>
+        document.querySelectorAll(".prefetch").forEach((el)=>{
+          setTimeout(() => {
+            console.log("LINK LOADED")
+          const url = el.getAttribute('href');
+          const prefetchLink = document.createElement('link');
+          prefetchLink.rel = 'prefetch'
+          prefetchLink.href = url;
+          document.head.appendChild(prefetchLink);
+          }, 100);
+        });
+      </script>
     </div>
     <div id="buttons-pane" style="display:none" data-fullscreen-target="buttons">
       <div class="bottomrow bottom-content">
