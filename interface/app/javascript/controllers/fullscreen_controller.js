@@ -10,6 +10,17 @@ export default class extends Controller {
     this.timer=0
   }
   connect() {
+    var interval = setInterval(()=>{
+      try {
+        this.setup();
+        clearInterval(interval);
+      } catch(e) {
+        console.log('failed attempt',e)
+      }
+    }, 200);
+  }
+
+  setup(){
     this.buttons=this.buttonsTarget.querySelectorAll(".fs-control");
     this.img=this.imageTarget.querySelector("img");
     if(this.imageTarget.innerHTML.length > 0) {

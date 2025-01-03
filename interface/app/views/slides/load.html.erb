@@ -1,11 +1,34 @@
-<%= turbo_frame_tag :carousel do %>
-  <%= render partial: "carousel", object:@slide %>
+<%= turbo_frame_tag 'slide-page' do %>
+  <%content_for :for_head do %>
+  <script>
+    if (sessionStorage["fullscreen"]=="true"){
+      document.querySelector("html").innerHTML = "<div id='blackscreen' style='width:100svw; height: 100svh; background-color:black;postion:fixed; z-index=100'> </div>"+document.querySelector("html").innerHTML;
+    }
+  </script>
+  <% end %>
+
+
+
+<% #content_for :above_content do %>
+<%= turbo_frame_tag 'carousel', class:"hidden" do %>
+  <%= render partial: 'carousel', object:@slide %>
 <% end %>
 
-<%= turbo_frame_tag :description do %>
-  <%= render partial: "descriptions", object: @slide %>
-<% end %>
+  <style>
+    body {
+      background-color: black;
+    }
+  </style>
 
-<%= turbo_frame_tag :map do %> 
-  <%= render partial: "map", object:@slide %>
+<%= render partial: "descriptions", object:@slide %>
+  <div class="hidden" style="display:none;">
+    <%=image_tag("marker-icon-green.png", id:"green-icon") %>
+    <%=image_tag("marker-icon-blue.png", id:"blue-icon") %>
+    <%=image_tag("marker-icon-orange.png", id:"orange-icon") %>
+    <%=image_tag("marker-shadow.png", id:"shadow-icon") %>
+    <%=image_tag("fov.png",id:"fov-icon") %>
+  </div>
+
+<%= render partial: 'map', object:@slide %>
+
 <% end %>

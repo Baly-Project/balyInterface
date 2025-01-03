@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "index" => redirect("index/title/1/100")
   get "index/:sortparam/:start/:last" => "slides#index"
   get "slides/range/:range" => "slides#range"
+  get "slides/source/:id" => "slides#load"
   get "slides/:id" => "slides#show"
   get "years/all" => "years#index"
   get "years/:number" => "years#show"

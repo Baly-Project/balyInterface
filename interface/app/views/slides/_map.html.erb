@@ -21,6 +21,7 @@
     </div>
     <div class="img-data col-3">
       <div class="location-info">
+      <% preview = Preview.find_by(sorting_number:map.sortingNumber) %>
       <% locs["Hash"].each do |key,value| %>
       <%   if key.include? "Object"
              color="green"
@@ -32,7 +33,7 @@
              color=""
            end
       %>
-        <div class="data-item" data-controller="link-helper" data-link-helper-helpwith-value="<%=JSON.generate({@preview.location.title => "/places/locations/#{@preview.location.id}"})%>">
+        <div class="data-item" data-controller="link-helper" data-link-helper-helpwith-value="<%=JSON.generate({preview.location.title => "/places/locations/#{preview.location.id}"})%>">
           <span class="data-bold iconholder">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-geo-alt-fill placemark <%= color %>" viewBox="0 0 16 16">
               <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
