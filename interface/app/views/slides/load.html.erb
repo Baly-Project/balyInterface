@@ -1,0 +1,11 @@
+<%= turbo_frame_tag :carousel do %>
+  <%= render partial: "carousel", object:@slide %>
+<% end %>
+
+<%= turbo_frame_tag :description do %>
+  <%= render partial: "descriptions", object: @slide %>
+<% end %>
+
+<%= turbo_frame_tag :map do %> 
+  <%= render partial: "map", object:@slide %>
+<% end %>
