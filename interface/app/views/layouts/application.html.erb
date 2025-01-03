@@ -6,25 +6,27 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="icon", type="image/x-icon",height="16px",width="16px" class="fav-icon"> 
-    <link rel="shortcut icon", type="image/x-icon",height="16px",width="16px",class="fav-icon"> 
-    <%= image_tag "b-icon.png", class:"hidden", id:"fvicon-src",height:"16px", width:"16px"%>
-
+    <link rel="shortcut icon" type="image/x-icon" height="16px" width="16px" class="fav-icon"> 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
      crossorigin=""/>
     <script type='text/javascript' src="/searchdata.js"></script>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
     <% if content_for :for_head %>
       <%= yield :for_head %>
     <% end %>
 
+
+    <%= image_tag "b-icon.png", class:"hidden", id:"fvicon-src",height:"16px", width:"16px"%>
     <script>
       var src=document.getElementById("fvicon-src").src;
       document.querySelectorAll(".fav-icon").forEach(icon=>{
         icon.href=src;
       });
     </script>
+
   </head>
 <% if content_for :above_content
      activatefs=true
