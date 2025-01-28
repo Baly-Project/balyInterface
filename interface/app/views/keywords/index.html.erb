@@ -1,6 +1,6 @@
-<h1> Keywords </h1>
+<h1 class="large-title"> Keywords <span class="keyword-shortcuts"> Jump to <a class="purple" href="#alphabetical"> Alphabetical</a>, <a class="purple" href="#wordcloud"> Wordcloud </a> </span></h1>
 
-<div class="row row-cols-2">
+<div class="row row-cols-2 keyword-categories">
 <% @periods.each do |key,wordlist| %>
   <div class="timeperiod row">
     <% if key=="Period" %>
@@ -22,6 +22,8 @@
 <% end %>
 </div>
   
+<h3 id="alphabetical" class="keyword-subtitle" > Alphabetical </h3>
+<hr class="navline">
 <div id=allkeywords>
 <% @keywords.order(:title).pluck(:title,:id).each do |word,id| %>
   <div class="keyword-item">
@@ -29,12 +31,13 @@
   </div>
 <% end %>
 </div>
-<h4 id="wordcloud"> Wordcloud </h4>
+<h3 id="wordcloud" class="keyword-subtitle" style="margin-top:1.5in"> Wordcloud </h3>
+<hr class="itemline">
 <div class="keyword-container">
 <% @keywords.sort_by{|kw| -kw.previews.size}.each do |word| 
    count=word.previews.size %>
-  <span class="keyword-item" style="font-size: <%= count*3+70 %>%;"> 
-    <a class="purple" href="/keywords/<%=word.id%>"> <%= word.title %> </a>
+  <span class="keyword-item" style="font-size: <%= 50*Math.log(count+3) %>%;"> 
+    <a class="purple" href="/keywords/<%=word.id%>"><%= word.title %></a>
   </span>
 <% end %>
 
