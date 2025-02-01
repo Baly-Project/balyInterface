@@ -1,10 +1,3 @@
-<h1> <%=@location.title %></h1>
-<% if @location.alternates.class == String %>
-  <div class="keyword-about">
-    Also known as <%= @location.alternates %> 
-  </div>
-<% end %>
-
 <div class="hidden" style="display:none;">
   <%=image_tag("marker-icon-green.png", id:"green-icon") %>
   <%=image_tag("marker-icon-blue.png", id:"blue-icon") %>
@@ -20,5 +13,17 @@
   <div id="map" data-bigmap-target="container"> 
   </div>
 </div> 
-<h4> Contains <%= @location.previews.size %> slides </h4>
+<h1 class="large-title">
+  <%= @location.title %>
+  <span class="item-type">
+    Location
+  </span>
+</h1>
+<div class="attribute-about">
+Contains <%= @location.previews.size %> slides. 
+<% if @location.alternates.class == String %>
+  Also known as <%= @location.alternates %> 
+<% end %>
+</div>
+
 <%= render partial:"layouts/previewlist", object:@location, locals:{align:"center"} %>
