@@ -14,7 +14,7 @@ class Location < ApplicationRecord
     self.previews.each do |preview|
       if preview.coordinates.to_s.length > 2
         coords.push prepcoords(preview.coordinates)
-        label = '<a class="purple" href="/slides/"'
+        label = "<a class='purple' href='/slides/"
         label += preview.sorting_number.to_s 
         label += "' data-action='click->back-forth/#setList'> #{preview.title} </a>"
         labels.push label

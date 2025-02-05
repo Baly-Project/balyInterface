@@ -12,7 +12,7 @@ class CountriesController < ApplicationController
         locsize = loc.previews.size
         label += "<br> #{locsize} slides"
         locLabels.push label
-        scale = (locsize*0.0125) + 0.5
+        scale = (Math.log(locsize+2.5,6) * 0.4) + 0.2
         locScales.push scale
       end
     end
