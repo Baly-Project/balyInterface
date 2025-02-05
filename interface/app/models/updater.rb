@@ -173,9 +173,10 @@ class Updater
         date = EnhancedDate.parse(stringdate)
       rescue
         if stringdate.to_i.to_s == stringdate
-          date = OpenStruct.new({:year=>stringdate.to_i})
+          date = OpenStruct.new({:year => stringdate.to_i})
         else
-          date = EnhancedDate.parse("3000")
+          date = OpenStruct.new({:year => 3000})
+          @log.puts "Slide with sorting number #{id} with documented date #{stringdate} could not be parsed, and has been treated as undated"
         end
       end
       if date.class == OpenStruct
