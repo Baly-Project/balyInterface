@@ -159,30 +159,30 @@ class Updater
     end
     def processDate(timeperiods,slide,id)
       begin
-      	stringdate=slide.configured_field_t_documented_date[0]
+      	stringdate = slide.configured_field_t_documented_date[0]
       rescue 
-	@log.puts "Slide with sorting number #{id} does not have a documented date. If this is a mistake, fix the record on Digital Kenyon"
-	begin 
-          stringdate=EnhancedDate.parse(slide.publication_date).year.to_s
-	rescue
-          stringdate="3000"
+	      @log.puts "Slide with sorting number #{id} does not have a documented date. If this is a mistake, fix the record on Digital Kenyon"
+	      begin 
+          stringdate = EnhancedDate.parse(slide.publication_date).year.to_s
+	      rescue
+          stringdate  = "3000"
         end
       end
       #@log.puts "DATE=#{stringdate}"
       begin
-        date=EnhancedDate.parse(stringdate)
+        date = EnhancedDate.parse(stringdate)
       rescue
         if stringdate.to_i.to_s == stringdate
-          date=OpenStruct.new({:year=>stringdate.to_i})
+          date = OpenStruct.new({:year=>stringdate.to_i})
         else
-          date= ""
+          date = EnhancedDate.parse("3000")
         end
       end
       if date.class == OpenStruct
         if timeperiods.keys.include? date.year.to_s
           timeperiods[date.year.to_s].increment("nomonth",id)
         else
-          timeperiods[date.year.to_s]={"nomonth"=>[id]}
+          timeperiods[date.year.to_s] = {"nomonth"=>[id]}
         end
       else
         if timeperiods.keys.include? date.year.to_s
@@ -192,7 +192,7 @@ class Updater
           #   timeperiods[date.year][date.stringMonth] id
           # end
         else
-          timeperiods[date.year.to_s]={date.stringMonth=>[id]}
+          timeperiods[date.year.to_s] = {date.stringMonth=>[id]}
         end
       end
     end
