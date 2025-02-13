@@ -66,13 +66,11 @@ Ruby has several installers that will all leave you with an identical ruby versi
     
     The ``>>`` symbol shows expected system output. The installation was successful if your output matches this.
     ```sh
-    ruby -v
-
-    >> ruby 3.3.5 (2023-12-25 revision 5124f9ac75) [x86_64-linux]
-
-
+    ruby -v;
     rvm list
-
+    ```
+    ```
+    >> ruby 3.3.5 (2023-12-25 revision 5124f9ac75) [x86_64-linux]
     >> =* ruby-3.3.5 [ x86_64 ]
 
         # => - current
