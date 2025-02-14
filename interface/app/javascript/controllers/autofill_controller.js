@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="autofill"
 export default class extends Controller {
   static targets = ["fillbox","searchbox"];
-  static values = { maxresults:Number};
+  static values = { maxresults:Number, override:String };
   connect() {
     this.clearBox();
     this.assignListeners();
@@ -98,7 +98,7 @@ export default class extends Controller {
   resizePanel(){
     var fillbox = this.fillboxTarget;
     fillbox.style.visibility = 'visible';
-    if(window.innerWidth < 1200) {
+    if(window.innerWidth < 1200 || this.overrideValue == "resize") {
       var targetwidth = this.searchboxTarget.offsetWidth;
       fillbox.style.width = " "+targetwidth+"px";
     } else {

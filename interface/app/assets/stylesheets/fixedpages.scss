@@ -48,6 +48,25 @@
     }
   }
 
+
+  .browse {
+    padding-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .browse .search-group {
+    width:80%;
+  }
+
+  .browse .search-dropdown-menu {
+    position:relative;
+  }
+
+
+
+
 /* About styles */
   div.abt-page h3 {
     width: fit-content;

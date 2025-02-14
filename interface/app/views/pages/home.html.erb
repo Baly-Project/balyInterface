@@ -34,6 +34,7 @@
         between the late 1950s and early 1980s while he was a professor of Political Science and Religion at Kenyon. 
         It is currently in the process of being researched and digitized by students in the 
         <a class='purple' href='https://vrc.kenyon.edu' target='_blank'>Visual Resorces Center</a> of the Kenyon Art History Department. 
+	To learn more about Baly's life and the history of the collection, view the <a class="purple" href="/timeline">timeline</a> or visit the <a class="purple" href="/about">about page</a>.
       </p>
     </div>
     <div class="col-5">
@@ -49,12 +50,13 @@
       between the late 1950s and early 1980s while he was a professor of Political Science and Religion at Kenyon. 
       It is currently in the process of being researched and digitized by students in the
       <a class='purple' href='https://vrc.kenyon.edu' target='_blank'>Visual Resorces Center</a> of the Kenyon Art History Department. 
+      To learn more about Baly's life and the history of the collection, view the <a class="purple" href="/timeline"> timeline </a> or visit the <a class="purple" href="/about"> about page </a>.
     </p>
   </div>
 </div>
-<div class="browse center">
+<div class="browse">
   <h1> Browse the Collection</h1>
-  <div class="search-group welcome-search" data-controller='autofill' data-autofill-maxresults-value="10">
+  <div class="search-group welcome-search" data-controller='autofill' data-autofill-maxresults-value="10" data-autofill-override-value="resize">
     <form class="d-flex search-form" role="search" data-controller="search">
       <input id="main-search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" data-search-target="textbox" data-autofill-target="searchbox">
       <button class="btn btn-outline-secondary" data-action="click->search#submit">Search</button>
@@ -69,7 +71,9 @@
       "View All" => "/index"}.each do |key, value| %>
 
       <div class="browse-item">
-        <a class="purple" href="<%= value %>"><%= key %></a>
+        <h3>
+	  <a class="purple" href="<%= value %>"><%= key %></a>
+	</h3>
       </div>
   <% end %>
 </div>
