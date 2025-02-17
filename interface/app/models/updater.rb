@@ -33,7 +33,7 @@ class Updater
 	
   def getAllRecords()
     api=ApiHandler.new
-    objects=api.getRecord(parsed:true,fields:"all",maxtries:20,check:[:configured_field_t_object_notation])
+    objects=api.getRecord(parsed:true,fields:"all",maxtries:20,check:[:configured_field_t_object_notation,:download_link])
     count=objects.length
     return [objects,count]
   end
@@ -91,26 +91,31 @@ class Updater
       orientations=Hash.new
       @log.print "\nProcessing Slides"
       slides.sort_by{|slide| slide.sortingNumber}.each do |slide|
-        id=slide.sortingNumber
-        ids.push id
-        processPlaces(placetoids,placeinfo,genLocstoids,genLocstocoords,slide,id)
-        slide.keywords.each do |word|
-          keywordstoids.increment(word,id)
+        begin 
+          id=slide.sortingNumber
+          ids.push id
+          processPlaces(placetoids,placeinfo,genLocstoids,genLocstocoords,slide,id)
+          slide.keywords.each do |word|
+            keywordstoids.increment(word,id)
+          end
+          slide.altTerms.each do |name|
+            termstoids.increment(name,id)
+          end
+          collection=slide.subcollection
+          collections.increment(collection,id)
+          years.increment(slide.year,id)
+          processDate(timeperiods,slide,id)
+          stamp=slide.batchStamp
+          if stamp.length < 1
+            stamp= "unstamped"
+          end
+          stamps.increment(stamp,id)
+          orientations[id]=getImgDims(slide.download_link)
+          @log.print "."
+        rescue => e
+          @log.puts "An error occurred with slide #{slide.sortingNumber}"
+          raise e
         end
-        slide.altTerms.each do |name|
-          termstoids.increment(name,id)
-        end
-        collection=slide.subcollection
-        collections.increment(collection,id)
-        years.increment(slide.year,id)
-        processDate(timeperiods,slide,id)
-        stamp=slide.batchStamp
-        if stamp.length < 1
-          stamp= "unstamped"
-        end
-        stamps.increment(stamp,id)
-        orientations[id]=getImgDims(slide.medimg)
-        @log.print "."
       end
       #@log.print "\n"+timeperiods.to_s+"\n"
       return OpenStruct.new({
@@ -198,7 +203,15 @@ class Updater
       end
     end
     def getImgDims(link)
-      dims=FastImage.size(link)
+      dims = FastImage.size(link)
+      if dims.to_s.length < 1
+        @log.print "Link #{link} returned null size from FastImage"
+        tries = 0
+        while dims.to_s.length < 1 and tries < 5
+          dims = FastImage.size(link)
+          tries += 1
+        end
+      end
       ratio=dims[0].to_f/dims[1].to_f
       if ratio > 1.2
         return "L"
