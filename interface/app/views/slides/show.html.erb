@@ -89,7 +89,12 @@
             <% if @slide.hasImageNotes? %>
               <%notes=@slide.cleanImageNotes
                 dates=notes.split(". ")[0..1]
-                datesum=dates[0]+". "+dates[1]+". " %>
+		if dates.length > 1
+                  datesum=dates[0]+". "+dates[1]+". " 
+                else 
+                  datesum = dates[0]
+                end 
+              %>
               <%= datesum %>
             <% end %>
           </p>
