@@ -50,14 +50,14 @@ Rules to follow when updating and developing.
 ### Future Directions
  - Slideshow feature available in slide views, to automatically rotate through the current set of images. Because the next and previous buttons handle all the functionality, this can be initiated with a 30 second delay (but not ended) by the javascript snippet:
     ```js
-        const minutes = 5;
-        function iterate(seconds){
-        const interval = 5000;
-        setTimeout(() => {
-            document.querySelector('.fs-control.next')?.click();
-            iterate();
-        }, interval)};
-        iterate(minutes * 60);
+    const minutes = 0.5;
+    function iterate(seconds){
+    const interval = seconds*1000;
+    return setTimeout(() => {
+        document.querySelector('.fs-control.next')?.click();
+        iterate(seconds);
+    }, interval)};
+    iterate(minutes * 60);
     ```
     The remaining work will involve creating a new button that triggers this functionality, as well as finding a way to end. Ending the recursive cycle could be done by checking for a variable in the sessionStorage object, which persists between pages. Review the addArrows function in `interface/app/javascript/controllers/back_forth_controller.js` 
     for examples of setting and retrieving variables from sessionStorage.
