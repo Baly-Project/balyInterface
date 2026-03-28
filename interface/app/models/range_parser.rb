@@ -83,7 +83,6 @@ class RangeParser
           slidesMentioned.push slide
         end
       else 
-        #print "#{rightside}, #{rightside.length} "
         while rightside.length <3
           rightside="0"+rightside
         end

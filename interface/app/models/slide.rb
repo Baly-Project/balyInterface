@@ -204,7 +204,6 @@ class Slide < OpenStruct
   def keywords
     keywordslist=Array.new
     metadata=self.meta
-    #print self.meta
     metadata.Keywords.each do |word|
       if word.length > 1 
         keywordslist.push word.lstrip.rstrip
@@ -262,7 +261,7 @@ class Slide < OpenStruct
             return speccoords
           end
           rtnHash["Extra"]={"Precision" => loc.precision.capitalize,"Angle" => loc.angle,"Degrees"=>stripAngleNum(loc.angle)}
-          # print " Additional: #{additional} "
+
         elsif (loc.type=="object" and loc.latitude.to_s.length > 1) or (loc.type == "" and loc.latitude.to_s.length > 1)
           lochash["Object Location"]=""
           objectcoords=formatcoords([loc.latitude,loc.longitude])
@@ -360,7 +359,6 @@ class Slide < OpenStruct
     posGuess=linkComponents[6]
     unless posGuess.to_i.to_s == posGuess
       linkComponents.each do |guess|
-        print "First Guess: #{posGuess}, new guess: #{guess}"
         if guess.to_i.to_s == guess
           posGuess=guess
           break

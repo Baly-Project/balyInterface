@@ -34,5 +34,4 @@
 <% end %>
 </div>
 
-<%= puts @keyword.previews.count %>
 <%= render partial:"layouts/previewlist", object:@keyword.previews.to_a, locals:{align:"left"} %>

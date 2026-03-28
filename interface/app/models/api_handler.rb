@@ -73,7 +73,6 @@ class ApiHandler
       end
       startHash=startHash.merge({select_fields:"all"})
     end
-    print startHash
     return startHash
   end  
   def checkPresence?(slides,symArray)
