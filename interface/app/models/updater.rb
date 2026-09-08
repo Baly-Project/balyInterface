@@ -110,7 +110,7 @@ class Updater
             stamp= "unstamped"
           end
           stamps.increment(stamp,id)
-          orientations[id]=getImgDims(slide.download_link)
+          orientations[id]=getImgDims(slide.thumbnail)
           @log.print "."
         rescue => e
           @log.puts "An error occurred with slide #{slide.sortingNumber}"
@@ -220,6 +220,9 @@ class Updater
       else
         return "S"
       end
+    rescue => e
+      @log.puts e
+      return "S"
     end    
     def uncover(attribute)
       if attribute.class == Array
